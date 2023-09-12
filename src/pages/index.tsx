@@ -4,7 +4,7 @@ import {Html} from "../components/html";
 import MainLayout from "../components/layout/MainLayout";
 import HeaderView from "../components/layout/Header";
 import FooterView from "../components/layout/Footer";
-import Typography from "../components/Typography";
+import Typography from "../components/typography";
 
 const HomePage: React.FC<PageProps> = () => {
   return (
