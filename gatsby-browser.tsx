@@ -18,6 +18,19 @@ const { ApplicationWrapper } = {
       min-height: 100%;
     `,
 }
+const DISABLED_LOGS = [
+    "The component typography with the id of",
+]
+
+const logger = console.warn
+
+console.warn = function (...args) {
+    if (args.some(arg => arg.includes("The component typography with the id of"))) {
+        return;
+    }
+    logger(...args)
+}
+
 
 export const wrapPageElement: GatsbyBrowser["wrapPageElement"] = ({
     element,

@@ -224,3 +224,18 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'SPACE ARMOR';
+    font-style: normal;
+    font-weight: 400;
+    src: local('SPACE ARMOR'), url('../fonts/SpaceArmor-vmlv4.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Aquatix';
+    src: url('../fonts/Aquatix.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

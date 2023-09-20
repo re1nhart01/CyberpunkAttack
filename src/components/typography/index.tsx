@@ -2,15 +2,21 @@ import React, { FC, PropsWithChildren, ReactHTML } from 'react';
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
 
+type ExtensionSelector = Partial<HTMLAnchorElement | HTMLDivElement | HTMLSpanElement> &
+    Pick<typographyProps, "fw" | "fsz" | "ff" | "color"> &
+    Required<PropsWithChildren>;
 
-type typographyProps = PropsWithChildren<{
-    color: keyof typeof theme["colors"];
-    fw: keyof typeof theme["fontWeight"];
-    fsz: keyof typeof theme["fontSizes"];
-    ff: keyof typeof theme["fonts"];
-    selector: keyof ReactHTML;
+export type typographyProps = PropsWithChildren<{
+    color?: keyof typeof theme["colors"];
+    fw?: keyof typeof theme["fontWeight"];
+    fsz?: keyof typeof theme["fontSizes"];
+    ff?: keyof typeof theme["fonts"];
+    selector?: keyof ReactHTML;
     href?: string;
+    className?: string;
 }>;
+
+
 const Typography: FC<typographyProps> = ({
      fsz,
      ff,
@@ -19,31 +25,32 @@ const Typography: FC<typographyProps> = ({
      children,
      selector,
      href,
+     className,
      }) => {
-    const Text = createTextComponent(selector);
+    const Text = createTextComponent(selector, { fsz, ff, fw, color, href });
+
     return (
-        <Text
-            href={href}
-            ff={ff}
-            fsz={fsz}
-            fw={fw}
-            color={color}
-        >
+        <Text className={className}>
             { children as never }
         </Text>
     );
 };
 
-const createTextComponent = (selector: keyof ReactHTML) => {
-    return styled[selector as "div"]<
-        Partial<HTMLAnchorElement | HTMLDivElement | HTMLSpanElement> &
-        Pick<typographyProps, "fw" | "fsz" | "ff" | "color"> &
-        Required<PropsWithChildren>>`
-      color: ${({ color = "main", theme }) =>
-              theme.colors[color]};
-      font-size: ${({ fsz = "fz14", theme }) => theme.fontSizes[fsz]}px;
-      font-family: ${({ ff = "orbitron", theme }) => theme.fonts[ff]};
-      font-weight: ${({ fw = "fw400", theme }) => theme.fontWeight[fw]};
+export function createTextComponent (selector: keyof ReactHTML = "span", {
+    fsz,
+    color,
+    fw,
+    ff,
+    href }: Omit<typographyProps, "selector" | "children">) {
+    return styled[selector as "div"].attrs<ExtensionSelector>((props) => ({
+        ...(selector === "a" && { href }),
+        ...props,
+    }))<ExtensionSelector>
+        `
+      color: ${({ theme }) => theme.colors[color!] || theme.colors.main};
+      font-size: ${({ theme }) => theme.fontSizes[fsz!] || theme.fontSizes.fz14}px;
+      font-family: ${({ theme }) => theme.fonts[ff!] || theme.fonts.orbitron};
+      font-weight: ${({ theme }) => theme.fontWeight[fw!] || theme.fontWeight.fw400};
     `
 }
 

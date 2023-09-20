@@ -5,6 +5,7 @@ import MainLayout from "../components/layout/MainLayout";
 import HeaderView from "../components/layout/Header";
 import FooterView from "../components/layout/Footer";
 import Typography from "../components/typography";
+import {ICONS} from "../services/constant/icons";
 
 const HomePage: React.FC<PageProps> = () => {
   return (
@@ -13,9 +14,8 @@ const HomePage: React.FC<PageProps> = () => {
           Footer={<FooterView />}
       >
           <div>
-                <Typography fsz="fz32" selector="a" color="main" fw="fw500" ff="boxedRound">
-                    Amongus
-                </Typography>
+              <img src={ICONS.gatsbyIcon} alt=""/>
+
           </div>
       </MainLayout>
   )

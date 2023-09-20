@@ -7,16 +7,16 @@ type mainLayoutProps = PropsWithChildren<{
     Footer?:JSX.Element;
 }>;
 
-const { ContentWrapper, MainWrapper, ShrinkContainer } = MainLayoutStyles;
+const { ContentWrapper, MainWrapper, ShrinkContainer, FullContainer } = MainLayoutStyles;
 
 const MainLayout: FC<mainLayoutProps> = ({ Footer, Header, children }) => {
     return (
         <MainWrapper>
             { Header || null }
             <ContentWrapper>
-                <ShrinkContainer>
+                <FullContainer>
                   { children }
-                </ShrinkContainer>
+                </FullContainer>
             </ContentWrapper>
             { Footer || null }
         </MainWrapper>

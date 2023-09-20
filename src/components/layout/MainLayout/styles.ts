@@ -6,6 +6,7 @@ export const MainLayoutStyles = {
       display: flex;
       flex-direction: column;
       min-height: 100%;
+      background-color: ${({ theme }) => theme.components.backgrounds.primary};
     `,
     ContentWrapper: styled.div`
       display: flex;
@@ -17,8 +18,15 @@ export const MainLayoutStyles = {
       flex: 1;
       margin-left: auto;
       margin-right: auto;
+    `,
+    FullContainer: styled.div`
+      display: flex;
+      flex: 1;
+      margin-left: auto;
+      margin-right: auto;
     `
 }
 
 
 export const ShrinkContainer = MainLayoutStyles.ShrinkContainer;
+export const FullContainer = MainLayoutStyles.FullContainer;

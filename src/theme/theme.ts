@@ -10,6 +10,9 @@ export const theme = {
         green: "#1AEC7B",
     },
     components: {
+        backgrounds: {
+          primary: "#000000",
+        },
         typography: {
 
         },
@@ -22,9 +25,11 @@ export const theme = {
     opacity: {
     },
     fonts: {
+        space: "SPACE ARMOR",
         orbitron: "Orbitron",
         boxedRound: "Boxed Round",
         boxedRoundB: "Boxed Round Book",
+        aquantix: "Aquatix",
     },
     fontSizes: {
         fz8: 8,
@@ -36,6 +41,7 @@ export const theme = {
         fz20: 20,
         fz22: 22,
         fz24: 24,
+        fz29: 29,
         fz32: 32,
     },
     fontWeight: {
