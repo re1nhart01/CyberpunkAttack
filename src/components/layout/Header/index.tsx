@@ -20,7 +20,7 @@ const HeaderView: FC<headerViewProps> = ( {} ) => {
                 <Text11aquantix400>Attack</Text11aquantix400>
             </LogoWrapper>
             <ButtonsWrapper>
-                <ButtonRowView></ButtonRowView>
+                <ButtonRowView />
             </ButtonsWrapper>
         </Wrapper>
     );

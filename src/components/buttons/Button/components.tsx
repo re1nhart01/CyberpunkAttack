@@ -13,5 +13,10 @@ export const ButtonComponents = {
       height: 51px;
       background: url(${ICONS.npButtonBG}) no-repeat;
       background-size: contain;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: 8px;
+      justify-content: center;
     `
 }

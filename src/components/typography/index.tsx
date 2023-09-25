@@ -2,6 +2,7 @@ import React, { FC, PropsWithChildren, ReactHTML } from 'react';
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
+import ua from "../../services/localization/ua";
 
 type ExtensionSelector = Partial<HTMLAnchorElement | HTMLDivElement | HTMLSpanElement> &
     Pick<typographyProps, "fw" | "fsz" | "ff" | "color"> &
@@ -18,7 +19,8 @@ export type typographyProps = PropsWithChildren<{
     href?: string;
     fzType?: "px" | "rem";
     className?: string;
-    k?: string;
+    k?: keyof typeof ua | string;
+    disabledWrap?: boolean;
 }>;
 
 const pickFontSize = (th: typeof theme, fzType: "px" | "rem" = "px", fsz: inferredFsz) => {
@@ -37,8 +39,9 @@ const Typography: FC<typographyProps> = ({
      fzType,
      className,
      k,
+     disabledWrap,
      }) => {
-    const Text = createTextComponent(selector, { fsz, ff, fw, color, href, fzType });
+    const Text = createTextComponent(selector, { fsz, ff, fw, color, href, fzType, disabledWrap });
     const { t } = useTranslation();
     const entity = k ? t(k) : children;
     return (
@@ -54,7 +57,9 @@ export function createTextComponent (selector: keyof ReactHTML = "span", {
     fw,
     ff,
     fzType,
-    href }: Omit<typographyProps, "selector" | "children">) {
+    href,
+    disabledWrap,
+}: Omit<typographyProps, "selector" | "children">) {
     return styled[selector as "div"].attrs<ExtensionSelector>((props) => ({
         ...(selector === "a" && { href }),
         ...props,
@@ -64,7 +69,7 @@ export function createTextComponent (selector: keyof ReactHTML = "span", {
       font-size: ${({ theme }) => pickFontSize(theme, fzType, fsz as inferredFsz)};
       font-family: ${({ theme }) => theme.fonts[ff!] || theme.fonts.orbitron};
       font-weight: ${({ theme }) => theme.fontWeight[fw!] || theme.fontWeight.fw400};
-      white-space: pre-line;
+      white-space: ${disabledWrap ? "nowrap" : "pre-wrap"};
     `
 }
 

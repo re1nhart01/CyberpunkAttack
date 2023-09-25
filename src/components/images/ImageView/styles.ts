@@ -17,5 +17,9 @@ export const ImageViewComponents = {
     })`
       width: 24px;
       height: 24px;
-    `
+    `,
+    CardImageView: styled(ImageView).attrs({
+        source: "cardView",
+        alterText: "NP_LOGO_IMAGE"
+    })``
 };

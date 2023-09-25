@@ -9,6 +9,7 @@ import blurRowImg from "../../images/svg/blurRowImg.svg";
 import fbBoxGame from "../../images/png/fb_box_game.png";
 import npButtonBG from "../../images/png/nova_poshta_btn_bg.png";
 import npLogo from "../../images/png/novaPoshtaLogo.png";
+import cardView from "../../images/svg/card_view.svg";
 
 
 const ICONS = {
@@ -20,12 +21,10 @@ const ICONS = {
     fbBoxGame,
     npButtonBG,
     npLogo,
+    cardView,
 }
 
 
 const HEADER_HEIGHT = 100;
-
-
-
 
 export { ICONS, HEADER_HEIGHT }

@@ -8,9 +8,22 @@ export type rowViewProps = PropsWithChildren<{
     gap: number | string;
     leftM?: number | string;
     rightM?: number | string;
+    align?: string;
+    justify?: string;
+    dimension?: "px" | "%";
 }>;
 
-const RowView: FC<rowViewProps> = ({ leftM, rightM, gap, pos, className, children }) => {
+const RowView: FC<rowViewProps> = ({
+   leftM,
+   rightM,
+   dimension,
+   gap,
+   pos,
+   className,
+   children ,
+   justify,
+   align,
+   }) => {
     return (
         <RowViewStyleComponent
             leftM={leftM}
@@ -18,6 +31,9 @@ const RowView: FC<rowViewProps> = ({ leftM, rightM, gap, pos, className, childre
             gap={gap}
             className={className}
             pos={pos}
+            justify={justify}
+            align={align}
+            dimension={dimension}
         >
             { children }
         </RowViewStyleComponent>

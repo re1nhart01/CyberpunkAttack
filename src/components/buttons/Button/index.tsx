@@ -1,17 +1,19 @@
-import React, {FC} from 'react';
+import React, {FC, PropsWithChildren} from 'react';
 import {ButtonStyles} from "./styles";
+import Typography from "../../typography";
 
 
 const { Wrapper, Button } = ButtonStyles;
 
-type buttonViewProps = {
+type buttonViewProps = PropsWithChildren<{
     className?: string;
-    text: string;
+    text?: string;
     leftIcon?: JSX.Element;
     rightIcon?: JSX.Element;
     onPress: () => void;
     normalized?: boolean;
-}
+    gapInside?: number | string;
+}>;
 
 const ButtonView: FC<buttonViewProps> = ({ leftIcon,
    rightIcon,
@@ -19,12 +21,14 @@ const ButtonView: FC<buttonViewProps> = ({ leftIcon,
    onPress,
    normalized,
    className,
+   children,
+   gapInside,
  }) => {
     return (
         <Wrapper className={className}>
-            <Button defaultcol={normalized} onClick={onPress}>
+            <Button gapInside={gapInside} defaultcol={normalized} onClick={onPress}>
                 {leftIcon || null}
-                {text}
+                { children || text }
                 {rightIcon || null}
             </Button>
         </Wrapper>

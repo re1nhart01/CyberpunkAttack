@@ -43,6 +43,7 @@ export const theme = {
         fz24: 24,
         fz29: 29,
         fz32: 32,
+        fz40: 40,
         fz76: 76,
     },
     fontSizesEm: {
