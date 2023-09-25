@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {HEADER_HEIGHT} from "../../../services/constant/icons";
 
 
 export const MainLayoutStyles = {

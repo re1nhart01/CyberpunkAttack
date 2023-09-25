@@ -10,14 +10,14 @@ type headerViewProps = {};
 
 const { Wrapper, LogoWrapper, ButtonsWrapper } = HeaderStyles;
 
-const { LogoText, SubLogoText } = TypographyComponents;
+const { Text22space400, Text11aquantix400 } = TypographyComponents;
 
 const HeaderView: FC<headerViewProps> = ( {} ) => {
     return (
         <Wrapper>
             <LogoWrapper>
-                <LogoText>Cyberpunk</LogoText>
-                <SubLogoText>Attack</SubLogoText>
+                <Text22space400>Cyberpunk</Text22space400>
+                <Text11aquantix400>Attack</Text11aquantix400>
             </LogoWrapper>
             <ButtonsWrapper>
                 <ButtonRowView></ButtonRowView>

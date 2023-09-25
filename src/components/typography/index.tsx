@@ -1,10 +1,13 @@
 import React, { FC, PropsWithChildren, ReactHTML } from 'react';
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 type ExtensionSelector = Partial<HTMLAnchorElement | HTMLDivElement | HTMLSpanElement> &
     Pick<typographyProps, "fw" | "fsz" | "ff" | "color"> &
     Required<PropsWithChildren>;
+
+type inferredFsz = keyof typeof theme["fontSizes" | "fontSizesEm"];
 
 export type typographyProps = PropsWithChildren<{
     color?: keyof typeof theme["colors"];
@@ -13,8 +16,14 @@ export type typographyProps = PropsWithChildren<{
     ff?: keyof typeof theme["fonts"];
     selector?: keyof ReactHTML;
     href?: string;
+    fzType?: "px" | "rem";
     className?: string;
+    k?: string;
 }>;
+
+const pickFontSize = (th: typeof theme, fzType: "px" | "rem" = "px", fsz: inferredFsz) => {
+    return `${fzType === "px" ? th.fontSizes[fsz!] : th.fontSizesEm[fsz!] || th.fontSizes.fz14}${fzType}`
+}
 
 
 const Typography: FC<typographyProps> = ({
@@ -25,13 +34,16 @@ const Typography: FC<typographyProps> = ({
      children,
      selector,
      href,
+     fzType,
      className,
+     k,
      }) => {
-    const Text = createTextComponent(selector, { fsz, ff, fw, color, href });
-
+    const Text = createTextComponent(selector, { fsz, ff, fw, color, href, fzType });
+    const { t } = useTranslation();
+    const entity = k ? t(k) : children;
     return (
         <Text className={className}>
-            { children as never }
+            { entity as never }
         </Text>
     );
 };
@@ -41,6 +53,7 @@ export function createTextComponent (selector: keyof ReactHTML = "span", {
     color,
     fw,
     ff,
+    fzType,
     href }: Omit<typographyProps, "selector" | "children">) {
     return styled[selector as "div"].attrs<ExtensionSelector>((props) => ({
         ...(selector === "a" && { href }),
@@ -48,9 +61,10 @@ export function createTextComponent (selector: keyof ReactHTML = "span", {
     }))<ExtensionSelector>
         `
       color: ${({ theme }) => theme.colors[color!] || theme.colors.main};
-      font-size: ${({ theme }) => theme.fontSizes[fsz!] || theme.fontSizes.fz14}px;
+      font-size: ${({ theme }) => pickFontSize(theme, fzType, fsz as inferredFsz)};
       font-family: ${({ theme }) => theme.fonts[ff!] || theme.fonts.orbitron};
       font-weight: ${({ theme }) => theme.fontWeight[fw!] || theme.fontWeight.fw400};
+      white-space: pre-line;
     `
 }
 

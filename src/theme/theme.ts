@@ -43,10 +43,15 @@ export const theme = {
         fz24: 24,
         fz29: 29,
         fz32: 32,
+        fz76: 76,
+    },
+    fontSizesEm: {
+        fz76: 4.75,
     },
     fontWeight: {
         fw400: 400,
         fw500: 500,
+        fw600: 600,
         fw700: 700,
         fw800: 800,
         fw900: 900,

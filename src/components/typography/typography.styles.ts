@@ -5,7 +5,7 @@ import {ReactHTML} from "react";
 
 
 export const TypographyComponents = {
-    LogoText: styled(Typography).attrs<typographyProps>(({ theme }) => ({
+    Text22space400: styled(Typography).attrs<typographyProps>(({ theme }) => ({
         color: "white",
         fw: "fw400",
         fsz: "fz22",
@@ -15,7 +15,7 @@ export const TypographyComponents = {
       line-height: 120%;
       letter-spacing: 3.242px;
     `,
-    SubLogoText: styled(Typography).attrs<typographyProps>(({ theme }) => ({
+    Text11aquantix400: styled(Typography).attrs<typographyProps>(({ theme }) => ({
         color: "purple",
         fw: "fw400",
         fsz: "fz11",
@@ -25,4 +25,48 @@ export const TypographyComponents = {
       line-height: 100%;
       letter-spacing: 18.526px;
     `,
+    // FIRST BLOCK INDEX.TSX
+    Text76orbitron700: styled(Typography).attrs<typographyProps>(({ theme }) => ({
+        color: "white",
+        fw: "fw700",
+        fsz: "fz76",
+        ff: "orbitron",
+        selector: "span",
+        fzType: "rem",
+    }))`
+      text-shadow: -2px -2px 0px ${({ theme }) => theme.colors.main}, 2px 2px 0px ${({ theme }) => theme.colors.purple};
+      line-height: 100%;
+      text-transform: uppercase;
+    `,
+    Text18boxed500: styled(Typography).attrs<typographyProps>(({ theme }) => ({
+        color: "white",
+        fw: "fw500",
+        fsz: "fz18",
+        ff: "boxedRound",
+        selector: "span",
+        fzType: "px",
+    }))`
+      line-height: 150%;
+      opacity: 0.8;
+    `,
+    Text24boxed600: styled(Typography).attrs<typographyProps>(({ theme }) => ({
+        color: "white",
+        fw: "fw600",
+        fsz: "fz24",
+        ff: "boxedRound",
+        selector: "span",
+        fzType: "px",
+    }))`
+      line-height: 100%;
+    `,
+    Text16boxed500: styled(Typography).attrs<typographyProps>(({ theme }) => ({
+        color: "main",
+        fw: "fw500",
+        fsz: "fz16",
+        ff: "boxedRound",
+        selector: "span",
+        fzType: "px",
+    }))`
+      line-height: 110%;
+    `
 }
