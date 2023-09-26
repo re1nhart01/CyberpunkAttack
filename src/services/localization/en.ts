@@ -1,3 +1,3 @@
 export default {
-    "text1": "Hellow",
-}
+  text1: 'Hellow',
+};

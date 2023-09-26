@@ -1,11 +1,10 @@
-import styled from "styled-components";
-import ButtonView from "../Button";
-import {ICONS} from "../../../services/constant/icons";
-
+import styled from 'styled-components';
+import ButtonView from '../Button';
+import { ICONS } from '../../../services/constant/icons';
 
 const HeaderButton = styled(ButtonView)`
       padding: 12px 24px;
-  position: relative;
+      position: relative;
   &:not(:last-child)::after {
     content:"";
     position:absolute;
@@ -19,11 +18,11 @@ const HeaderButton = styled(ButtonView)`
     `;
 
 export const ButtonRowStyles = {
-    Outer: styled.div`
+  Outer: styled.div`
       flex-direction: row;
       display: flex;
     `,
-    Wrapper: styled.nav`
+  Wrapper: styled.nav`
       background: url(${ICONS.headerBlurBG}) no-repeat;
       fill: rgba(0, 0, 0, 0.20);
       stroke-width: 1px;
@@ -32,10 +31,9 @@ export const ButtonRowStyles = {
       flex-direction: row;
       display: flex;
     `,
-    HeaderRightButton: styled(HeaderButton)`
+  HeaderRightButton: styled(HeaderButton)`
       background: url(${ICONS.headerRightBlurBG}) no-repeat;
       background-position-x: 100%;
     `,
-    HeaderButton,
-}
-
+  HeaderButton,
+};

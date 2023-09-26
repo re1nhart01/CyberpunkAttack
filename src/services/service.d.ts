@@ -1,6 +1,5 @@
-
 export abstract class ServiceBuilder {
-    protected constructor() {}
+  protected constructor() {}
 
     public abstract init(): Promise<void>
 }

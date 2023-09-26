@@ -1,9 +1,8 @@
-import styled from "styled-components";
-import {HEADER_HEIGHT} from "../../../services/constant/icons";
-
+import styled from 'styled-components';
+import { HEADER_HEIGHT } from '../../../services/constant/icons';
 
 export const HeaderStyles = {
-    Wrapper: styled.header`
+  Wrapper: styled.header`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -17,13 +16,13 @@ export const HeaderStyles = {
       top: 0;
       z-index: 999;
     `,
-    LogoWrapper: styled.div`
+  LogoWrapper: styled.div`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
     `,
-    ButtonsWrapper: styled.div`
+  ButtonsWrapper: styled.div`
       
-    `
-}
+    `,
+};
