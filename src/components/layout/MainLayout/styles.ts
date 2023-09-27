@@ -22,6 +22,8 @@ export const MainLayoutStyles = {
   FullContainer: styled.div`
       display: flex;
       flex: 1;
+      flex-direction: column;
+      align-items: center;
       margin-left: auto;
       margin-right: auto;
     `,
