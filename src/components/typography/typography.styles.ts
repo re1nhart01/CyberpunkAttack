@@ -113,6 +113,53 @@ export const TypographyComponents = {
     selector: 'span',
     fzType: 'px',
   })``,
+  Text170space700: styled(Typography).attrs<typographyProps>({
+    color: 'dark',
+    fw: 'fw700',
+    fsz: 'fz170',
+    ff: 'space',
+    selector: 'span',
+    fzType: 'rem',
+  })`
+    position: absolute;
+    top: 0;
+    left: 4.6%;
+    right: 0;
+    opacity: 0.05;
+  `,
+  Text60orbitron800: styled(Typography).attrs<typographyProps>({
+    color: 'dark',
+    fw: 'fw800',
+    fsz: 'fz60',
+    ff: 'orbitron',
+    selector: 'span',
+    fzType: 'px',
+  })`
+    line-height: 110%;
+    text-transform: uppercase;
+  `,
+  Text24bebas400: styled(Typography).attrs<typographyProps>({
+    color: 'main',
+    fw: 'fw400',
+    fsz: 'fz24',
+    ff: 'bebas',
+    selector: 'span',
+    fzType: 'px',
+  })`
+    line-height: 80%; /* 19.2px */
+    text-transform: uppercase;
+  `,
+  Text18boxed400: styled(Typography).attrs<typographyProps>({
+    color: 'black',
+    fw: 'fw400',
+    fsz: 'fz14',
+    ff: 'boxedRound',
+    selector: 'span',
+    fzType: 'px',
+  })`
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+  `,
 };
 
 export const OverrideTypographyComponents = {

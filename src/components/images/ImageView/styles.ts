@@ -37,6 +37,29 @@ export const ImageViewComponents = {
       z-index: 2;
     `,
   SeparatorBlack: styled(ImageView).attrs({
-    source: '',
-  }),
+    source: 'blackSeparator',
+    alterText: 'BLACK_SEPARATOR_1',
+  })`
+    width: 100%;
+  `,
+  IRLGameView: styled(ImageView).attrs({
+    source: 'irlGame',
+    alterText: 'IRL_GAME_TOP_VIEW',
+  })`
+    max-width: 517px;
+    height: 420px;
+  `,
+  RolesBannerView: styled(ImageView).attrs({
+    source: 'rolesBanner',
+    alterText: 'ROLES_BANNER_IMAGE',
+  })`
+    max-width: 770px;
+  `,
+  SocialImage: styled(ImageView).attrs(({ source }) => ({
+    source,
+    alterText: 'SOCIAL_MEDIA_BUTTON_IMAGE',
+  }))`
+    width: 24px;
+    height: 24px;
+  `,
 };

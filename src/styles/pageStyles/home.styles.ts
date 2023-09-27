@@ -15,7 +15,7 @@ export const HomePageStyles = {
       justify-content: space-between;
       background: url(${ICONS.headlinerBG}) lightgray 50% / cover no-repeat;
     `,
-  FBlockContainer: styled.div`
+  FBlockContainer: styled.section`
       width: 100vw;
       display: flex;
       flex-direction: row;
@@ -52,7 +52,7 @@ export const HomePageStyles = {
       position: relative;
       top: -220px;
     `,
-  AboutBlockWrapper: styled.div`
+  AboutBlockWrapper: styled.section`
       width: 100vw;
       height: 100vh;
       background: url(${ICONS.backgroundAbout}) no-repeat;
@@ -76,4 +76,20 @@ export const HomePageStyles = {
       margin-top: 17px;
       margin-bottom: 40px;
     `,
+  AboutTheGameWrapper: styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 63px;
+  `,
+  AboutTheGameContainer: styled.section`
+    position: relative;
+    display: block;
+    width: 100vw;
+    min-height: 76vh;
+    background-color: ${({ theme }) => theme.colors.white};
+  `,
+  BorderView: styled.span`
+    border: 8px solid ${({ theme }) => theme.colors.black}
+  `,
 };

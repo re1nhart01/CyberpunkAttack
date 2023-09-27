@@ -8,10 +8,11 @@ export const theme = {
     gold: '#FFD704',
     main2: '#01E1FF',
     green: '#1AEC7B',
+    dark: '#252C33',
   },
   components: {
     backgrounds: {
-      primary: '#000000',
+      primary: '#ffffff',
     },
     typography: {
 
@@ -30,6 +31,7 @@ export const theme = {
     boxedRound: 'Boxed Round',
     boxedRoundB: 'Boxed Round Book',
     aquantix: 'Aquatix',
+    bebas: 'Bebas Neue',
   },
   fontSizes: {
     fz8: 8,
@@ -46,9 +48,11 @@ export const theme = {
     fz40: 40,
     fz60: 60,
     fz76: 76,
+    fz170: 170,
   },
   fontSizesEm: {
     fz76: 4.75,
+    fz170: 10.625,
   },
   fontWeight: {
     fw400: 400,

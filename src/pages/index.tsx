@@ -12,6 +12,7 @@ import { ImageViewComponents } from '../components/images/ImageView/styles';
 import RowView from '../components/layout/RowView';
 import { ButtonComponents } from '../components/buttons/Button/components';
 import CardWithText from '../components/layout/CardWithText';
+import InfoSectionView from '../components/layout/InfoSection';
 
 const {
   FBlockWrapper,
@@ -23,10 +24,30 @@ const {
   AboutBlockWrapper,
   AboutBlockContent,
   AboutSeparator,
+  AboutTheGameWrapper,
+  AboutTheGameContainer,
+  BorderView,
 } = HomePageStyles;
-const { Text76orbitron700, Text18boxed500, Text24boxed600, Text16boxed500, Text16boxed600, Text16boxed700, Text60orbitron700 } = TypographyComponents;
-const { FbBlurRowImg, CardImageView, BackgroundAboutView } = ImageViewComponents;
-const { ShipNovaPoshtaButton } = ButtonComponents;
+const {
+  Text76orbitron700,
+  Text18boxed500,
+  Text24boxed600,
+  Text16boxed500,
+  Text16boxed600,
+  Text16boxed700,
+  Text60orbitron700,
+  Text170space700,
+} = TypographyComponents;
+const {
+  FbBlurRowImg,
+  CardImageView,
+  BackgroundAboutView,
+  SeparatorBlack,
+  IRLGameView,
+  RolesBannerView,
+  SocialImage,
+} = ImageViewComponents;
+const { ShipNovaPoshtaButton, BuyInOneClickButton, SmallSocialButton } = ButtonComponents;
 const { Text40orbitron700After } = OverrideTypographyComponents;
 
 const HomePage: React.FC<PageProps> = () => {
@@ -119,7 +140,50 @@ const HomePage: React.FC<PageProps> = () => {
           </RowView>
         </AboutBlockContent>
       </AboutBlockWrapper>
-
+      <SeparatorBlack source="blackSeparator" />
+      <AboutTheGameWrapper>
+        <AboutTheGameContainer>
+          <Text170space700 k="about" />
+          <InfoSectionView
+            headerText="aboutTheGame"
+            subText="spamAboutTheGame"
+            contentText="aboutGameContent"
+            buttonSection={(
+              <BuyInOneClickButton onPress={() => {}}>
+                <Text16boxed600 k="buyIn1Click" />
+              </BuyInOneClickButton>
+            )}
+            imageSection={(
+              <IRLGameView source="irlGame" />
+            )}
+          />
+        </AboutTheGameContainer>
+        <AboutTheGameContainer id="1">
+          <Text170space700 k="aiGen" />
+          <InfoSectionView
+            reversed
+            headerText="aboutTheMaterials"
+            subText="rolesSeparated"
+            contentText="aboutGameContent2"
+            buttonSection={(
+              <RowView gap={8} pos="row">
+                <SmallSocialButton onPress={() => {}}>
+                  <SocialImage source="instagram" />
+                </SmallSocialButton>
+                <SmallSocialButton onPress={() => {}}>
+                  <SocialImage source="tiktok" />
+                </SmallSocialButton>
+                <SmallSocialButton onPress={() => {}}>
+                  <SocialImage source="linkedin" />
+                </SmallSocialButton>
+              </RowView>
+            )}
+            imageSection={(
+              <RolesBannerView source="rolesBanner" />
+              )}
+          />
+        </AboutTheGameContainer>
+      </AboutTheGameWrapper>
     </MainLayout>
   );
 };

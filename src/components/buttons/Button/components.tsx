@@ -19,4 +19,16 @@ export const ButtonComponents = {
       padding-bottom: 8px;
       justify-content: center;
     `,
+  BuyInOneClickButton: styled(ButtonView)`
+    background: url(${ICONS.aboutSectionButtonBG});
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 15.5px 48px 15.5px 48px;
+  `,
+  SmallSocialButton: styled(ButtonView)`
+    background: url(${ICONS.aboutSectionButtonBG});
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 12px 43px 12px 43px;
+  `,
 };
