@@ -9,6 +9,10 @@ export enum Languages {
 }
 
 export class Localization extends ServiceBuilder {
+
+  constructor() {
+    super();
+  }
   public static get currentLanguage(): Languages {
     return i18n.language as Languages || Languages.Ukrainian;
   }
@@ -25,7 +29,7 @@ export class Localization extends ServiceBuilder {
   };
 
   public async init() {
-
+    console.log('STUB!');
   }
 }
 

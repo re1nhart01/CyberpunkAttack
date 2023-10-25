@@ -17,7 +17,7 @@ export const infoSectionStyles = {
     align-items: flex-start;
     justify-content: space-between;
     gap: 25px;
-    max-width: ${({ reversed }) => (reversed ? 420 : 640)}px;
+    max-width: ${({ reversed }) => (reversed ? 30 : 44)}%;
   `,
   BlackLine: styled.div`
     width: 100%;
