@@ -1,0 +1,12 @@
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#___gatsby {
+    min-height: 100%;
+}
+
+#gatsby-focus-wrapper {
+}

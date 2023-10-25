@@ -1,0 +1,272 @@
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron-Regular.woff2') format('woff2'),
+    url('../fonts/Orbitron-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron-Black.woff2') format('woff2'),
+    url('../fonts/Orbitron-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron-SemiBold.woff2') format('woff2'),
+    url('../fonts/Orbitron-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron-ExtraBold.woff2') format('woff2'),
+    url('../fonts/Orbitron-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron-Bold.woff2') format('woff2'),
+    url('../fonts/Orbitron-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron-Regular.woff2') format('woff2'),
+    url('../fonts/Orbitron-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron-Medium.woff2') format('woff2'),
+    url('../fonts/Orbitron-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Extralight Italic'), local('BoxedRoundExtralightItalic'),
+    url('../fonts/BoxedRoundExtralightItalic.woff2') format('woff2'),
+    url('../fonts/BoxedRoundExtralightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Boxed Round Book';
+    src: local('Boxed Round Book'), local('BoxedRoundBook'),
+    url('../fonts/BoxedRoundBook.woff2') format('woff2'),
+    url('../fonts/BoxedRoundBook.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Bold'), local('BoxedRoundBold'),
+    url('../fonts/BoxedRoundBold.woff2') format('woff2'),
+    url('../fonts/BoxedRoundBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Bold Italic'), local('BoxedRoundBoldItalic'),
+    url('../fonts/BoxedRoundBoldItalic.woff2') format('woff2'),
+    url('../fonts/BoxedRoundBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Boxed Round Book';
+    src: local('Boxed Round Book Italic'), local('BoxedRoundBookItalic'),
+    url('../fonts/BoxedRoundBookItalic.woff2') format('woff2'),
+    url('../fonts/BoxedRoundBookItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Extralight'), local('BoxedRoundExtralight'),
+    url('../fonts/BoxedRoundExtralight.woff2') format('woff2'),
+    url('../fonts/BoxedRoundExtralight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round'), local('BoxedRound'),
+    url('../fonts/BoxedRound.woff2') format('woff2'),
+    url('../fonts/BoxedRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Light'), local('BoxedRoundLight'),
+    url('../fonts/BoxedRoundLight.woff2') format('woff2'),
+    url('../fonts/BoxedRoundLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Medium'), local('BoxedRoundMedium'),
+    url('../fonts/BoxedRoundMedium.woff2') format('woff2'),
+    url('../fonts/BoxedRoundMedium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Medium Italic'), local('BoxedRoundMediumItalic'),
+    url('../fonts/BoxedRoundMediumItalic.woff2') format('woff2'),
+    url('../fonts/BoxedRoundMediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Semibold'), local('BoxedRoundSemibold'),
+    url('../fonts/BoxedRoundSemibold.woff2') format('woff2'),
+    url('../fonts/BoxedRoundSemibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Thin Italic'), local('BoxedRoundThinItalic'),
+    url('../fonts/BoxedRoundThinItalic.woff2') format('woff2'),
+    url('../fonts/BoxedRoundThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Heavy Italic'), local('BoxedRoundHeavyItalic'),
+    url('../fonts/BoxedRoundHeavyItalic.woff2') format('woff2'),
+    url('../fonts/BoxedRoundHeavyItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Light Italic'), local('BoxedRoundLightItalic'),
+    url('../fonts/BoxedRoundLightItalic.woff2') format('woff2'),
+    url('../fonts/BoxedRoundLightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Semibold Italic'), local('BoxedRoundSemiboldItalic'),
+    url('../fonts/BoxedRoundSemiboldItalic.woff2') format('woff2'),
+    url('../fonts/BoxedRoundSemiboldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Italic'), local('BoxedRoundItalic'),
+    url('../fonts/BoxedRoundItalic.woff2') format('woff2'),
+    url('../fonts/BoxedRoundItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Heavy'), local('BoxedRoundHeavy'),
+    url('../fonts/BoxedRoundHeavy.woff2') format('woff2'),
+    url('../fonts/BoxedRoundHeavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Boxed Round';
+    src: local('Boxed Round Thin'), local('BoxedRoundThin'),
+    url('../fonts/BoxedRoundThin.woff2') format('woff2'),
+    url('../fonts/BoxedRoundThin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SPACE ARMOR';
+    font-style: normal;
+    font-weight: 400;
+    src: local('SPACE ARMOR'), url('../fonts/SpaceArmor-vmlv4.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Aquatix';
+    src: url('../fonts/Aquatix.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Bebas Neue';
+    src: local('Bebas Neue Thin'), local('BebasNeue-Thin'), url('../fonts/bebasneuethin.woff2') format('woff2'), url('../fonts/bebasneuethin.woff') format('woff'), url('../fonts/bebasneuethin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    src: local('Bebas Neue Light'), local('BebasNeue-Light'), url('../fonts/bebasneuelight.woff2') format('woff2'), url('../fonts/bebasneuelight.woff') format('woff'), url('../fonts/bebasneuelight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    src: local('Bebas Neue Book'), local('BebasNeueBook'), url('../fonts/bebasneuebook.woff2') format('woff2'), url('../fonts/bebasneuebook.woff') format('woff'), url('../fonts/bebasneuebook.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    src: local('Bebas Neue Regular'), local('BebasNeueRegular'), url('../fonts/bebasneueregular.woff2') format('woff2'), url('../fonts/bebasneueregular.woff') format('woff'), url('../fonts/bebasneueregular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    src: local('Bebas Neue Bold'), local('BebasNeueBold'), url('../fonts/bebasneuebold.woff2') format('woff2'), url('../fonts/bebasneuebold.woff') format('woff'), url('../fonts/bebasneuebold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}

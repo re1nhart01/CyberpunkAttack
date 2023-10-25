@@ -1,147 +1,57 @@
-import * as React from "react"
-
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-}
-
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
-
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-}
-
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-}
-
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-}
-
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-}
-
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/getting-started/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
-]
+import * as React from 'react';
+import { Images } from '../constants/images';
+import SocialButton from '../components/SocialButton/SocialButton';
+import { linksDictionary } from '../constants';
+import PunkCarousel from '../components/PunkCarousel/PunkCarousel';
 
 const IndexPage = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>
-        Hi
-        <br />
-        <span style={headingAccentStyles}>It's re1nhart and cyberpunk attack team</span>
-      </h1>
-      <p style={paragraphStyles}>
-          This is a link website which is currently in development.
-      </p>
-      <p>Welcome home, samurai</p>
-      <p>
-        Indoctum neglegentur populo ornare platea utinam mus iriure nonumes. Viderer porro elitr neglegentur vivendo vituperatoribus elit appareat suscipit. Urbanitas aliquam omittam primis consetetur dissentiunt dapibus ultrices. Unum hinc dicunt auctor ceteros aliquet saepe definitionem. Alienum quaestio verterem faucibus ante populo splendide quam. Posuere quam curabitur usu noluisse accommodare dicunt veniam tamquam adipisci. Dicunt noster facilisi antiopam nisi. Errem mattis non viderer prompta habitant. Habemus moderatius cursus nunc consectetuer vidisse quaestio montes vel adversarium. Vix nulla impetus melius commune scripta dicant. Recteque facilisi dolores suas dolor voluptaria.
-      </p>
+    <main className="linker-container">
+      <header className="linker-header flex flex-col justify-between items-center mt-[32px] mb-[8px]">
+        <p className="header-cyberpunk-next">
+          <span className="header-cyberpunk-first">C</span>
+          yberpunk
+        </p>
+        <p className="header-attack-text pl-[20px]">Attack</p>
+      </header>
+      <PunkCarousel />
+      <div className="linker__inner-content">
+        <span className="content-header-text">
+          Welcome to the
+          {' '}
+          <span className="blue-variant">Neon City</span>
+        </span>
+        <span className="content-text whitespace-break-spaces">
+          Try the cyber fighting board game in Cyberpunk universe. Choose your side Cyberpunks vs Corporate.
+          {'\n\n'}
+          8 players, 4 roles, 40+ cyber-implants, 100+ actions (guns, bombs, cyber attacks, mercenaries, etc.)
+        </span>
+        <img className="linker__inner__versus-img" src={Images.VersusImg} alt="VERSUS_IMG" />
+        <div className="w-full flex-col items-center">
+          <p className="w-full mb-[16px] join-to-us">
+            Join to Us:
+          </p>
+          <div className="social-button__column">
+            <SocialButton {...linksDictionary.instagram} />
+            <SocialButton {...linksDictionary.tiktok} />
+            <SocialButton {...linksDictionary.discord} />
+            <SocialButton {...linksDictionary.telegram} />
+          </div>
+          <div className="mt-[32px]">
+            <p className="w-100 mb-[16px] join-to-us">
+              {linksDictionary.email.label}
+            </p>
+            <p className="social-button-text text-center opacity-50">
+              {linksDictionary.email.url}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="blackout" />
     </main>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
 
-export const Head = () => <title>Home Page</title>
+export const Head = () => <title>Home Page</title>;

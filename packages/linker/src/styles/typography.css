@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+@layer components {
+    .header-cyberpunk-first {
+        color: #fff;
+        font-family: SPACE ARMOR;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 120%;
+        letter-spacing: 3px;
+        text-align: center;
+    }
+    .header-cyberpunk-next {
+        color: #fff;
+        font-family: SPACE ARMOR;
+        font-size: 23px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 120%;
+        letter-spacing: 2px;
+        text-shadow: 2px 1px 0px #FC2B87, -2px -1px 0px #01FFFF;
+        text-align: center;
+    }
+    .header-attack-text {
+        color: #FC2B87;
+        text-align: center;
+        font-family: Aquatix;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%; /* 9.012px */
+        letter-spacing: 20px;
+        text-align: center;
+    }
+    .content-header-text {
+        color: #fff;
+        font-family: Bebas Neue;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+    }
+
+    .blue-variant {
+        color: #01ffff;
+    }
+    .content-text {
+        color: #fff;
+        font-family: Boxed Round;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+    }
+    .join-to-us {
+        color: #fff;
+        font-family: Boxed Round;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 130%;
+        text-align: center;
+    }
+
+    .social-button-text {
+        color: #fff;
+        font-family: Boxed Round;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 130%;
+    }
+}
