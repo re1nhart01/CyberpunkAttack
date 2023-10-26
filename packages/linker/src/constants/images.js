@@ -1,4 +1,6 @@
 import VersusImg from '../images/versus-img.png';
+import Background from '../images/background.png';
+import Logo from '../images/logo.svg';
 
 import InstagramImg from '../images/bi_instagram.png';
 import EmailImg from '../images/bi_email.png';
@@ -24,4 +26,6 @@ export const Images = {
   GlitchPunk4,
 
   Ellipse,
+  Background,
+  Logo,
 };

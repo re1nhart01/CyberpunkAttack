@@ -7,6 +7,7 @@
 
 
 @layer components {
+    /* DEPRECATED */
     .header-cyberpunk-first {
         color: #fff;
         font-family: SPACE ARMOR;
@@ -42,11 +43,12 @@
     .content-header-text {
         color: #fff;
         font-family: Bebas Neue;
-        font-size: 28px;
+        font-size: 24px;
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
     }
+    /**/
 
     .blue-variant {
         color: #01ffff;
@@ -54,7 +56,7 @@
     .content-text {
         color: #fff;
         font-family: Boxed Round;
-        font-size: 20px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 500;
         line-height: 150%;
@@ -62,7 +64,7 @@
     .join-to-us {
         color: #fff;
         font-family: Boxed Round;
-        font-size: 18px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 600;
         line-height: 130%;

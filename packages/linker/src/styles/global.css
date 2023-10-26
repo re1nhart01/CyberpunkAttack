@@ -4,9 +4,13 @@
 
 
 @layer components {
+    .background-meta {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        z-index: 0;
+    }
     .linker-container {
-        background: url("./../images/background.png") no-repeat center center fixed;
-        background-size: 100% 100%;
         padding-left: 30px;
         padding-right: 30px;
         display: flex;
@@ -29,6 +33,10 @@
 
     .linker-header {
         z-index: 4;
+    }
+    .linker-header__logo {
+        width: 306px;
+        height: 52px;
     }
     .linker__inner-content {
         max-width: 568px;
@@ -61,9 +69,39 @@
         flex-wrap: nowrap;
         width: 100%;
     }
+    .social-button__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+    .social-button-row__separator {
+        background-color: #01FFFF;
+        width: 1px;
+        height: 16px;
+    }
     .social-button__column > button {
         margin-bottom: 16px;
     }
+    .social-button__container-small {
+        width: 88px;
+        height: 48px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s ease-in-out;
+    }
+
+    .social-button__container-small:hover {
+        background-color: #000;
+        fill: #000;
+        stroke-width: 2px;
+        stroke: #000;
+        filter: drop-shadow(2px 2px 0px #FC2B87) drop-shadow(-2px -2px 0px #01FFFF);
+    }
+
     .social-button__container {
         background: url("./../images/button-bg.png") no-repeat;
         background-size: 100% 100%;
@@ -90,5 +128,23 @@
         justify-content: center;
         align-items: center;
         gap: 10px;
+    }
+    .ellipse-container {
+        position: absolute;
+        top: -50px;
+        left: auto;
+        right: auto;
+    }
+    .ellipse {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        position: static;
+        border-radius: 100%;
+        border: 1px solid #FF27F9;
+        opacity: 0.5;
+        overflow: hidden;
     }
 }

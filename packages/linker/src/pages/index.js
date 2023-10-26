@@ -3,16 +3,13 @@ import { Images } from '../constants/images';
 import SocialButton from '../components/SocialButton/SocialButton';
 import { linksDictionary } from '../constants';
 import PunkCarousel from '../components/PunkCarousel/PunkCarousel';
+import SocialButtonSmall from '../components/SocialButtonSmall/SocialButtonSmall';
 
 const IndexPage = () => {
   return (
     <main className="linker-container">
       <header className="linker-header flex flex-col justify-between items-center mt-[32px] mb-[8px]">
-        <p className="header-cyberpunk-next">
-          <span className="header-cyberpunk-first">C</span>
-          yberpunk
-        </p>
-        <p className="header-attack-text pl-[20px]">Attack</p>
+        <img className="linker-header__logo" src={Images.Logo} alt="LOGO_IMAGE" />
       </header>
       <PunkCarousel />
       <div className="linker__inner-content">
@@ -33,9 +30,13 @@ const IndexPage = () => {
           </p>
           <div className="social-button__column">
             <SocialButton {...linksDictionary.instagram} />
-            <SocialButton {...linksDictionary.tiktok} />
-            <SocialButton {...linksDictionary.discord} />
-            <SocialButton {...linksDictionary.telegram} />
+            <div className="social-button__row">
+              <SocialButtonSmall {...linksDictionary.tiktok} />
+              <div className="social-button-row__separator" />
+              <SocialButtonSmall {...linksDictionary.discord} />
+              <div className="social-button-row__separator" />
+              <SocialButtonSmall {...linksDictionary.telegram} />
+            </div>
           </div>
           <div className="mt-[32px]">
             <p className="w-100 mb-[16px] join-to-us">
@@ -48,6 +49,7 @@ const IndexPage = () => {
         </div>
       </div>
       <div className="blackout" />
+      <img className="background-meta" src={Images.Background} alt="BACKGROUND_IMG" />
     </main>
   );
 };
