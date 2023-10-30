@@ -4,7 +4,7 @@
 module.exports = {
   siteMetadata: {
     title: 'linker',
-    siteUrl: 'https://www.yourdomain.tld',
+    siteUrl: 'https://cyberpunk-attack-linker.web.app/',
   },
   plugins: ['gatsby-plugin-postcss', 'gatsby-plugin-image', 'gatsby-plugin-sitemap', {
     resolve: 'gatsby-plugin-manifest',

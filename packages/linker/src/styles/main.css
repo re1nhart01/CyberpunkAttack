@@ -3,7 +3,9 @@ body {
     overflow-x: hidden;
     background-color: #000;
     overscroll-behavior: none;
+    content-visibility: auto;
 }
+
 
 #___gatsby {
 }
