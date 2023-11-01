@@ -7,7 +7,6 @@ import SocialButtonSmall from '../components/SocialButtonSmall/SocialButtonSmall
 
 const IndexPage = () => {
   return (
-      <>
     <main className="linker-container">
       <header className="linker-header flex flex-col justify-between items-center pt-[32px] mb-[8px] z-[2]">
         <img className="linker-header__logo" src={Images.Logo} alt="LOGO_IMAGE" />
@@ -16,17 +15,21 @@ const IndexPage = () => {
       <div className="linker__inner-content">
         <div className="linker__inner_text mb-[12px]">
           <p className="content-header-text mb-[12px]">
-          Welcome to the
+            Welcome to the
             {' '}
             <span className="blue-variant">Neon City</span>
-        </p>
+          </p>
           <span className="content-text whitespace-break-spaces">
-          Try the cyber fighting board game in Cyberpunk universe. Choose your side Cyberpunks vs Corporate.
-            {'\n\n'}
-            8 players, 4 roles, 40+ cyber-implants, 100+ actions (guns, bombs, cyber attacks, mercenaries, etc.)
-        </span>
+            Try the cyber fighting board game in Cyberpunk universe. Choose your side Cyberpunks vs Corporate.
+          </span>
         </div>
-        <img className="linker__inner__versus-img mb-[48px]" src={Images.VersusImg} alt="VERSUS_IMG" />
+        <img
+          loading="lazy"
+          decoding="async"
+          className="linker__inner__versus-img mb-[48px]"
+          src={Images.VersusImg}
+          alt="VERSUS_IMG"
+        />
         <div className="w-full flex-col items-center">
           <p className="w-full mb-[16px] join-to-us">
             Follow us:
@@ -51,9 +54,14 @@ const IndexPage = () => {
           </div>
         </div>
       </div>
-      <img className="background-meta" src={Images.Background} alt="BACKGROUND_IMG" />
+      <img
+        loading="lazy"
+        decoding="async"
+        className="background-meta"
+        src={Images.Background}
+        alt="BACKGROUND_IMG"
+      />
     </main>
-      </>
   );
 };
 
