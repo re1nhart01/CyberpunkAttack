@@ -113,6 +113,36 @@
         height: 48px;
         transition: 0.5s;
     }
+    video-source-def {
+        opacity: 0;
+    }
+
+
+    .fade-in {
+        animation: fadeIn 1s;
+    }
+
+    .fade-out {
+        animation: fadeOut 1s;
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 
     .social-button__container_inner {
         width: 100%;
