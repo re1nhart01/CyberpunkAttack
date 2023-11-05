@@ -7,12 +7,17 @@ import EmailImg from '../images/bi_email.png';
 import DiscordImg from '../images/bi_discord.png';
 import TiktokImg from '../images/bi_tiktok.png';
 
-import GlitchPunk1 from '../images/GLITCHES/v2/ezgif-3-a3baf5cf7b.webm';
-import GlitchPunk2 from '../images/GLITCHES/MOSHED-2023-10-25-17-7-37.webm';
-import GlitchPunk3 from '../images/GLITCHES/MOSHED-2023-10-25-17-6-52.webm';
-import GlitchPunk4 from '../images/GLITCHES/output-onlinegiftools1.gif';
 import Ellipse from '../images/ellips.png';
 import BackgroundHeading from "../images/background-header.png";
+
+// import GlitchPunk4 from "../images/punks_main/gifs/without-bg/2.gif";
+
+import GlitchPunk1 from "../images/GLITCHES/v2/1.gif";
+import GlitchPunk2 from "../images/GLITCHES/v2/2.gif";
+import GlitchPunk3 from "../images/GLITCHES/v2/3.gif";
+import GlitchPunk4 from "../images/GLITCHES/v2/4.gif";
+import GlitchPunk5 from "../images/GLITCHES/v2/5.gif";
+import GlitchPunk6 from "../images/GLITCHES/v2/6.gif";
 
 
 //VIDEOS
@@ -30,12 +35,13 @@ export const Images = {
   EmailImg,
   DiscordImg,
   TiktokImg,
-
-  GlitchPunk1,
-  GlitchPunk2,
-  GlitchPunk3,
-  GlitchPunk4,
-
+  GlitchPunks: {
+    GlitchPunk1,
+    GlitchPunk2,
+    GlitchPunk3,
+    GlitchPunk5,
+    GlitchPunk6,
+  },
   Ellipse,
   Background,
   Logo,

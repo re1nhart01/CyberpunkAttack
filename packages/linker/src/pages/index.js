@@ -54,13 +54,13 @@ const IndexPage = () => {
           </div>
         </div>
       </div>
-      <img
-        loading="lazy"
-        decoding="async"
-        className="background-meta"
-        src={Images.Background}
-        alt="BACKGROUND_IMG"
-      />
+        {/*<img*/}
+        {/*    loading="lazy"*/}
+        {/*    decoding="async"*/}
+        {/*    className="background-meta"*/}
+        {/*    src={Images.Background}*/}
+        {/*    alt="BACKGROUND_IMG"*/}
+        {/*/>*/}
     </main>
   );
 };
