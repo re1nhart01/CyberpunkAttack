@@ -2,24 +2,36 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Images } from '../../constants/images';
 
 
-const MAX_COUNT = 4;
+const MAX_COUNT = 3;
 const videosArray = Object.values(Images.GlitchPunks);
+const transitionArray = Object.values(Images.PunksTransition);
 
 const PunkCarousel = () => {
   const videoRef = useRef(null);
   const [currentVideo, setCurrentVideo] = useState(0);
-  const [isFadeOut, setIsFadeOut] = useState(false);
+  const [isTransition, setIsTransition] = useState(false);
   const isUp = useRef(false);
 
   const onVideoEnd = useCallback(() => {
-    setIsFadeOut(true);
-   setTimeout(() => {
-     setCurrentVideo((prev) => {
-       return !isUp.current ? prev + 1 : prev - 1;
-     });
-     setIsFadeOut(false);
-   }, 400)
+    setIsTransition(true);
+    setCurrentVideo((prev) => {
+      return !isUp.current ? prev + 1 : prev - 1;
+    });
+     setTimeout(() => {
+       setIsTransition(false);
+     }, 800);
   }, [currentVideo, isUp]);
+
+  const preloadPhotos = useCallback(() => {
+    videosArray.forEach(imageSrc => {
+      const img = new Image();
+      img.src = imageSrc;
+    });
+    transitionArray.forEach(imageSrc => {
+      const img = new Image();
+      img.src = imageSrc;
+    });
+  }, [])
 
   useEffect(() => {
     if (currentVideo >= MAX_COUNT) {
@@ -30,12 +42,11 @@ const PunkCarousel = () => {
   }, [currentVideo]);
 
   useEffect(() => {
-      // const preLoadImage = new Image();
-      //
-      //
-      // for(let i = 0; i <= videosArray.length; i++){
-      //   preLoadImage.src= videosArray[i];
-      // }
+      preloadPhotos();
+      setIsTransition(true);
+      setTimeout(() => {
+        setIsTransition(false);
+      }, 600)
   }, [])
 
   useEffect(() => {
@@ -49,13 +60,13 @@ const PunkCarousel = () => {
   return (
   <>
     <div className="w-[100vw] relative overflow-x-visible mt-[-20px]">
-      <img style={{  }} className="absolute heading-img" src={Images.BackgroundHeading} alt=""/>
+      <img className="absolute heading-img" src={Images.BackgroundHeading} alt=""/>
       <div className="relative h-[300px] w-full flex flex-row justify-center">
         <img
             key={currentVideo}
             style={{ top: 0, height: 320, width: 267, bottom: -50, zIndex: 2, objectFit: "contain" }}
-            className={`absolute fade-in ${isFadeOut && 'fade-out'}`}
-            src={videosArray[currentVideo]}
+            className={`absolute`}
+            src={isTransition ? transitionArray[currentVideo] : videosArray[currentVideo]}
             alt=""
         />
       </div>

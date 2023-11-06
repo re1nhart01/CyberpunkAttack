@@ -19,6 +19,12 @@ import GlitchPunk4 from "../images/GLITCHES/v2/4.gif";
 import GlitchPunk5 from "../images/GLITCHES/v2/5.gif";
 import GlitchPunk6 from "../images/GLITCHES/v2/6.gif";
 
+//TRANSITIONS
+
+import GlitchTransition1 from "../images/punks_main/transitions/1.gif";
+import GlitchTransition2 from "../images/punks_main/transitions/2.gif";
+import GlitchTransition3 from "../images/punks_main/transitions/3.gif";
+import GlitchTransition5 from "../images/punks_main/transitions/5.gif";
 
 //VIDEOS
 
@@ -40,7 +46,12 @@ export const Images = {
     GlitchPunk2,
     GlitchPunk3,
     GlitchPunk5,
-    GlitchPunk6,
+  },
+  PunksTransition: {
+    GlitchTransition1,
+    GlitchTransition2,
+    GlitchTransition3,
+    GlitchTransition5,
   },
   Ellipse,
   Background,

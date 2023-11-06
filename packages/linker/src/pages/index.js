@@ -7,6 +7,7 @@ import SocialButtonSmall from '../components/SocialButtonSmall/SocialButtonSmall
 
 const IndexPage = () => {
   return (
+  <>
     <main className="linker-container">
       <header className="linker-header flex flex-col justify-between items-center pt-[32px] mb-[8px] z-[2]">
         <img className="linker-header__logo" src={Images.Logo} alt="LOGO_IMAGE" />
@@ -54,14 +55,8 @@ const IndexPage = () => {
           </div>
         </div>
       </div>
-        {/*<img*/}
-        {/*    loading="lazy"*/}
-        {/*    decoding="async"*/}
-        {/*    className="background-meta"*/}
-        {/*    src={Images.Background}*/}
-        {/*    alt="BACKGROUND_IMG"*/}
-        {/*/>*/}
     </main>
+  </>
   );
 };
 
