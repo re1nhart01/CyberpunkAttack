@@ -19,7 +19,7 @@ const PunkCarousel = () => {
     });
      setTimeout(() => {
        setIsTransition(false);
-     }, 800);
+     }, 200);
   }, [currentVideo, isUp]);
 
   const preloadPhotos = useCallback(() => {
