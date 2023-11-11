@@ -2,60 +2,60 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Images } from '../../constants/images';
 
 
-const MAX_COUNT = 3;
-const videosArray = Object.values(Images.GlitchPunks);
-const transitionArray = Object.values(Images.PunksTransition);
+// const MAX_COUNT = 3;
+// const videosArray = Object.values(Images.GlitchPunks);
+// const transitionArray = Object.values(Images.PunksTransition);
 
 const PunkCarousel = () => {
-  const videoRef = useRef(null);
-  const [currentVideo, setCurrentVideo] = useState(0);
-  const [isTransition, setIsTransition] = useState(false);
-  const isUp = useRef(false);
+  // const videoRef = useRef(null);
+  // const [currentVideo, setCurrentVideo] = useState(0);
+  // const [isTransition, setIsTransition] = useState(false);
+  // const isUp = useRef(false);
 
-  const onVideoEnd = useCallback(() => {
-    setIsTransition(true);
-    setCurrentVideo((prev) => {
-      return !isUp.current ? prev + 1 : prev - 1;
-    });
-     setTimeout(() => {
-       setIsTransition(false);
-     }, 200);
-  }, [currentVideo, isUp]);
+  // const onVideoEnd = useCallback(() => {
+  //   setIsTransition(true);
+  //   setCurrentVideo((prev) => {
+  //     return !isUp.current ? prev + 1 : prev - 1;
+  //   });
+  //    setTimeout(() => {
+  //      setIsTransition(false);
+  //    }, 100);
+  // }, [currentVideo, isUp]);
 
-  const preloadPhotos = useCallback(() => {
-    videosArray.forEach(imageSrc => {
-      const img = new Image();
-      img.src = imageSrc;
-    });
-    transitionArray.forEach(imageSrc => {
-      const img = new Image();
-      img.src = imageSrc;
-    });
-  }, [])
+  // const preloadPhotos = useCallback(() => {
+  //   videosArray.forEach(imageSrc => {
+  //     const img = new Image();
+  //     img.src = imageSrc;
+  //   });
+  //   transitionArray.forEach(imageSrc => {
+  //     const img = new Image();
+  //     img.src = imageSrc;
+  //   });
+  // }, [])
 
-  useEffect(() => {
-    if (currentVideo >= MAX_COUNT) {
-      isUp.current = true;
-    } else if (currentVideo <= 0) {
-      isUp.current = false;
-    }
-  }, [currentVideo]);
+  // useEffect(() => {
+  //   if (currentVideo >= MAX_COUNT) {
+  //     isUp.current = true;
+  //   } else if (currentVideo <= 0) {
+  //     isUp.current = false;
+  //   }
+  // }, [currentVideo]);
 
-  useEffect(() => {
-      preloadPhotos();
-      setIsTransition(true);
-      setTimeout(() => {
-        setIsTransition(false);
-      }, 600)
-  }, [])
-
-  useEffect(() => {
-    videoRef.current = setInterval(() => {
-      onVideoEnd();
-    }, 5000);
-
-    return () => videoRef.current && clearInterval(videoRef.current)
-  }, [])
+  // useEffect(() => {
+  //     preloadPhotos();
+  //     setIsTransition(true);
+  //     setTimeout(() => {
+  //       setIsTransition(false);
+  //     }, 600)
+  // }, [])
+  //
+  // useEffect(() => {
+  //   videoRef.current = setInterval(() => {
+  //     onVideoEnd();
+  //   }, 5000);
+  //
+  //   return () => videoRef.current && clearInterval(videoRef.current)
+  // }, [])
 
   return (
   <>
@@ -63,10 +63,9 @@ const PunkCarousel = () => {
       <img className="absolute heading-img" src={Images.BackgroundHeading} alt=""/>
       <div className="relative h-[300px] w-full flex flex-row justify-center">
         <img
-            key={currentVideo}
-            style={{ top: 0, height: 320, width: 267, bottom: -50, zIndex: 2, objectFit: "contain" }}
+            style={{ top: 0, height: 320, width: 267, bottom: -50, zIndex: 2, objectFit: "contain", objectPosition: 'center -2px' }}
             className={`absolute`}
-            src={isTransition ? transitionArray[currentVideo] : videosArray[currentVideo]}
+            src={Images.GlitchPunks.GlitchPunk2}
             alt=""
         />
       </div>
