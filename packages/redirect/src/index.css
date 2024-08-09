@@ -1,0 +1,74 @@
+@import url("../src/assets/fonts/stylesheet.css");
+
+html, body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+
+.cornerSeparator-top {
+  width: 100%;
+  height: 60px;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+
+.cornerSeparator-bottom {
+  width: 100%;
+  height: 60px;
+  object-fit: cover;
+  object-position: bottom;
+  transform: rotate(180deg);
+}
+
+
+.redirect-text {
+  text-align: center;
+  font-family: Zekton, serif;
+  font-weight: 500;
+  font-size: 3rem;
+  color: #000000;
+}
+
+.app-logo {
+  height: 20vh;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .app-logo {
+    animation: app-logo-spin infinite 10s ease-in-out;
+  }
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  font-family: Zekton sans-serif;
+  color: white;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
