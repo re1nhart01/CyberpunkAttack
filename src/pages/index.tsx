@@ -13,6 +13,8 @@ import RowView from '../components/layout/RowView';
 import { ButtonComponents } from '../components/buttons/Button/components';
 import CardWithText from '../components/layout/CardWithText';
 import InfoSectionView from '../components/layout/InfoSection';
+import { useEffect } from 'react';
+import { service } from '../services';
 
 const {
   FBlockWrapper,
@@ -52,6 +54,11 @@ const { Text40orbitron700After } = OverrideTypographyComponents;
 
 const HomePage: React.FC<PageProps> = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    service.initServices().then();
+  }, []);
+
   return (
     <MainLayout
       Header={<HeaderView />}
