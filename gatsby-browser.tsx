@@ -35,15 +35,7 @@ export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
 }) => {
   console.log('zxc2');
 
-  useEffect(() => {
-    service.initServices().then();
-  }, []);
-
   return (
-    <I18nextProvider i18n={i18n}>
-      <ThemeProvider theme={theme}>
-        {element}
-      </ThemeProvider>
-    </I18nextProvider>
+    element
   );
 };

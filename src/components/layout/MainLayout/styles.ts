@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { HEADER_HEIGHT } from '../../../services/constant/icons';
 
 export const MainLayoutStyles = {
   MainWrapper: styled.main`
       display: flex;
       flex-direction: column;
       min-height: 100%;
-      background-color: ${({ theme }) => theme.components.backgrounds.primary};
+      background-color: ${({ theme }) => theme?.components?.backgrounds?.primary || '#fff'};
     `,
   ContentWrapper: styled.div`
       display: flex;
