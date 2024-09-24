@@ -1,0 +1,530 @@
+@font-face {
+    font-family: "Orbitron";
+    src:
+        url("Orbitron-Regular.woff2") format("woff2"),
+        url("Orbitron-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Orbitron";
+    src:
+        url("Orbitron-Black.woff2") format("woff2"),
+        url("Orbitron-Black.woff") format("woff");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Orbitron";
+    src:
+        url("Orbitron-SemiBold.woff2") format("woff2"),
+        url("Orbitron-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Orbitron";
+    src:
+        url("Orbitron-ExtraBold.woff2") format("woff2"),
+        url("Orbitron-ExtraBold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Orbitron";
+    src:
+        url("Orbitron-Bold.woff2") format("woff2"),
+        url("Orbitron-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Orbitron";
+    src:
+        url("Orbitron-Medium.woff2") format("woff2"),
+        url("Orbitron-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Extralight Italic"),
+        local("BoxedRoundExtralightItalic"),
+        url("BoxedRoundExtralightItalic.woff2") format("woff2"),
+        url("BoxedRoundExtralightItalic.woff") format("woff");
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Boxed Round Book";
+    src:
+        local("Boxed Round Book"),
+        local("BoxedRoundBook"),
+        url("BoxedRoundBook.woff2") format("woff2"),
+        url("BoxedRoundBook.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Bold"),
+        local("BoxedRoundBold"),
+        url("BoxedRoundBold.woff2") format("woff2"),
+        url("BoxedRoundBold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Bold Italic"),
+        local("BoxedRoundBoldItalic"),
+        url("BoxedRoundBoldItalic.woff2") format("woff2"),
+        url("BoxedRoundBoldItalic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Boxed Round Book";
+    src:
+        local("Boxed Round Book Italic"),
+        local("BoxedRoundBookItalic"),
+        url("BoxedRoundBookItalic.woff2") format("woff2"),
+        url("BoxedRoundBookItalic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Extralight"),
+        local("BoxedRoundExtralight"),
+        url("BoxedRoundExtralight.woff2") format("woff2"),
+        url("BoxedRoundExtralight.woff") format("woff");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round"),
+        local("BoxedRound"),
+        url("BoxedRound.woff2") format("woff2"),
+        url("BoxedRound.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Light"),
+        local("BoxedRoundLight"),
+        url("BoxedRoundLight.woff2") format("woff2"),
+        url("BoxedRoundLight.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Medium"),
+        local("BoxedRoundMedium"),
+        url("BoxedRoundMedium.woff2") format("woff2"),
+        url("BoxedRoundMedium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Medium Italic"),
+        local("BoxedRoundMediumItalic"),
+        url("BoxedRoundMediumItalic.woff2") format("woff2"),
+        url("BoxedRoundMediumItalic.woff") format("woff");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Semibold"),
+        local("BoxedRoundSemibold"),
+        url("BoxedRoundSemibold.woff2") format("woff2"),
+        url("BoxedRoundSemibold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Thin Italic"),
+        local("BoxedRoundThinItalic"),
+        url("BoxedRoundThinItalic.woff2") format("woff2"),
+        url("BoxedRoundThinItalic.woff") format("woff");
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Heavy Italic"),
+        local("BoxedRoundHeavyItalic"),
+        url("BoxedRoundHeavyItalic.woff2") format("woff2"),
+        url("BoxedRoundHeavyItalic.woff") format("woff");
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Light Italic"),
+        local("BoxedRoundLightItalic"),
+        url("BoxedRoundLightItalic.woff2") format("woff2"),
+        url("BoxedRoundLightItalic.woff") format("woff");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Semibold Italic"),
+        local("BoxedRoundSemiboldItalic"),
+        url("BoxedRoundSemiboldItalic.woff2") format("woff2"),
+        url("BoxedRoundSemiboldItalic.woff") format("woff");
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Italic"),
+        local("BoxedRoundItalic"),
+        url("BoxedRoundItalic.woff2") format("woff2"),
+        url("BoxedRoundItalic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Heavy"),
+        local("BoxedRoundHeavy"),
+        url("BoxedRoundHeavy.woff2") format("woff2"),
+        url("BoxedRoundHeavy.woff") format("woff");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Boxed Round";
+    src:
+        local("Boxed Round Thin"),
+        local("BoxedRoundThin"),
+        url("BoxedRoundThin.woff2") format("woff2"),
+        url("BoxedRoundThin.woff") format("woff");
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SPACE ARMOR";
+    font-style: normal;
+    font-weight: 400;
+    src:
+        local("SPACE ARMOR"),
+        url("SpaceArmor-vmlv4.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Aquatix";
+    src: url("Aquatix.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Thin"),
+        local("BebasNeue-Thin"),
+        url("bebasneuethin.woff2") format("woff2"),
+        url("bebasneuethin.woff") format("woff"),
+        url("bebasneuethin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Light"),
+        local("BebasNeue-Light"),
+        url("bebasneuelight.woff2") format("woff2"),
+        url("bebasneuelight.woff") format("woff"),
+        url("bebasneuelight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Book"),
+        local("BebasNeueBook"),
+        url("bebasneuebook.woff2") format("woff2"),
+        url("bebasneuebook.woff") format("woff"),
+        url("bebasneuebook.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Regular"),
+        local("BebasNeueRegular"),
+        url("bebasneueregular.woff2") format("woff2"),
+        url("bebasneueregular.woff") format("woff"),
+        url("bebasneueregular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Bold"),
+        local("BebasNeueBold"),
+        url("bebasneuebold.woff2") format("woff2"),
+        url("bebasneuebold.woff") format("woff"),
+        url("bebasneuebold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Zekton Book";
+    src: url("ZektonBk-Italic.eot");
+    src:
+        local("Zekton Book Italic"),
+        local("ZektonBk-Italic"),
+        url("ZektonBk-Italic.eot?#iefix") format("embedded-opentype"),
+        url("ZektonBk-Italic.woff2") format("woff2"),
+        url("ZektonBk-Italic.woff") format("woff"),
+        url("ZektonBk-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonBd-Bold.eot");
+    src:
+        local("Zekton Bold"),
+        local("ZektonBd-Bold"),
+        url("ZektonBd-Bold.eot?#iefix") format("embedded-opentype"),
+        url("ZektonBd-Bold.woff2") format("woff2"),
+        url("ZektonBd-Bold.woff") format("woff"),
+        url("ZektonBd-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonRg-Italic.eot");
+    src:
+        local("Zekton Italic"),
+        local("ZektonRg-Italic"),
+        url("ZektonRg-Italic.eot?#iefix") format("embedded-opentype"),
+        url("ZektonRg-Italic.woff2") format("woff2"),
+        url("ZektonRg-Italic.woff") format("woff"),
+        url("ZektonRg-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonUl-Italic.eot");
+    src:
+        local("Zekton UltraLight Italic"),
+        local("ZektonUl-Italic"),
+        url("ZektonUl-Italic.eot?#iefix") format("embedded-opentype"),
+        url("ZektonUl-Italic.woff2") format("woff2"),
+        url("ZektonUl-Italic.woff") format("woff"),
+        url("ZektonUl-Italic.ttf") format("truetype");
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonUl-Regular.eot");
+    src:
+        local("Zekton UltraLight"),
+        local("ZektonUl-Regular"),
+        url("ZektonUl-Regular.eot?#iefix") format("embedded-opentype"),
+        url("ZektonUl-Regular.woff2") format("woff2"),
+        url("ZektonUl-Regular.woff") format("woff"),
+        url("ZektonUl-Regular.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonBd-BoldItalic.eot");
+    src:
+        local("Zekton Bold Italic"),
+        local("ZektonBd-BoldItalic"),
+        url("ZektonBd-BoldItalic.eot?#iefix") format("embedded-opentype"),
+        url("ZektonBd-BoldItalic.woff2") format("woff2"),
+        url("ZektonBd-BoldItalic.woff") format("woff"),
+        url("ZektonBd-BoldItalic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "ZektonRg";
+    src: url("ZektonRg-Regular.eot");
+    src:
+        local("☞ZektonRg-Regular"),
+        local("ZektonRg-Regular"),
+        url("ZektonRg-Regular.eot?#iefix") format("embedded-opentype"),
+        url("ZektonRg-Regular.woff2") format("woff2"),
+        url("ZektonRg-Regular.woff") format("woff"),
+        url("ZektonRg-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonBl-Regular.eot");
+    src:
+        local("Zekton Black"),
+        local("ZektonBl-Regular"),
+        url("ZektonBl-Regular.eot?#iefix") format("embedded-opentype"),
+        url("ZektonBl-Regular.woff2") format("woff2"),
+        url("ZektonBl-Regular.woff") format("woff"),
+        url("ZektonBl-Regular.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonBl-Italic.eot");
+    src:
+        local("Zekton Black Italic"),
+        local("ZektonBl-Italic"),
+        url("ZektonBl-Italic.eot?#iefix") format("embedded-opentype"),
+        url("ZektonBl-Italic.woff2") format("woff2"),
+        url("ZektonBl-Italic.woff") format("woff"),
+        url("ZektonBl-Italic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonLt-Italic.eot");
+    src:
+        local("Zekton Light Italic"),
+        local("ZektonLt-Italic"),
+        url("ZektonLt-Italic.eot?#iefix") format("embedded-opentype"),
+        url("ZektonLt-Italic.woff2") format("woff2"),
+        url("ZektonLt-Italic.woff") format("woff"),
+        url("ZektonLt-Italic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Zekton Book";
+    src: url("ZektonBk-Regular.eot");
+    src:
+        local("Zekton Book"),
+        local("ZektonBk-Regular"),
+        url("ZektonBk-Regular.eot?#iefix") format("embedded-opentype"),
+        url("ZektonBk-Regular.woff2") format("woff2"),
+        url("ZektonBk-Regular.woff") format("woff"),
+        url("ZektonBk-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonHv-Italic.eot");
+    src:
+        local("Zekton Heavy Italic"),
+        local("ZektonHv-Italic"),
+        url("ZektonHv-Italic.eot?#iefix") format("embedded-opentype"),
+        url("ZektonHv-Italic.woff2") format("woff2"),
+        url("ZektonHv-Italic.woff") format("woff"),
+        url("ZektonHv-Italic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonHv-Regular.eot");
+    src:
+        local("Zekton Heavy"),
+        local("ZektonHv-Regular"),
+        url("ZektonHv-Regular.eot?#iefix") format("embedded-opentype"),
+        url("ZektonHv-Regular.woff2") format("woff2"),
+        url("ZektonHv-Regular.woff") format("woff"),
+        url("ZektonHv-Regular.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Zekton";
+    src: url("ZektonLt-Regular.eot");
+    src:
+        local("Zekton Light"),
+        local("ZektonLt-Regular"),
+        url("ZektonLt-Regular.eot?#iefix") format("embedded-opentype"),
+        url("ZektonLt-Regular.woff2") format("woff2"),
+        url("ZektonLt-Regular.woff") format("woff"),
+        url("ZektonLt-Regular.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}

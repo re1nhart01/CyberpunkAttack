@@ -8,9 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "space-armor": ["var(--font-space-armor)"],
+        orbitron: ["var(--font-orbitron)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        black: "#000000",
       },
     },
   },

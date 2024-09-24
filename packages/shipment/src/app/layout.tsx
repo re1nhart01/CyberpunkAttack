@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Orbitron } from "next/font/google";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -11,6 +12,19 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+const spaceArmor = localFont({
+  src: "./fonts/SpaceArmor-vmlv4.woff",
+  variable: "--font-space-armor",
+  weight: "100 900",
+  display: "swap",
+});
+
+const boxedRound = Orbitron({
+  variable: "--font-orbitron",
+  display: "swap",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceArmor.variable} ${boxedRound.variable} antialiased`}
       >
         {children}
       </body>
