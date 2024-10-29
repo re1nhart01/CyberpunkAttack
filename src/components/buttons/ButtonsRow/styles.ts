@@ -5,6 +5,8 @@ import { ICONS } from '../../../services/constant/icons';
 const HeaderButton = styled(ButtonView)`
       padding: 12px 24px;
       position: relative;
+      cursor: pointer;
+
   &:not(:last-child)::after {
     content:"";
     position:absolute;
@@ -14,6 +16,9 @@ const HeaderButton = styled(ButtonView)`
     z-index: 999;
     background-color: ${({ theme }) => theme.colors.main};
     height:12px;
+  }
+  & > * {
+    cursor: pointer;
   }
     `;
 

@@ -62,4 +62,11 @@ export const ImageViewComponents = {
     width: 24px;
     height: 24px;
   `,
+  AboutUsImage: styled(ImageView).attrs(({ source }) => ({
+    source,
+    alterText: 'ABOUT_US',
+  }))`
+    width: 50vw;
+    object-fit: contain;
+  `,
 };

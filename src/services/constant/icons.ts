@@ -32,14 +32,20 @@ import tiktok from '../../images/png/tiktok.png';
 import instagram from '../../images/png/bi_instagram.png';
 import linkedin from '../../images/png/linkedin.png';
 
+import igor from '../../images/png/igor.png';
+import me from '../../images/png/me.png';
+import aboutus from '../../images/png/aboutus1.png';
 
 const ICONS = {
   gatsbyIcon,
+  aboutus,
   headerBlurBG,
   headerRightBlurBG,
   headlinerBG,
   blurRowImg,
   fbBoxGame,
+  igor,
+  me,
   npButtonBG,
   npLogo,
   cardView,
