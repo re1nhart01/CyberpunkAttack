@@ -9,6 +9,7 @@ export const theme = {
     main2: '#01E1FF',
     green: '#1AEC7B',
     dark: '#252C33',
+    rgbaw09: 'rgba(255, 255, 255, 0.9)',
   },
   components: {
     backgrounds: {
@@ -32,6 +33,8 @@ export const theme = {
     boxedRoundB: 'Boxed Round Book',
     aquantix: 'Aquatix',
     bebas: 'Bebas Neue',
+    bangers: 'Bangers',
+    zek: 'Zekton',
   },
   fontSizes: {
     fz8: 8,
@@ -43,9 +46,12 @@ export const theme = {
     fz20: 20,
     fz22: 22,
     fz24: 24,
+    fz26: 26,
     fz29: 29,
     fz32: 32,
     fz40: 40,
+    fz48: 48,
+    fz56: 56,
     fz60: 60,
     fz76: 76,
     fz170: 170,

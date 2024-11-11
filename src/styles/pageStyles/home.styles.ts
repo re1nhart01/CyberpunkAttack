@@ -1,8 +1,73 @@
 import styled from 'styled-components';
-import { HEADER_HEIGHT, ICONS } from '../../services/constant/icons';
+import { ICONS } from '../../constant/icons';
 import RowView from '../../components/layout/RowView';
+import { HEADER_HEIGHT } from '../../constant/constants';
 
 export const HomePageStyles = {
+  PageContainer: styled.div`
+    background-image: url(${ICONS.mainBackground});
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: top left;
+    height: 100%;
+    max-width: 100%;
+    @media only screen and (max-width: 1024px) {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  `,
+  PageSection: styled.section`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  `,
+  Separator: styled.div`
+    height: 48px;
+    background-color: ${({ theme }) => theme.colors.main};
+    width: 2px;
+  `,
+  PageSectionInner: styled.div`
+    max-width: 57vw;
+    min-width: 57vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    @media only screen and (max-width: 1024px) {
+      max-width: 100%;
+      min-width: 100%;
+    }
+  `,
+  FormWrapper: styled.div`
+    padding-top: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    flex-wrap: wrap;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+      flex-direction: column;
+      & > * {
+        box-sizing: border-box;
+        width: 100%;
+      }
+    }
+  `,
+  InnerWrapper: styled.div`
+    padding-top: 16px;
+  `,
+  SocialButtonInner: styled.div`
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-top: 35px;
+    gap: 35px;
+  `,
   Del: styled.div`
       display: flex;
       flex-direction: row;
@@ -13,83 +78,20 @@ export const HomePageStyles = {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background: url(${ICONS.headlinerBG}) lightgray 50% / cover no-repeat;
+      margin-bottom: 24px;
     `,
-  FBlockContainer: styled.section`
-      width: 100vw;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      height: 100vh;
-      margin-top: ${HEADER_HEIGHT}px;
-      padding-left: 8.3%;
-      padding-right: 7.6%;
-    `,
-  FBlockImage: styled.img`
-      object-fit: fill;
-    `,
-  FHeaderWrapper: styled.div`
-      gap: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding-top: 10%;
-      max-width: 625px;
-    `,
-  ContainedRowView: styled(RowView)`
-      width: 100%;
-    `,
-  VerticalLineWhite2: styled.div`
-      width:2px;
-      height:40px;
-      background-color: ${({ theme }) => theme.colors.white};
-    `,
-  GradientRowView: styled(RowView)`
-      width: 100%;
-      height: 160px;
-      background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 100%);
-      z-index: 999;
-      position: relative;
-      top: -220px;
-    `,
-  AboutBlockWrapper: styled.section`
-      width: 100vw;
-      height: 100vh;
-      background: url(${ICONS.backgroundAbout}) no-repeat;
-      background-size: 100% 100%;
-    `,
-  AboutBlockContent: styled.div`
-      padding-left: 4.16%;
-      padding-right: 4.16%;
-      padding-top: 80px;
-      z-index: 10;
-    `,
-  AboutCarousel: styled.div`
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    `,
-  AboutSeparator: styled.div`
-      width: 22%;
-      height: 1px;
-      background-color: ${({ theme }) => theme.colors.white};
-      margin-top: 17px;
-      margin-bottom: 40px;
-    `,
-  AboutTheGameWrapper: styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 63px;
-  `,
-  AboutTheGameContainer: styled.section`
-    position: relative;
-    display: block;
-    width: 100vw;
-    min-height: 76vh;
-    background-color: ${({ theme }) => theme.colors.white};
-  `,
   BorderView: styled.span`
     border: 8px solid ${({ theme }) => theme.colors.black}
+  `,
+  Spacer: styled.div<{ height: number | string }>`
+    width: 1%;
+    height: ${({ height }) => height}px;
+    background-color: transparent;
+  `,
+  WhiteColorText: styled.div`
+    & > * {
+      color: ${({ theme }) => theme.colors.white};
+      font-family: Zekton;
+    }
   `,
 };

@@ -7,6 +7,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import './src/styles/normalize.css';
 import './src/styles/fonts.css';
 import './src/styles/main.css';
+import './src/fonts/stylesheet.css';
 
 import { theme } from './src/theme/theme';
 import { service } from './src/services';
@@ -33,7 +34,6 @@ console.warn = function (...args) {
 export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
   element,
 }) => {
-  console.log('zxc2');
 
   return (
     element

@@ -6,7 +6,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources: Localization.resources,
-    lng: Languages.Ukrainian,
+    lng: Languages.English,
     fallbackLng: Languages.Ukrainian,
     interpolation: {
       escapeValue: false,

@@ -160,8 +160,72 @@ export const TypographyComponents = {
     font-weight: 400;
     line-height: 150%; /* 27px */
   `,
+  Text16Zekton400: styled(Typography).attrs<typographyProps>({
+    color: 'white',
+    fw: 'fw400',
+    fsz: 'fz16',
+    ff: 'zek',
+    selector: 'span',
+    fzType: 'px',
+  })``,
+  Text18Zekton400: styled(Typography).attrs<typographyProps>({
+    fw: 'fw400',
+    fsz: 'fz18',
+    ff: 'zek',
+    selector: 'span',
+    fzType: 'px',
+  })`
+  `,
+  Text48Orbitron700: styled(Typography).attrs<typographyProps>({
+    color: 'white',
+    fw: 'fw700',
+    fsz: 'fz48',
+    ff: 'orbitron',
+    selector: 'div',
+    fzType: 'px',
+  })`
+    text-shadow: #01D1FF -1px -1px 0px 0px, #FC2B87 1px 1px 0px 0px;
+    text-align: center;
+  `,
+  Text24Zekton400: styled(Typography).attrs<typographyProps>({
+    color: 'white',
+    fw: 'fw400',
+    fsz: 'fz24',
+    ff: 'zek',
+    selector: 'div',
+    fzType: 'px',
+  })`
+    text-align: center;
+  `,
+  Text56Bangers400: styled(Typography).attrs<typographyProps>({
+    fw: 'fw400',
+    fsz: 'fz56',
+    ff: 'bangers',
+    selector: 'span',
+    fzType: 'px',
+  })`
+    align-self: flex-start;
+  `,
+  Text26Space400: styled(Typography).attrs<typographyProps>({
+    fw: 'fw400',
+    fsz: 'fz26',
+    ff: 'space',
+    selector: 'span',
+  })`
+    text-shadow: 0px 0px 4.44px 0px #01E1FF;
+  `,
+  Text14Zekton400: styled(Typography).attrs<typographyProps>({
+    fw: 'fw400',
+    fsz: 'fz14',
+    ff: 'zek',
+  })`
+    opacity: 0.5;
+  `,
 };
 
 export const OverrideTypographyComponents = {
   Text40orbitron700After: styled(TypographyComponents.Text40orbitron700)``,
+  Text16Zekton400Black: styled(TypographyComponents.Text16Zekton400)`
+    color: ${({ theme }) => theme.colors.black} !important;
+  `,
 };

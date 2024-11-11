@@ -19,9 +19,7 @@ const MainLayout: FC<mainLayoutProps> = ({ Footer, Header, children }) => {
         <MainWrapper>
           { Header || null }
           <ContentWrapper>
-            <FullContainer>
-              { children }
-            </FullContainer>
+            { children }
           </ContentWrapper>
           { Footer || null }
         </MainWrapper>

@@ -1,200 +1,232 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useRef } from 'react';
 import { Html } from '../components/html';
 import MainLayout from '../components/layout/MainLayout';
 import HeaderView from '../components/layout/Header';
 import FooterView from '../components/layout/Footer';
 import { HomePageStyles } from '../styles/pageStyles/home.styles';
 import { OverrideTypographyComponents, TypographyComponents } from '../components/typography/typography.styles';
-import BlurRowView from '../components/layout/BlurRow';
 import { ImageViewComponents } from '../components/images/ImageView/styles';
-import RowView from '../components/layout/RowView';
 import { ButtonComponents } from '../components/buttons/Button/components';
-import CardWithText from '../components/layout/CardWithText';
-import InfoSectionView from '../components/layout/InfoSection';
-import { useEffect } from 'react';
 import { service } from '../services';
+import { InputStyles } from '../components/inputs/styles';
+import { SocialButton } from '../components/buttons/SocialButton';
+import { svgs } from '../constant/svgs';
+import { contactUs, discordLink, instagramLink } from '../constant/constants';
 
 const {
   FBlockWrapper,
-  FBlockContainer,
-  FHeaderWrapper,
-  Del,
-  ContainedRowView,
-  VerticalLineWhite2,
-  AboutBlockWrapper,
-  AboutBlockContent,
-  AboutSeparator,
-  AboutTheGameWrapper,
-  AboutTheGameContainer,
-  BorderView,
+  PageContainer,
+  PageSection,
+  PageSectionInner,
+  InnerWrapper,
+  FormWrapper,
+  Spacer,
+  SocialButtonInner,
+  Separator,
 } = HomePageStyles;
 const {
-  Text76orbitron700,
-  Text18boxed500,
-  Text24boxed600,
-  Text16boxed500,
-  Text16boxed600,
-  Text16boxed700,
-  Text60orbitron700,
-  Text170space700,
+  Text48Orbitron700,
+  Text24Zekton400,
+  Text56Bangers400,
+  Text18Zekton400,
+  Text26Space400,
 } = TypographyComponents;
 const {
-  FbBlurRowImg,
-  CardImageView,
-  BackgroundAboutView,
-  SeparatorBlack,
-  IRLGameView,
-  RolesBannerView,
-  SocialImage,
+  HeaderIllustration,
+  AlertImage,
+  SeparatorBlue,
+  VersusIllustration,
+  CyberpunkText,
+  CyberbodyImage,
+  CardsList,
 } = ImageViewComponents;
-const { ShipNovaPoshtaButton, BuyInOneClickButton, SmallSocialButton } = ButtonComponents;
-const { Text40orbitron700After } = OverrideTypographyComponents;
+
+const {
+  PrimaryInput,
+} = InputStyles;
+
+const { SubmitFormButton } = ButtonComponents;
+const { Text16Zekton400Black } = OverrideTypographyComponents;
 
 const HomePage: React.FC<PageProps> = () => {
   const { t } = useTranslation();
+  const subscribeRef = useRef<HTMLDivElement>(null);
+  const aboutGameRef = useRef<HTMLDivElement>(null);
+  const trailerRef = useRef<HTMLDivElement>(null);
+
+  const onScrollIntoView = (arg: 'subscribe' | 'about' | 'trailer' | 'start') => {
+    switch (arg) {
+      case 'start':
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        });
+        break;
+      case 'subscribe':
+        subscribeRef.current?.scrollIntoView({
+          behavior: 'smooth', block: 'center',
+        });
+        break;
+      case 'about':
+        aboutGameRef.current?.scrollIntoView({
+          behavior: 'smooth', block: 'start',
+        });
+        break;
+      case 'trailer':
+        trailerRef.current?.scrollIntoView({
+          behavior: 'smooth', block: 'center',
+        });
+        break;
+      default:
+        console.log('zxc');
+    }
+  };
+
+  const goTo = (url: string) => {
+    window.open(url, '_blank');
+  };
 
   useEffect(() => {
     service.initServices().then();
+    document.querySelectorAll('*').forEach(el => {
+      if (el.scrollWidth > el.clientWidth) {
+        console.log('Элемент, растягивающий страницу:', el);
+      }
+    });
   }, []);
 
   return (
     <MainLayout
-      Header={<HeaderView />}
-      Footer={<FooterView />}
+      Header={<HeaderView onScrollIntoView={onScrollIntoView} />}
     >
-      <FBlockWrapper>
-        <FBlockContainer>
-          <FHeaderWrapper>
-            <Text76orbitron700 k="firstBlock_HeadingText" />
-            <Text18boxed500 k="firstBlock_SubHeading" />
-            <BlurRowView>
-              <Del>
-                <FbBlurRowImg source="fbBoxGame" />
-                <RowView rightM={3} gap={8} pos="column">
-                  <Text24boxed600 disabledWrap k="gameName" />
-                  <Text16boxed500 k="free_ship_ua" />
-                </RowView>
-              </Del>
-              <ShipNovaPoshtaButton
-                onPress={() => {}}
-                gapInside={10}
+      <PageContainer>
+        <FBlockWrapper>
+          <HeaderIllustration />
+        </FBlockWrapper>
+        <PageSection>
+          <PageSectionInner ref={subscribeRef}>
+            <AlertImage />
+            <InnerWrapper>
+              <Text48Orbitron700>{t('section1.join')}</Text48Orbitron700>
+            </InnerWrapper>
+            <InnerWrapper>
+              <Text24Zekton400>{t('section1.signup')}</Text24Zekton400>
+            </InnerWrapper>
+            <FormWrapper>
+              <PrimaryInput placeholder="Full name" />
+              <PrimaryInput placeholder="Email" />
+              <SubmitFormButton onPress={() => {}}>
+                <Text16Zekton400Black>
+                  {t('submit')}
+                </Text16Zekton400Black>
+              </SubmitFormButton>
+            </FormWrapper>
+          </PageSectionInner>
+        </PageSection>
+        <Spacer height={120} />
+        <PageSection ref={aboutGameRef}>
+          <PageSectionInner>
+            <Text56Bangers400 color="rgbaw09">
+              {t('diveInto')}
+              {' '}
+              <Text56Bangers400 color="main">{t('cyberFuture')}</Text56Bangers400>
+            </Text56Bangers400>
+            <SeparatorBlue />
+            <Spacer height={34} />
+            <Text18Zekton400 color="rgbaw09">
+              {t('firstText')}
+            </Text18Zekton400>
+            <Spacer height={34} />
+            <Text18Zekton400 color="main">
+              {t('gameMechanics')}
+              {' '}
+              <Text18Zekton400 color="rgbaw09">
+                {t('gameMechanicsText')}
+              </Text18Zekton400>
+            </Text18Zekton400>
+            <Spacer height={34} />
+            <VersusIllustration />
+            <Spacer height={34} />
+            <Text56Bangers400 color="rgbaw09">
+              {t('about')}
+              {' '}
+              <Text56Bangers400 color="main">{t('lore')}</Text56Bangers400>
+            </Text56Bangers400>
+            <Spacer height={34} />
+            <Text18Zekton400 color="rgbaw09">
+              {t('aboutLoreText')}
+            </Text18Zekton400>
+            <Spacer height={67} />
+            <CyberpunkText />
+            <Spacer height={43} />
+            <CyberbodyImage />
+            <Spacer height={34} />
+            <Text26Space400>
+              {t('join')}
+              {' '}
+              <Text26Space400 color="white">{t('toTheBattle')}</Text26Space400>
+            </Text26Space400>
+            <CardsList />
+            <Spacer height={34} />
+          </PageSectionInner>
+        </PageSection>
+        <PageSection ref={trailerRef}>
+          <PageSectionInner>
+            <iframe
+              width="100%"
+              style={{ width: '100%', aspectRatio: 16 / 9 }}
+              src="https://www.youtube.com/embed/W4agXL6aVow?si=mMg4nYVPUDCl3PHR"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </PageSectionInner>
+        </PageSection>
+        <Spacer height={40} />
+        <PageSection>
+          <PageSectionInner>
+            <Separator />
+            <SocialButtonInner>
+              <SocialButton
+                goTo={() => goTo(instagramLink)}
               >
-                <Text16boxed600 k="buy" />
-              </ShipNovaPoshtaButton>
-            </BlurRowView>
-            <ContainedRowView align="center" dimension="%" gap={6.5} pos="row">
-              <RowView align="center" pos="column" gap={4}>
-                <Text40orbitron700After k="players_count" />
-                <Text16boxed700 k="players" />
-              </RowView>
-              <VerticalLineWhite2 />
-              <RowView align="center" pos="column" gap={4}>
-                <Text40orbitron700After k="time_count" />
-                <Text16boxed700 k="min_count" />
-              </RowView>
-              <VerticalLineWhite2 />
-              <RowView align="center" pos="column" gap={4}>
-                <Text40orbitron700After k="cards_count" />
-                <Text16boxed700 k="card" />
-              </RowView>
-            </ContainedRowView>
-          </FHeaderWrapper>
-          <CardImageView source="cardView" />
-        </FBlockContainer>
-      </FBlockWrapper>
-      <AboutBlockWrapper>
-        <AboutBlockContent>
-          <Text60orbitron700 k="game_rules" />
-          <AboutSeparator />
-          <RowView align="center" pos="row" gap={0}>
-            <CardWithText
-              leftTextIcon="cardSmallAbout1"
-              icon="cardAbout1"
-              k="game_mechanics"
-              alterBig="CARD_ABOUT_1"
-              alterSmall="CARD_SMALL_ABOUT_1"
-            />
-            <CardWithText
-              leftTextIcon="cardSmallAbout2"
-              icon="cardAbout2"
-              k="role_system"
-              alterBig="CARD_ABOUT_2"
-              alterSmall="CARD_SMALL_ABOUT_2"
-            />
-            <CardWithText
-              leftTextIcon="cardSmallAbout3"
-              icon="cardAbout3"
-              k="fight_system"
-              alterBig="CARD_ABOUT_3"
-              alterSmall="CARD_SMALL_ABOUT_3"
-            />
-            <CardWithText
-              leftTextIcon="cardSmallAbout4"
-              icon="cardAbout4"
-              k="cyberImplants"
-              alterBig="CARD_ABOUT_4"
-              alterSmall="CARD_SMALL_ABOUT_4"
-            />
-            <CardWithText
-              leftTextIcon="cardSmallAbout5"
-              icon="cardAbout5"
-              k="etc"
-              alterBig="CARD_ABOUT_5"
-              alterSmall="CARD_SMALL_ABOUT_5"
-            />
-          </RowView>
-        </AboutBlockContent>
-      </AboutBlockWrapper>
-      <SeparatorBlack source="blackSeparator" />
-      <AboutTheGameWrapper>
-        <AboutTheGameContainer>
-          <Text170space700 k="about" />
-          <InfoSectionView
-            headerText="aboutTheGame"
-            subText="spamAboutTheGame"
-            contentText="aboutGameContent"
-            buttonSection={(
-              <BuyInOneClickButton onPress={() => {}}>
-                <Text16boxed600 k="buyIn1Click" />
-              </BuyInOneClickButton>
-            )}
-            imageSection={(
-              <IRLGameView source="irlGame" />
-            )}
-          />
-        </AboutTheGameContainer>
-        <AboutTheGameContainer id="1">
-          <Text170space700 k="aiGen" />
-          <InfoSectionView
-            reversed
-            headerText="aboutTheMaterials"
-            subText="rolesSeparated"
-            contentText="aboutGameContent2"
-            buttonSection={(
-              <RowView gap={8} pos="row">
-                <SmallSocialButton onPress={() => {}}>
-                  <SocialImage source="instagram" />
-                </SmallSocialButton>
-                <SmallSocialButton onPress={() => {}}>
-                  <SocialImage source="tiktok" />
-                </SmallSocialButton>
-                <SmallSocialButton onPress={() => {}}>
-                  <SocialImage source="linkedin" />
-                </SmallSocialButton>
-              </RowView>
-            )}
-            imageSection={(
-              <RolesBannerView source="rolesBanner" />
-              )}
-          />
-        </AboutTheGameContainer>
-      </AboutTheGameWrapper>
+                <svgs.instagram />
+                <Text24Zekton400>
+                  {t('socials.instagram')}
+                </Text24Zekton400>
+              </SocialButton>
+              <SocialButton
+                goTo={() => goTo(discordLink)}
+              >
+                <svgs.discord />
+                <Text24Zekton400>
+                  {t('socials.discord')}
+                </Text24Zekton400>
+              </SocialButton>
+              <SocialButton
+                goTo={() => goTo(contactUs)}
+              >
+                <svgs.contactUs />
+                <Text24Zekton400>
+                  {t('socials.contactUs')}
+                </Text24Zekton400>
+              </SocialButton>
+            </SocialButtonInner>
+          </PageSectionInner>
+        </PageSection>
+        <Spacer height={100} />
+        <FooterView />
+      </PageContainer>
     </MainLayout>
   );
 };
 
 export default HomePage;
 
-export const Head: HeadFC = () => <Html meta="Main Page" title="Cyberpunk Attack" />;
+export const Head: HeadFC = () => <Html meta="Main Page" title="Cyberpunk Attack - cooperative team techno fight game" />;

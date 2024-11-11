@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ICONS } from '../../../services/constant/icons';
+import { ICONS } from '../../../constant/icons';
 import { cardWithTextStyles } from './styles';
 import RowView from '../RowView';
 import { TypographyComponents } from '../../typography/typography.styles';

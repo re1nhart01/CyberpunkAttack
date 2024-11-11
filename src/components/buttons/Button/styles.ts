@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ButtonView from './index';
-import { ICONS } from '../../../services/constant/icons';
+import { ICONS } from '../../../constant/icons';
 
 export const ButtonStyles = {
   Wrapper: styled.div``,

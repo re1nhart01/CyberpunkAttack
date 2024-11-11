@@ -68,6 +68,8 @@ export function createTextComponent (selector: keyof ReactHTML = 'span', {
       font-family: ${({ theme }) => theme.fonts[ff!] || theme.fonts.orbitron};
       font-weight: ${({ theme }) => theme.fontWeight[fw!] || theme.fontWeight.fw400};
       white-space: ${disabledWrap ? 'nowrap' : 'pre-wrap'};
+      @media only screen and (max-width: 1024px) {
+      }
     `;
 }
 

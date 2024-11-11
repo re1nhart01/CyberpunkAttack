@@ -6,7 +6,7 @@ require('dotenv').config({
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: 'CyberpunkAttack',
+    title: 'Cyberpunk Attack - cooperative team techno fight game',
     siteUrl: 'https://www.yourdomain.tld',
   },
   // "gatsby-plugin-google-gtag"

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { HEADER_HEIGHT } from '../../../constant/constants';
 
 export const MainLayoutStyles = {
   MainWrapper: styled.main`
@@ -6,6 +7,7 @@ export const MainLayoutStyles = {
       flex-direction: column;
       min-height: 100%;
       background-color: ${({ theme }) => theme?.components?.backgrounds?.primary || '#fff'};
+      margin-top: -${HEADER_HEIGHT}px;
     `,
   ContentWrapper: styled.div`
       display: flex;
@@ -23,8 +25,6 @@ export const MainLayoutStyles = {
       flex: 1;
       flex-direction: column;
       align-items: center;
-      margin-left: auto;
-      margin-right: auto;
     `,
 };
 

@@ -25,6 +25,7 @@ rules:
   }]
   no-unused-vars: off
   no-empty-pattern: off
+  react/no-unescaped-entities: off
   no-multiple-empty-lines: [2, { 'max': 1, 'maxBOF': 0, 'maxEOF': 0 }]
   prefer-const: [2, { 'destructuring': all }]
   no-path-concat: 2
