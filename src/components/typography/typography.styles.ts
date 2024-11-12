@@ -269,5 +269,6 @@ export const OverrideTypographyComponents = {
   Text40orbitron700After: styled(TypographyComponents.Text40orbitron700)``,
   Text16Zekton400Black: styled(TypographyComponents.Text16Zekton400)`
     color: ${({ theme }) => theme.colors.black} !important;
+    text-align: center;
   `,
 };

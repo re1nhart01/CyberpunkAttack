@@ -2,14 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { ICONS } from '../../../constant/icons';
-import {HEADER_HEIGHT, donateLink, instagramLink, discordLink, contactUs} from '../../../constant/constants';
+import { HEADER_HEIGHT, contactUs, discordLink, donateLink, instagramLink } from '../../../constant/constants';
 import ButtonView from '../../buttons/Button';
 import { TypographyComponents } from '../../typography/typography.styles';
 import { svgs } from '../../../constant/svgs';
+import { ButtonComponents } from '../../buttons/Button/components';
 
 const { Text18Zekton700, Text14Zekton700 } = TypographyComponents;
 
-const { FullScreenMenu, BurgerButtonItem, ButtonRowContainer, SubmitFormButton, HorizontalRowContainer, ButtonViewDef } = {
+const { FullScreenMenu, BurgerButtonItem, ButtonRowContainer, HorizontalRowContainer, ButtonViewDef } = {
   FullScreenMenu: styled.div<{ isOpen: boolean }>`
     position: fixed;
     top: 0;
@@ -61,27 +62,9 @@ const { FullScreenMenu, BurgerButtonItem, ButtonRowContainer, SubmitFormButton, 
       text-align: center;
     }
   `,
-  SubmitFormButton: styled(ButtonView)`
-    padding: 16px 42px 16px 42px;
-    background-color: ${({ theme }) => theme.colors.main};
-    border-radius: 40px;
-    transition: 0.5s;
-    min-width: 100%;
-    cursor: pointer;
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.white};
-    }
-    & > * {
-      pointer-events: none;
-    }
-    @media only screen and (max-width: 1024px) {
-      & > * {
-        text-align: center;
-        justify-self: center;
-      }
-    }
-  `,
 };
+
+const { SubmitFormButton } = ButtonComponents;
 
 type IProps = {
   onScrollIntoView: (v: 'subscribe' | 'about' | 'trailer' | 'start') => void;

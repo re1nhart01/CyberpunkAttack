@@ -44,10 +44,10 @@ export const ButtonComponents = {
       pointer-events: none;
     }
     @media only screen and (max-width: 1024px) {
-      & > * {
-        text-align: center;
-        justify-self: center;
-      }
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
     }
   `,
 };

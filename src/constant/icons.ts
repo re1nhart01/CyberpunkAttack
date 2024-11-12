@@ -32,6 +32,7 @@ import irlGame from '../images/png/irl_game.png';
 import rolesBanner from '../images/png/roles_banner.png';
 import aboutSectionButtonBG from '../images/png/background_rgb.png';
 import alert from '../images/svg/alert.svg';
+import checkbox from '../images/svg/checkbox.svg';
 
 import tiktok from '../images/png/tiktok.png';
 import instagram from '../images/png/bi_instagram.png';
@@ -60,6 +61,7 @@ import aboutus from '../images/png/aboutus1.png';
 const ICONS = {
   gatsbyIcon,
   aboutus,
+  checkbox,
   socialButtonBG,
   socialButtonBGActive,
   laidlonLogo,
