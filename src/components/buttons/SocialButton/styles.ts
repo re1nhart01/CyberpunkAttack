@@ -11,7 +11,8 @@ export const socialButtonStyles = {
   SocialButtonContainer: styled.button`
     background: url("${ICONS.socialButtonBG}") no-repeat center;
     background-size: 100% 100%;
-    width: 80%;
+    max-width: 660px;
+    width: 100%;
     height: 78px;
     box-sizing: border-box;
     transition: 0.5s;

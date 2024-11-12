@@ -229,4 +229,4 @@ const HomePage: React.FC<PageProps> = () => {
 
 export default HomePage;
 
-export const Head: HeadFC = () => <Html meta="Main Page" title="Cyberpunk Attack - cooperative team techno fight game" />;
+export const Head: HeadFC = () => <Html meta="This board game is a cooperative team techno fight game where 2 - 8 players can clash in a battle. Join the battle as a resistance hacker or take control of the corporation as its boss." title="Cyberpunk Attack - cooperative team techno fight game" />;
