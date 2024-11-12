@@ -7,20 +7,23 @@ import { TypographyComponents } from '../../typography/typography.styles';
 import ButtonRowView from '../../buttons/ButtonsRow';
 import { ImageViewComponents } from '../../images/ImageView/styles';
 import { donateLink, instagramLink } from '../../../constant/constants';
+import BurgerMenu from '../../buttons/BurgerMenu/BurgerMenu';
 
 type headerViewProps = {
   onScrollIntoView: (v: 'subscribe' | 'about' | 'trailer' | 'start') => void;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
   hideButtons?: boolean;
 };
 
 const { Wrapper, LogoWrapper, ButtonsWrapper, HeaderButton, Separator } = HeaderStyles;
 
-const { Text16Zekton400 } = TypographyComponents;
+const { Text16Zekton700 } = TypographyComponents;
 const { LaidlonLogo, CALogo, InstaLogo } = ImageViewComponents;
 
-const HeaderView: FC<headerViewProps> = ({ onScrollIntoView, hideButtons }) => {
+const HeaderView: FC<headerViewProps> = ({ onScrollIntoView, hideButtons, setIsOpen, isOpen }) => {
   const { t } = useTranslation();
-
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false;
   const onDonatePress = () => {
     window.location.href = donateLink;
   };
@@ -35,31 +38,33 @@ const HeaderView: FC<headerViewProps> = ({ onScrollIntoView, hideButtons }) => {
         <LaidlonLogo />
         <CALogo />
       </LogoWrapper>
-      <ButtonsWrapper>
-        {!hideButtons && (
+      {isMobile ? <BurgerMenu setIsOpen={setIsOpen} isOpen={isOpen} /> : (
+        <ButtonsWrapper>
+          {!hideButtons && (
           <>
             <HeaderButton onPress={() => onScrollIntoView('subscribe')}>
-              <Text16Zekton400>{t('header.subscribe')}</Text16Zekton400>
+              <Text16Zekton700>{t('header.subscribe')}</Text16Zekton700>
             </HeaderButton>
             <Separator />
             <HeaderButton onPress={() => onScrollIntoView('about')}>
-              <Text16Zekton400>{t('header.about')}</Text16Zekton400>
+              <Text16Zekton700>{t('header.about')}</Text16Zekton700>
             </HeaderButton>
             <Separator />
             <HeaderButton onPress={() => onScrollIntoView('trailer')}>
-              <Text16Zekton400>{t('header.trailer')}</Text16Zekton400>
+              <Text16Zekton700>{t('header.trailer')}</Text16Zekton700>
             </HeaderButton>
             <Separator />
           </>
-        )}
-        <HeaderButton onPress={onDonatePress}>
-          <Text16Zekton400>{t('header.donate')}</Text16Zekton400>
-        </HeaderButton>
-        <Separator />
-        <HeaderButton onPress={onInstagramPress}>
-          <InstaLogo />
-        </HeaderButton>
-      </ButtonsWrapper>
+          )}
+          <HeaderButton onPress={onDonatePress}>
+            <Text16Zekton700>{t('header.donate')}</Text16Zekton700>
+          </HeaderButton>
+          <Separator />
+          <HeaderButton onPress={onInstagramPress}>
+            <InstaLogo />
+          </HeaderButton>
+        </ButtonsWrapper>
+      )}
     </Wrapper>
   );
 };

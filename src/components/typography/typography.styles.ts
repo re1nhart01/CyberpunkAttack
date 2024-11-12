@@ -174,8 +174,29 @@ export const TypographyComponents = {
     ff: 'zek',
     selector: 'span',
     fzType: 'px',
-  })`
-  `,
+  })``,
+  Text16Zekton700: styled(Typography).attrs<typographyProps>({
+    color: 'white',
+    fw: 'fw700',
+    fsz: 'fz16',
+    ff: 'zek',
+    selector: 'span',
+    fzType: 'px',
+  })``,
+  Text14Zekton700: styled(Typography).attrs<typographyProps>({
+    fw: 'fw700',
+    fsz: 'fz16',
+    ff: 'zek',
+    selector: 'span',
+    fzType: 'px',
+  })``,
+  Text18Zekton700: styled(Typography).attrs<typographyProps>({
+    fw: 'fw700',
+    fsz: 'fz18',
+    ff: 'zek',
+    selector: 'span',
+    fzType: 'px',
+  })``,
   Text48Orbitron700: styled(Typography).attrs<typographyProps>({
     color: 'white',
     fw: 'fw700',
@@ -186,6 +207,9 @@ export const TypographyComponents = {
   })`
     text-shadow: #01D1FF -1px -1px 0px 0px, #FC2B87 1px 1px 0px 0px;
     text-align: center;
+    @media only screen and (max-width: 1024px) {
+      font-size: 28px !important;
+    }
   `,
   Text24Zekton400: styled(Typography).attrs<typographyProps>({
     color: 'white',
@@ -196,6 +220,9 @@ export const TypographyComponents = {
     fzType: 'px',
   })`
     text-align: center;
+    @media only screen and (max-width: 1024px) {
+      font-size: 18px !important;
+    }
   `,
   Text56Bangers400: styled(Typography).attrs<typographyProps>({
     fw: 'fw400',
@@ -213,6 +240,9 @@ export const TypographyComponents = {
     selector: 'span',
   })`
     text-shadow: 0px 0px 4.44px 0px #01E1FF;
+    @media only screen and (max-width: 1024px) {
+      font-size: 14px !important;
+    }
   `,
   Text14Zekton400: styled(Typography).attrs<typographyProps>({
     fw: 'fw400',

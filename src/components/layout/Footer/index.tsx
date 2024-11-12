@@ -7,7 +7,7 @@ import { TypographyComponents } from '../../typography/typography.styles';
 
 type footerViewProps = {};
 
-const { Wrapper, ShrinkContainer, LogoContainer } = FooterStyles;
+const { Wrapper, ShrinkContainer, LogoContainer, LeftAlignedCorners, RightAlignedCorners } = FooterStyles;
 const { Text14Zekton400 } = TypographyComponents;
 
 const { LogoRed, CALogo, InstaLogo } = ImageViewComponents;
@@ -32,6 +32,8 @@ const FooterView: FC<footerViewProps> = ({ }) => {
           {' '}
           {new Date().getUTCFullYear()}
         </Text14Zekton400>
+        <LeftAlignedCorners />
+        <RightAlignedCorners />
       </ShrinkContainer>
     </Wrapper>
   );

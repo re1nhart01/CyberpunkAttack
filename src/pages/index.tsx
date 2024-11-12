@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Html } from '../components/html';
 import MainLayout from '../components/layout/MainLayout';
 import HeaderView from '../components/layout/Header';
@@ -15,6 +15,7 @@ import { InputStyles } from '../components/inputs/styles';
 import { SocialButton } from '../components/buttons/SocialButton';
 import { svgs } from '../constant/svgs';
 import { contactUs, discordLink, instagramLink } from '../constant/constants';
+import { FullScreenMenuComponent } from '../components/layout/FullScreenMenu/FullScreenMenu';
 
 const {
   FBlockWrapper,
@@ -26,6 +27,7 @@ const {
   Spacer,
   SocialButtonInner,
   Separator,
+  FullScreenMenu,
 } = HomePageStyles;
 const {
   Text48Orbitron700,
@@ -53,9 +55,11 @@ const { Text16Zekton400Black } = OverrideTypographyComponents;
 
 const HomePage: React.FC<PageProps> = () => {
   const { t } = useTranslation();
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false;
   const subscribeRef = useRef<HTMLDivElement>(null);
   const aboutGameRef = useRef<HTMLDivElement>(null);
   const trailerRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const onScrollIntoView = (arg: 'subscribe' | 'about' | 'trailer' | 'start') => {
     switch (arg) {
@@ -92,20 +96,15 @@ const HomePage: React.FC<PageProps> = () => {
 
   useEffect(() => {
     service.initServices().then();
-    document.querySelectorAll('*').forEach(el => {
-      if (el.scrollWidth > el.clientWidth) {
-        console.log('Элемент, растягивающий страницу:', el);
-      }
-    });
   }, []);
 
   return (
-    <MainLayout
-      Header={<HeaderView onScrollIntoView={onScrollIntoView} />}
-    >
+    <MainLayout>
+      <HeaderView setIsOpen={setIsOpen} isOpen={isOpen} onScrollIntoView={onScrollIntoView} />
+      {isMobile && <FullScreenMenuComponent setIsOpen={setIsOpen} onScrollIntoView={onScrollIntoView} isOpen={isOpen} />}
       <PageContainer>
         <FBlockWrapper>
-          <HeaderIllustration />
+          <HeaderIllustration isMobile={isMobile} />
         </FBlockWrapper>
         <PageSection>
           <PageSectionInner ref={subscribeRef}>
@@ -127,7 +126,7 @@ const HomePage: React.FC<PageProps> = () => {
             </FormWrapper>
           </PageSectionInner>
         </PageSection>
-        <Spacer height={120} />
+        <Spacer height={isMobile ? 88 : 120} />
         <PageSection ref={aboutGameRef}>
           <PageSectionInner>
             <Text56Bangers400 color="rgbaw09">
@@ -170,6 +169,7 @@ const HomePage: React.FC<PageProps> = () => {
               {' '}
               <Text26Space400 color="white">{t('toTheBattle')}</Text26Space400>
             </Text26Space400>
+            <Spacer height={16} />
             <CardsList />
             <Spacer height={34} />
           </PageSectionInner>

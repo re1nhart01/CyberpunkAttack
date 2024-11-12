@@ -4,6 +4,24 @@ import RowView from '../../components/layout/RowView';
 import { HEADER_HEIGHT } from '../../constant/constants';
 
 export const HomePageStyles = {
+  FullScreenMenu: styled.div<{ isOpen: boolean }>`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(${ICONS.mainBackground});
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: top left;
+    transform: ${({ isOpen }) => (isOpen ? 'translateY(0)' : 'translateY(-100%)')};
+    transition: transform 0.5s ease;
+    z-index: 5;
+`,
   PageContainer: styled.div`
     background-image: url(${ICONS.mainBackground});
     background-repeat: repeat;
@@ -11,10 +29,6 @@ export const HomePageStyles = {
     background-position: top left;
     height: 100%;
     max-width: 100%;
-    @media only screen and (max-width: 1024px) {
-      padding-right: 20px;
-      padding-left: 20px;
-    }
   `,
   PageSection: styled.section`
     width: 100%;
@@ -22,11 +36,19 @@ export const HomePageStyles = {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    @media only screen and (max-width: 1024px) {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
   `,
   Separator: styled.div`
     height: 48px;
     background-color: ${({ theme }) => theme.colors.main};
     width: 2px;
+    @media only screen and (max-width: 1024px) {
+      width: 1px;
+      height: 24px;
+    }
   `,
   PageSectionInner: styled.div`
     max-width: 57vw;
@@ -65,8 +87,18 @@ export const HomePageStyles = {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding-top: 35px;
     gap: 35px;
+    @media only screen and (max-width: 1024px) {
+      gap: 0px;    
+      padding-top: 0px;
+      
+      & svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
   `,
   Del: styled.div`
       display: flex;
@@ -79,6 +111,8 @@ export const HomePageStyles = {
       flex-direction: column;
       justify-content: space-between;
       margin-bottom: 24px;
+      @media only screen and (max-width: 1024px) {
+      }
     `,
   BorderView: styled.span`
     border: 8px solid ${({ theme }) => theme.colors.black}

@@ -10,6 +10,7 @@ export const theme = {
     green: '#1AEC7B',
     dark: '#252C33',
     rgbaw09: 'rgba(255, 255, 255, 0.9)',
+    rgbaw05: 'rgba(255, 255, 255, 0.5)',
   },
   components: {
     backgrounds: {

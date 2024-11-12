@@ -4,7 +4,6 @@ import { ICONS } from '../../../constant/icons';
 export const socialButtonStyles = {
   Wrapper: styled.div`
   width: 100%;
-  margin-bottom: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: center;

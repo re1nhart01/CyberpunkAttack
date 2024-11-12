@@ -7,8 +7,7 @@ export default {
   },
   section1: {
     join: 'JOIN THE BATTLE',
-    signup: 'Sign up now to access exclusive rewards & Tabletop Simulator \n' +
-        'digital demos!',
+    signup: 'Sign up now to access exclusive rewards & Tabletop Simulator digital demos!',
   },
   placeholders: {
     fullName: 'Full name',

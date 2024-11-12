@@ -39,6 +39,7 @@ import linkedin from '../images/png/linkedin.png';
 import instagramIcon from '../images/svg/insta.svg';
 
 import headerIllustration from '../images/jpg/header-illustration.jpg';
+import headerIllustrationMobile from '../images/jpg/header-illustration-mobile.jpg';
 import mainBackground from '../images/png/main-background.png';
 import separator from '../images/svg/separator.svg';
 import versusIllustration from '../images/jpg/versus-illustration.png';
@@ -74,6 +75,7 @@ const ICONS = {
   blurRowImg,
   cyberbodyImage,
   headerIllustration,
+  headerIllustrationMobile,
   footerBG,
   instagramIcon,
   separator,

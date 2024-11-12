@@ -81,10 +81,10 @@ export const ImageViewComponents = {
     source: 'instagramIcon',
     alterText: 'CYBERPUNK_INSTAGRAM_LOGO',
   })``,
-  HeaderIllustration: styled(ImageView).attrs({
-    source: 'headerIllustration',
+  HeaderIllustration: styled(ImageView).attrs<{ isMobile: boolean; }>(({ isMobile }) => ({
+    source: isMobile ? 'headerIllustrationMobile' : 'headerIllustration',
     alterText: 'HEADER_ILLUSTRATION_IMAGE',
-  })`
+  }))`
     width: 100%;
     overflow: hidden;
   `,
@@ -92,7 +92,6 @@ export const ImageViewComponents = {
     source: 'alert',
     alterText: 'SECTION_ALERT_IMAGE',
   })`
-    width: 5vw;
   `,
   SeparatorBlue: styled(ImageView).attrs({
     source: 'separator',
