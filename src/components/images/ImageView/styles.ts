@@ -72,11 +72,19 @@ export const ImageViewComponents = {
   LaidlonLogo: styled(ImageView).attrs({
     source: 'laidlonLogo',
     alterText: 'LAIDLON_LAIDLON_IMAGE',
-  })``,
+  })`
+    max-width: 33px;
+    max-height: 33px;
+  `,
   CALogo: styled(ImageView).attrs({
     source: 'caLogo',
     alterText: 'CYBERPUNK_ATTACK_LOGO',
-  })``,
+  })`
+    max-width: 187px;
+    @media only screen and (max-width: 1024px) {
+      max-width: 140px;
+    }
+  `,
   InstaLogo: styled(ImageView).attrs({
     source: 'instagramIcon',
     alterText: 'CYBERPUNK_INSTAGRAM_LOGO',
@@ -128,5 +136,10 @@ export const ImageViewComponents = {
   LogoRed: styled(ImageView).attrs({
     source: 'logoRed',
     alterText: 'LOGO_LAIDLON_RED',
-  })``,
+  })`
+    max-width: 37.5px;
+    @media only screen and (max-width: 1024px) {
+      max-width: 56px;
+    }
+  `,
 };

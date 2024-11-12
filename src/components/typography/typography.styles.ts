@@ -244,6 +244,18 @@ export const TypographyComponents = {
       font-size: 14px !important;
     }
   `,
+  Text12Space400: styled(Typography).attrs<typographyProps>({
+    fw: 'fw400',
+    fsz: 'fz12',
+    ff: 'space',
+    selector: 'span',
+  })`
+    text-shadow: 0px 0px 4.44px 0px #01E1FF;
+    @media only screen and (max-width: 1024px) {
+      font-size: 14px !important;
+    }
+    letter-spacing: 1.63px;
+  `,
   Text14Zekton400: styled(Typography).attrs<typographyProps>({
     fw: 'fw400',
     fsz: 'fz14',

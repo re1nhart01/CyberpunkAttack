@@ -42,6 +42,10 @@ export const FooterStyles = {
     flex-direction: row;
     align-items: center;
     gap: 12px;
+    @media only screen and (max-width: 1024px) {
+      flex-direction: column;
+      gap: 8px;
+    }
   `,
   LeftAlignedCorners: styled.div`
     position: absolute;

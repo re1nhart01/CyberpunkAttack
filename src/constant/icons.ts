@@ -3,8 +3,8 @@
 import gatsbyIcon from '../images/icon.png';
 import headerBlurBG from '../images/svg/header_buttons_bg.svg';
 
-import laidlonLogo from '../images/svg/laidlon.svg';
-import caLogo from '../images/svg/ca_logo.svg';
+import laidlonLogo from '../images/png/logo.png';
+import caLogo from '../images/png/logo-1.png';
 
 import headerRightBlurBG from '../images/svg/header_right_button_bg.svg';
 import headlinerBG from '../images/png/HeadlinerBG.png';
@@ -48,7 +48,7 @@ import cyberbodyImage from '../images/jpg/cyberbody.jpg';
 import cyberbodyImagePNG from '../images/png/cyberbody.png';
 import cardslist from '../images/png/cardslist.png';
 import footerBG from '../images/png/footer-bg.png';
-import logoRed from '../images/svg/logo-red.svg';
+import logoRed from '../images/png/logo-red.png';
 
 import socialButtonBG from '../images/svg/button-bg.svg';
 import socialButtonBGActive from '../images/svg/button-bg-active.svg';
