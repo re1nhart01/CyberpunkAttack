@@ -31,7 +31,7 @@ import blackSeparator from '../images/png/separator_black.png';
 import irlGame from '../images/png/irl_game.png';
 import rolesBanner from '../images/png/roles_banner.png';
 import aboutSectionButtonBG from '../images/png/background_rgb.png';
-import alert from '../images/svg/alert.svg';
+import alert from '../images/png/alert.png';
 import checkbox from '../images/svg/checkbox.svg';
 
 import tiktok from '../images/png/tiktok.png';
@@ -48,6 +48,8 @@ import cyberpunktext from '../images/svg/cyberpunktext.svg';
 import cyberbodyImage from '../images/jpg/cyberbody.jpg';
 import cyberbodyImagePNG from '../images/png/cyberbody.png';
 import cardslist from '../images/png/cardslist.png';
+import smallBg from '../images/png/small-bg.png';
+import smallBgBlack from '../images/png/small-bg-black.png';
 import footerBG from '../images/png/footer-bg.png';
 import logoRed from '../images/png/logo-red.png';
 
@@ -65,7 +67,9 @@ const ICONS = {
   socialButtonBG,
   socialButtonBGActive,
   laidlonLogo,
+  smallBg,
   caLogo,
+  smallBgBlack,
   cardslist,
   cyberbodyImagePNG,
   mainBackground,

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import { ICONS } from '../../constant/icons';
-import RowView from '../../components/layout/RowView';
-import { HEADER_HEIGHT } from '../../constant/constants';
 
 export const HomePageStyles = {
   FullScreenMenu: styled.div<{ isOpen: boolean }>`
@@ -23,10 +21,8 @@ export const HomePageStyles = {
     z-index: 5;
 `,
   PageContainer: styled.div`
-    background-image: url(${ICONS.mainBackground});
-    background-repeat: repeat;
-    background-size: auto;
-    background-position: top left;
+    background: url(${ICONS.mainBackground}) repeat;
+    background-size: 60% 15%;
     height: 100%;
     max-width: 100%;
   `,
@@ -50,9 +46,75 @@ export const HomePageStyles = {
       height: 24px;
     }
   `,
+  KickstarterContainer: styled.div`
+    width: 453px;
+    height: 90px;
+    background-color: rgba(0,0,0,0.5);
+    clip-path: polygon(100% 0, 100% 61%, 94% 100%, 0 100%, 0 0);
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @media only screen and (max-width: 1024px) {
+      position: initial;
+      background: transparent;
+      flex-direction: column;
+      min-width: 100%;
+      height: initial;
+      box-sizing: border-box;
+      
+      & > div {
+        width: 100%;
+        margin-top: 12px;
+        margin-bottom: 24px;
+      }
+      
+      #kickstarter-block > div:nth-child(1) {
+        font-size: 32px !important;
+      }
+
+      #kickstarter-block > div:nth-child(2) {
+        font-size: 18px !important;
+      }
+      
+    }
+    
+    & > div {
+      text-align: left;
+    }
+    
+    & > div:nth-child(1) > div {
+      font-size: 20px;
+    }
+
+    @media only screen and (min-width: 1024px) {
+      & > div > div > button {
+        width: 180px;
+        height: 48px;
+        background: url("${ICONS.smallBg}") no-repeat;
+        background-size: 100% 100%;
+      }
+
+      & > div > div > button:hover {
+        width: 180px;
+        height: 48px;
+        background: url("${ICONS.smallBgBlack}") no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    
+   
+    
+  `,
   PageSectionInner: styled.div`
-    max-width: 57vw;
-    min-width: 57vw;
+    max-width: 840px;
+    min-width: 840px;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
@@ -62,16 +124,16 @@ export const HomePageStyles = {
       min-width: 100%;
     }
   `,
-  FormWrapper: styled.div`
+  FormWrapper: styled.div<{ isStretch?: boolean }>`
     padding-top: 24px;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    width: 100%;
+    width: ${({ isStretch }) => (isStretch ? 'initial' : '100%')};
     flex-wrap: wrap;
     @media only screen and (max-width: 1024px) {
-      width: 100%;
+      width: ${({ isStretch }) => (isStretch ? 'initial' : '100%')};
       flex-direction: column;
       & > * {
         box-sizing: border-box;
@@ -111,6 +173,7 @@ export const HomePageStyles = {
       flex-direction: column;
       justify-content: space-between;
       margin-bottom: 24px;
+      position: relative;
       @media only screen and (max-width: 1024px) {
       }
     `,

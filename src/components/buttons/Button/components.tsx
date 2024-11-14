@@ -32,7 +32,6 @@ export const ButtonComponents = {
     padding: 12px 43px 12px 43px;
   `,
   SubmitFormButton: styled(ButtonView)`
-    padding: 16px 42px 16px 42px;
     background-color: ${({ theme }) => theme.colors.main};
     border-radius: 40px;
     transition: 0.5s;
@@ -40,14 +39,25 @@ export const ButtonComponents = {
     &:hover {
       background-color: ${({ theme }) => theme.colors.white};
     }
-    & > * {
-      pointer-events: none;
+    
+    & > button {
+      padding: 17px 42px 17px 42px;
+      cursor: pointer;
+      width: 100%;
     }
+    
     @media only screen and (max-width: 1024px) {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
+      & > button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
     }
   `,
 };

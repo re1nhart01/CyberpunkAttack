@@ -8,12 +8,20 @@ export default {
   section1: {
     join: 'JOIN THE BATTLE',
     signup: 'Sign up now to access exclusive rewards & Tabletop Simulator digital demos!',
+    thanks: 'Thank You For Signing Up!',
+    thanksText: 'Cyberpunk Attack will be launching on Kickstarter soon! Be sure to keep an eye on your emails so that you will get notified and don\'t miss out on Kickstarter exclusive rewards. \n' +
+        '\n' +
+        'Backers on Kickstarter will get a FREE exclusive caracter card Kickstar Max and add-on Mass Effects.',
   },
   placeholders: {
     fullName: 'Full name',
     email: 'Email',
   },
   submit: 'Submit',
+  reload: 'Reload',
+  cyberpunk: 'Cyberpunk Attack',
+  available: 'Already available',
+  getNow: 'Get now',
   diveInto: 'DIVE INTO THE',
   cyberFuture: 'CYBER-FUTURE',
   firstText: 'This board game is a cooperative team techno fight game where 2 - 8 players can clash in a battle. Join the battle as a resistance hacker or take control of the corporation as its boss',

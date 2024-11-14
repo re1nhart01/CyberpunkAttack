@@ -99,8 +99,11 @@ export const ImageViewComponents = {
   AlertImage: styled(ImageView).attrs({
     source: 'alert',
     alterText: 'SECTION_ALERT_IMAGE',
-  })`
-  `,
+  })``,
+  CheckImage: styled(ImageView).attrs({
+    source: 'checkbox',
+    alterText: 'SECTION_CHECK_IMAGE',
+  })``,
   SeparatorBlue: styled(ImageView).attrs({
     source: 'separator',
     alterText: 'SECTION_ALERT_IMAGE',

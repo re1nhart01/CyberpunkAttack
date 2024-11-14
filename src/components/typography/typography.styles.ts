@@ -212,8 +212,20 @@ export const TypographyComponents = {
     }
   `,
   Text24Zekton400: styled(Typography).attrs<typographyProps>({
-    color: 'white',
     fw: 'fw400',
+    fsz: 'fz24',
+    ff: 'zek',
+    selector: 'div',
+    fzType: 'px',
+  })`
+    text-align: center;
+    @media only screen and (max-width: 1024px) {
+      font-size: 18px !important;
+    }
+  `,
+  Text24Zekton700: styled(Typography).attrs<typographyProps>({
+    color: 'white',
+    fw: 'fw700',
     fsz: 'fz24',
     ff: 'zek',
     selector: 'div',
@@ -268,6 +280,7 @@ export const TypographyComponents = {
 export const OverrideTypographyComponents = {
   Text40orbitron700After: styled(TypographyComponents.Text40orbitron700)``,
   Text16Zekton400Black: styled(TypographyComponents.Text16Zekton400)`
+    font-weight: 700 !important;
     color: ${({ theme }) => theme.colors.black} !important;
     text-align: center;
   `,

@@ -14,8 +14,9 @@ import { service } from '../services';
 import { InputStyles } from '../components/inputs/styles';
 import { SocialButton } from '../components/buttons/SocialButton';
 import { svgs } from '../constant/svgs';
-import { contactUs, discordLink, instagramLink } from '../constant/constants';
+import {contactUs, discordLink, instagramLink, kickstarter} from '../constant/constants';
 import { FullScreenMenuComponent } from '../components/layout/FullScreenMenu/FullScreenMenu';
+import { UserForm } from '../components/forms/UserForm/UserForm';
 
 const {
   FBlockWrapper,
@@ -27,11 +28,12 @@ const {
   Spacer,
   SocialButtonInner,
   Separator,
-  FullScreenMenu,
+  KickstarterContainer,
 } = HomePageStyles;
 const {
   Text48Orbitron700,
   Text24Zekton400,
+  Text24Zekton700,
   Text56Bangers400,
   Text18Zekton400,
   Text26Space400,
@@ -56,7 +58,7 @@ const { Text16Zekton400Black } = OverrideTypographyComponents;
 const HomePage: React.FC<PageProps> = () => {
   const { t } = useTranslation();
   const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false;
-  const subscribeRef = useRef<HTMLDivElement>(null);
+  const subscribeRef = useRef<HTMLDivElement | null>(null);
   const aboutGameRef = useRef<HTMLDivElement>(null);
   const trailerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -77,7 +79,7 @@ const HomePage: React.FC<PageProps> = () => {
         break;
       case 'about':
         aboutGameRef.current?.scrollIntoView({
-          behavior: 'smooth', block: 'start',
+          behavior: 'smooth', block: 'nearest',
         });
         break;
       case 'trailer':
@@ -105,27 +107,27 @@ const HomePage: React.FC<PageProps> = () => {
       <PageContainer>
         <FBlockWrapper>
           <HeaderIllustration isMobile={isMobile} />
+          <KickstarterContainer>
+            <div id="kickstarter-block">
+              <Text24Zekton400 color="white">
+                {t('cyberpunk')}
+              </Text24Zekton400>
+              <Text24Zekton400 color="main">
+                {t('available')}
+              </Text24Zekton400>
+            </div>
+            <div>
+              <SocialButton
+                goTo={() => goTo(kickstarter)}
+              >
+                <Text24Zekton700>
+                  {t('getNow')}
+                </Text24Zekton700>
+              </SocialButton>
+            </div>
+          </KickstarterContainer>
         </FBlockWrapper>
-        <PageSection>
-          <PageSectionInner ref={subscribeRef}>
-            <AlertImage />
-            <InnerWrapper>
-              <Text48Orbitron700>{t('section1.join')}</Text48Orbitron700>
-            </InnerWrapper>
-            <InnerWrapper>
-              <Text24Zekton400>{t('section1.signup')}</Text24Zekton400>
-            </InnerWrapper>
-            <FormWrapper>
-              <PrimaryInput placeholder="Full name" />
-              <PrimaryInput placeholder="Email" />
-              <SubmitFormButton onPress={() => {}}>
-                <Text16Zekton400Black>
-                  {t('submit')}
-                </Text16Zekton400Black>
-              </SubmitFormButton>
-            </FormWrapper>
-          </PageSectionInner>
-        </PageSection>
+        <UserForm subscribeRef={subscribeRef} />
         <Spacer height={isMobile ? 88 : 120} />
         <PageSection ref={aboutGameRef}>
           <PageSectionInner>
@@ -197,25 +199,25 @@ const HomePage: React.FC<PageProps> = () => {
                 goTo={() => goTo(instagramLink)}
               >
                 <svgs.instagram />
-                <Text24Zekton400>
+                <Text24Zekton700>
                   {t('socials.instagram')}
-                </Text24Zekton400>
+                </Text24Zekton700>
               </SocialButton>
               <SocialButton
                 goTo={() => goTo(discordLink)}
               >
                 <svgs.discord />
-                <Text24Zekton400>
+                <Text24Zekton700>
                   {t('socials.discord')}
-                </Text24Zekton400>
+                </Text24Zekton700>
               </SocialButton>
               <SocialButton
                 goTo={() => goTo(contactUs)}
               >
                 <svgs.contactUs />
-                <Text24Zekton400>
+                <Text24Zekton700>
                   {t('socials.contactUs')}
-                </Text24Zekton400>
+                </Text24Zekton700>
               </SocialButton>
             </SocialButtonInner>
           </PageSectionInner>
