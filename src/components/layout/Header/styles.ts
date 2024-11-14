@@ -20,6 +20,7 @@ export const HeaderStyles = {
       top: 0;
       z-index: 999;
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid #FFFFFF33;
       @media only screen and (max-width: 1024px) {
         padding-left: 20px;

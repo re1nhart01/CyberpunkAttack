@@ -47,11 +47,14 @@ export const UserForm = forwardRef<null, userFormProps>(({ subscribeRef }, ref) 
   const [isLoaded, setIsLoaded] = useState(!!isCompleted);
   const nameInputRef = useRef<HTMLInputElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
+  const [isEmailError, setIsEmailError] = useState(false);
 
   // https://hooks.zapier.com/hooks/catch/20708748/25ngnoi?fullname=zxc&email=asdasdasa&time=123&agent=123121&lang=ua
 
   const handleSendEmail = useCallback(async () => {
     try {
+      setIsEmailError(false);
+
       const response = {
         fullname: name.trim(),
         email: email.trim(),
@@ -60,9 +63,8 @@ export const UserForm = forwardRef<null, userFormProps>(({ subscribeRef }, ref) 
         lang: window?.navigator?.language,
       };
 
-      console.log(response)
-
       if (response.email.length < 4) {
+        setIsEmailError(true);
         return;
       }
 
@@ -77,17 +79,19 @@ export const UserForm = forwardRef<null, userFormProps>(({ subscribeRef }, ref) 
         isFirst = false;
       }
       await fetch(baseUrl, { method: 'GET', mode: 'no-cors' });
-      await fetch(sendpulseAddUser, { method: 'GET', mode: 'no-cors' });
 
       setIsLoaded(true);
       sessionStorage?.setItem('isCompleted', 'true');
+
+      await fetch(sendpulseAddUser, { method: 'GET', mode: 'no-cors' });
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [name, email]);
 
   const handleReload = useCallback(() => {
     setIsLoaded(false);
+    setIsEmailError(false);
     sessionStorage?.removeItem('isCompleted');
     setEmail('');
     setName('');
@@ -105,7 +109,7 @@ export const UserForm = forwardRef<null, userFormProps>(({ subscribeRef }, ref) 
             <InnerWrapper>
               <Text24Zekton400 color="white">{t('section1.thanksText')}</Text24Zekton400>
             </InnerWrapper>
-            <FormWrapper isStretch>
+            <FormWrapper $isStretch>
               <SubmitFormButton onPress={handleReload}>
                 <Text16Zekton400Black>
                   {t('reload')}
@@ -120,11 +124,11 @@ export const UserForm = forwardRef<null, userFormProps>(({ subscribeRef }, ref) 
               <Text48Orbitron700>{t('section1.join')}</Text48Orbitron700>
             </InnerWrapper>
             <InnerWrapper>
-              <Text24Zekton400>{t('section1.signup')}</Text24Zekton400>
+              <Text24Zekton400 color="white">{t('section1.signup')}</Text24Zekton400>
             </InnerWrapper>
             <FormWrapper>
               <PrimaryInput ref={nameInputRef} type="text" maxLength={150} value={name} onChange={({ target }) => setName(target.value)} placeholder="Full name" />
-              <PrimaryInput ref={emailInputRef} type="text" maxLength={150} value={email} onChange={({ target }) => setEmail(target.value)} placeholder="Email" />
+              <PrimaryInput $isError={isEmailError} ref={emailInputRef} type="text" maxLength={150} value={email} onChange={({ target }) => { setIsEmailError(false); setEmail(target.value); }} placeholder="Email" />
               <SubmitFormButton onPress={handleSendEmail}>
                 <Text16Zekton400Black>
                   {t('submit')}

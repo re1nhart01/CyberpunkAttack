@@ -11,7 +11,7 @@ import { ButtonComponents } from '../../buttons/Button/components';
 const { Text18Zekton700, Text14Zekton700 } = TypographyComponents;
 
 const { FullScreenMenu, BurgerButtonItem, ButtonRowContainer, HorizontalRowContainer, ButtonViewDef } = {
-  FullScreenMenu: styled.div<{ isOpen: boolean }>`
+  FullScreenMenu: styled.div<{ $isOpen: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
@@ -27,7 +27,7 @@ const { FullScreenMenu, BurgerButtonItem, ButtonRowContainer, HorizontalRowConta
     background-repeat: repeat;
     background-size: auto;
     background-position: top left;
-    transform: ${({ isOpen }) => (isOpen ? 'translateY(0)' : 'translateY(-100%)')};
+    transform: ${({ $isOpen }) => ($isOpen ? 'translateY(0)' : 'translateY(-100%)')};
     transition: transform 0.5s ease;
     z-index: 5;`,
   ButtonRowContainer: styled.div`
@@ -89,7 +89,7 @@ export const FullScreenMenuComponent = ({ isOpen, onScrollIntoView, setIsOpen }:
   };
 
   return (
-    <FullScreenMenu isOpen={isOpen}>
+    <FullScreenMenu $isOpen={isOpen}>
       <ButtonRowContainer>
         <BurgerButtonItem onPress={() => overrideScroll('subscribe')}>
           <Text18Zekton700 color="white">

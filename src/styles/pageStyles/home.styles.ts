@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ICONS } from '../../constant/icons';
 
 export const HomePageStyles = {
-  FullScreenMenu: styled.div<{ isOpen: boolean }>`
+  FullScreenMenu: styled.div<{ $isOpen: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
@@ -54,6 +54,7 @@ export const HomePageStyles = {
     position: absolute;
     bottom: 15%;
     left: 50%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -66,6 +67,7 @@ export const HomePageStyles = {
       background: transparent;
       flex-direction: column;
       min-width: 100%;
+      width: 100%;
       height: initial;
       box-sizing: border-box;
       
@@ -81,6 +83,7 @@ export const HomePageStyles = {
 
       #kickstarter-block > div:nth-child(2) {
         font-size: 18px !important;
+        text-align: center;
       }
       
     }
@@ -89,8 +92,13 @@ export const HomePageStyles = {
       text-align: left;
     }
     
-    & > div:nth-child(1) > div {
-      font-size: 20px;
+    & > div:nth-child(1) > div:nth-child(1) {
+      font-size: 24px !important;
+    }
+
+    & > div:nth-child(1) > div:nth-child(2) {
+      font-size: 20px !important;
+      text-align: left;
     }
 
     @media only screen and (min-width: 1024px) {
@@ -124,16 +132,16 @@ export const HomePageStyles = {
       min-width: 100%;
     }
   `,
-  FormWrapper: styled.div<{ isStretch?: boolean }>`
+  FormWrapper: styled.div.attrs<{ $isStretch?: boolean }>({})<{ $isStretch?: boolean }>`
     padding-top: 24px;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    width: ${({ isStretch }) => (isStretch ? 'initial' : '100%')};
+    width: ${({ $isStretch }) => ($isStretch ? 'initial' : '100%')};
     flex-wrap: wrap;
     @media only screen and (max-width: 1024px) {
-      width: ${({ isStretch }) => (isStretch ? 'initial' : '100%')};
+      width: ${({ $isStretch }) => ($isStretch ? 'initial' : '100%')};
       flex-direction: column;
       & > * {
         box-sizing: border-box;

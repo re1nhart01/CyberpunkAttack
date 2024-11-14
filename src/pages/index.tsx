@@ -14,7 +14,7 @@ import { service } from '../services';
 import { InputStyles } from '../components/inputs/styles';
 import { SocialButton } from '../components/buttons/SocialButton';
 import { svgs } from '../constant/svgs';
-import {contactUs, discordLink, instagramLink, kickstarter} from '../constant/constants';
+import { contactUs, discordLink, instagramLink, kickstarter } from '../constant/constants';
 import { FullScreenMenuComponent } from '../components/layout/FullScreenMenu/FullScreenMenu';
 import { UserForm } from '../components/forms/UserForm/UserForm';
 
@@ -23,15 +23,13 @@ const {
   PageContainer,
   PageSection,
   PageSectionInner,
-  InnerWrapper,
-  FormWrapper,
   Spacer,
   SocialButtonInner,
   Separator,
   KickstarterContainer,
 } = HomePageStyles;
 const {
-  Text48Orbitron700,
+  Text20Zekton400,
   Text24Zekton400,
   Text24Zekton700,
   Text56Bangers400,
@@ -40,7 +38,6 @@ const {
 } = TypographyComponents;
 const {
   HeaderIllustration,
-  AlertImage,
   SeparatorBlue,
   VersusIllustration,
   CyberpunkText,
@@ -112,11 +109,11 @@ const HomePage: React.FC<PageProps> = () => {
               <Text24Zekton400 color="white">
                 {t('cyberpunk')}
               </Text24Zekton400>
-              <Text24Zekton400 color="main">
+              <Text20Zekton400 color="main">
                 {t('available')}
-              </Text24Zekton400>
+              </Text20Zekton400>
             </div>
-            <div>
+            <div style={{ boxSizing: 'border-box' }}>
               <SocialButton
                 goTo={() => goTo(kickstarter)}
               >

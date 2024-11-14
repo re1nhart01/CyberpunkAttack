@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const InputStyles = {
-  PrimaryInput: styled.input`
+  PrimaryInput: styled.input<{ $isError?: boolean }>`
     background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid ${({ $isError }) => ($isError ? '#a32121' : 'rgba(255, 255, 255, 0.2)')};
     border-radius: 60px;
     padding-left: 24px;
     padding-top: 16px;

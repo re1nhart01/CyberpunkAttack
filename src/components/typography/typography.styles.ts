@@ -223,6 +223,18 @@ export const TypographyComponents = {
       font-size: 18px !important;
     }
   `,
+  Text20Zekton400: styled(Typography).attrs<typographyProps>({
+    fw: 'fw400',
+    fsz: 'fz20',
+    ff: 'zek',
+    selector: 'div',
+    fzType: 'px',
+  })`
+    text-align: center;
+    @media only screen and (max-width: 1024px) {
+      font-size: 18px !important;
+    }
+  `,
   Text24Zekton700: styled(Typography).attrs<typographyProps>({
     color: 'white',
     fw: 'fw700',
