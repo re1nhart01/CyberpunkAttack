@@ -2,24 +2,6 @@ import styled from 'styled-components';
 import { ICONS } from '../../constant/icons';
 
 export const HomePageStyles = {
-  FullScreenMenu: styled.div<{ $isOpen: boolean }>`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(${ICONS.mainBackground});
-    background-repeat: repeat;
-    background-size: auto;
-    background-position: top left;
-    transform: ${({ isOpen }) => (isOpen ? 'translateY(0)' : 'translateY(-100%)')};
-    transition: transform 0.5s ease;
-    z-index: 5;
-`,
   PageContainer: styled.div`
     background: url(${ICONS.mainBackground}) repeat;
     background-size: 60% 15%;

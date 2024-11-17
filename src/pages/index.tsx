@@ -17,6 +17,7 @@ import { svgs } from '../constant/svgs';
 import { contactUs, discordLink, instagramLink, kickstarter } from '../constant/constants';
 import { FullScreenMenuComponent } from '../components/layout/FullScreenMenu/FullScreenMenu';
 import { UserForm } from '../components/forms/UserForm/UserForm';
+import Preloader from '../components/layout/Preloader/Preloader';
 
 const {
   FBlockWrapper,
@@ -44,13 +45,6 @@ const {
   CyberbodyImage,
   CardsList,
 } = ImageViewComponents;
-
-const {
-  PrimaryInput,
-} = InputStyles;
-
-const { SubmitFormButton } = ButtonComponents;
-const { Text16Zekton400Black } = OverrideTypographyComponents;
 
 const HomePage: React.FC<PageProps> = () => {
   const { t } = useTranslation();
@@ -85,7 +79,6 @@ const HomePage: React.FC<PageProps> = () => {
         });
         break;
       default:
-        console.log('zxc');
     }
   };
 
@@ -101,6 +94,7 @@ const HomePage: React.FC<PageProps> = () => {
     <MainLayout>
       <HeaderView setIsOpen={setIsOpen} isOpen={isOpen} onScrollIntoView={onScrollIntoView} />
       {isMobile && <FullScreenMenuComponent setIsOpen={setIsOpen} onScrollIntoView={onScrollIntoView} isOpen={isOpen} />}
+      <Preloader />
       <PageContainer>
         <FBlockWrapper>
           <HeaderIllustration isMobile={isMobile} />
@@ -147,7 +141,7 @@ const HomePage: React.FC<PageProps> = () => {
               </Text18Zekton400>
             </Text18Zekton400>
             <Spacer height={34} />
-            <VersusIllustration />
+            <VersusIllustration loading="lazy" />
             <Spacer height={34} />
             <Text56Bangers400 color="rgbaw09">
               {t('about')}
@@ -161,7 +155,7 @@ const HomePage: React.FC<PageProps> = () => {
             <Spacer height={67} />
             <CyberpunkText />
             <Spacer height={43} />
-            <CyberbodyImage />
+            <CyberbodyImage loading="lazy" />
             <Spacer height={34} />
             <Text26Space400>
               {t('join')}
@@ -169,13 +163,14 @@ const HomePage: React.FC<PageProps> = () => {
               <Text26Space400 color="white">{t('toTheBattle')}</Text26Space400>
             </Text26Space400>
             <Spacer height={16} />
-            <CardsList />
+            <CardsList loading="lazy" />
             <Spacer height={34} />
           </PageSectionInner>
         </PageSection>
         <PageSection ref={trailerRef}>
           <PageSectionInner>
             <iframe
+              loading="lazy"
               width="100%"
               style={{ width: '100%', aspectRatio: 16 / 9 }}
               src="https://www.youtube.com/embed/W4agXL6aVow?si=mMg4nYVPUDCl3PHR"

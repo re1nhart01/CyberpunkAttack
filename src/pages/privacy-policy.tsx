@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Html } from '../components/html';
 import MainLayout from '../components/layout/MainLayout';
 import HeaderView from '../components/layout/Header';
@@ -15,6 +15,7 @@ import { InputStyles } from '../components/inputs/styles';
 import { SocialButton } from '../components/buttons/SocialButton';
 import { svgs } from '../constant/svgs';
 import { contactUs, discordLink, instagramLink } from '../constant/constants';
+import { FullScreenMenuComponent } from '../components/layout/FullScreenMenu/FullScreenMenu';
 
 const {
   FBlockWrapper,
@@ -53,16 +54,17 @@ const { SubmitFormButton } = ButtonComponents;
 const { Text16Zekton400Black } = OverrideTypographyComponents;
 
 const HomePage: React.FC<PageProps> = () => {
-  const { t } = useTranslation();
-
-
+  const [open, setIsOpen] = useState(false);
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false;
   const onScrollIntoView = (arg: 'subscribe' | 'about' | 'trailer' | 'start') => {
     switch (arg) {
       case 'start':
+      case 'subscribe':
+      case 'about':
+      case 'trailer':
         window.location.href = '/';
         break;
       default:
-        console.log('zxc');
     }
   };
 
@@ -72,8 +74,9 @@ const HomePage: React.FC<PageProps> = () => {
 
   return (
     <MainLayout
-      Header={<HeaderView hideButtons onScrollIntoView={onScrollIntoView} />}
+      Header={<HeaderView setIsOpen={setIsOpen} isOpen={open} hideButtons onScrollIntoView={onScrollIntoView} />}
     >
+      {isMobile && <FullScreenMenuComponent setIsOpen={setIsOpen} onScrollIntoView={onScrollIntoView} isOpen={open} />}
       <PageContainer>
         <PageSection>
           <PageSectionInner>

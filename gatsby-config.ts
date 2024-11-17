@@ -7,9 +7,9 @@ require('dotenv').config({
 const config: GatsbyConfig = {
   siteMetadata: {
     title: 'Cyberpunk Attack - cooperative team techno fight game',
-    siteUrl: 'https://www.yourdomain.tld',
+    siteUrl: 'https://cyberpunkattack.com/',
   },
-  graphqlTypegen: true,
+  graphqlTypegen: false,
   plugins: [
     'gatsby-plugin-styled-components',
     'gatsby-plugin-image',
@@ -32,12 +32,25 @@ const config: GatsbyConfig = {
       __key: 'images',
     },
     {
+      resolve: 'gatsby-plugin-preload-fonts',
+    },
+    {
+      resolve: 'gatsby-plugin-offline',
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
         path: './src/pages/',
       },
       __key: 'pages',
+    },
+    {
+      resolve: 'gatsby-plugin-purgecss',
+      options: {
+        printRejected: true, // Показать удаленные стили
+        develop: false, // Включить только в продакшн-сборке
+      },
     },
     {
       resolve: 'gatsby-plugin-google-gtag',

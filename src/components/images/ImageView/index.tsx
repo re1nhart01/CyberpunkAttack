@@ -6,6 +6,7 @@ interface imageViewProps extends PropsWithChildren {
     className?: string;
     alterText?: string;
     append?: this['children'] extends undefined ? undefined : 'left' | 'right';
+    loading?: 'lazy' | 'eager';
 }
 
 const ImageView: FC<imageViewProps> = ({
@@ -14,11 +15,12 @@ const ImageView: FC<imageViewProps> = ({
   className,
   children,
   append,
+  loading,
 }) => {
   return (
     <>
       { append === 'left' ? children : null }
-      <img className={className} src={ICONS[source as keyof typeof ICONS]} alt={alterText} />
+      <img loading={loading} className={className} src={ICONS[source as keyof typeof ICONS]} alt={alterText} />
       { append === 'right' ? children : null }
     </>
   );

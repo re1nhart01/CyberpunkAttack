@@ -14,6 +14,7 @@ import npButtonBG from '../images/png/nova_poshta_btn_bg.png';
 import npLogo from '../images/png/novaPoshtaLogo.png';
 import cardView from '../images/svg/card_view.svg';
 import backgroundAbout from '../images/png/background-about.png';
+import preloader from '../images/png/preloader-white.png';
 
 import cardAbout1 from '../images/png/about_card1.png';
 import cardAbout2 from '../images/png/about_card2.png';
@@ -71,6 +72,7 @@ const ICONS = {
   caLogo,
   smallBgBlack,
   cardslist,
+  preloader,
   cyberbodyImagePNG,
   mainBackground,
   cyberpunktext,
