@@ -127,7 +127,7 @@ export const UserForm = forwardRef<null, userFormProps>(({ subscribeRef }, ref) 
               <Text24Zekton400 color="white">{t('section1.signup')}</Text24Zekton400>
             </InnerWrapper>
             <FormWrapper>
-              <PrimaryInput ref={nameInputRef} type="text" maxLength={150} value={name} onChange={({ target }) => setName(target.value)} placeholder="Full name" />
+              <PrimaryInput ref={nameInputRef} type="text" maxLength={150} value={name} onChange={({ target }) => setName(target.value)} placeholder="Name" />
               <PrimaryInput $isError={isEmailError} ref={emailInputRef} type="text" maxLength={150} value={email} onChange={({ target }) => { setIsEmailError(false); setEmail(target.value); }} placeholder="Email" />
               <SubmitFormButton onPress={handleSendEmail}>
                 <Text16Zekton400Black>

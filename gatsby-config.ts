@@ -53,6 +53,9 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: 'gatsby-plugin-brotli',
+    },
+    {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
         trackingIds: ['G-LSKCKS8X2J'], // Replace with your GA Measurement ID
@@ -61,7 +64,7 @@ const config: GatsbyConfig = {
           cookie_expires: 0,
         },
         pluginConfig: {
-          head: true,
+          head: false,
           respectDNT: true,
         },
       },
