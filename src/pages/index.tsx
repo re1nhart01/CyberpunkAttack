@@ -30,8 +30,8 @@ const {
   KickstarterContainer,
 } = HomePageStyles;
 const {
-  Text20Zekton400,
-  Text24Zekton400,
+  Text24Zekton400To32,
+  Text16Zekton400NoColor,
   Text24Zekton700,
   Text56Bangers400,
   Text18Zekton400,
@@ -100,12 +100,12 @@ const HomePage: React.FC<PageProps> = () => {
           <HeaderIllustration isMobile={isMobile} />
           <KickstarterContainer>
             <div id="kickstarter-block">
-              <Text24Zekton400 color="white">
+              <Text24Zekton400To32 color="white">
                 {t('cyberpunk')}
-              </Text24Zekton400>
-              <Text20Zekton400 color="main">
+              </Text24Zekton400To32>
+              <Text16Zekton400NoColor color="main">
                 {t('available')}
-              </Text20Zekton400>
+              </Text16Zekton400NoColor>
             </div>
             <div style={{ boxSizing: 'border-box' }}>
               <SocialButton

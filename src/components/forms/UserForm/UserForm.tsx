@@ -63,7 +63,9 @@ export const UserForm = forwardRef<null, userFormProps>(({ subscribeRef }, ref) 
         lang: window?.navigator?.language,
       };
 
-      if (response.email.length < 4) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailRegex.test(email)) {
         setIsEmailError(true);
         return;
       }

@@ -168,6 +168,13 @@ export const TypographyComponents = {
     selector: 'span',
     fzType: 'px',
   })``,
+  Text16Zekton400NoColor: styled(Typography).attrs<typographyProps>({
+    fw: 'fw400',
+    fsz: 'fz16',
+    ff: 'zek',
+    selector: 'span',
+    fzType: 'px',
+  })``,
   Text18Zekton400: styled(Typography).attrs<typographyProps>({
     fw: 'fw400',
     fsz: 'fz18',
@@ -221,6 +228,18 @@ export const TypographyComponents = {
     text-align: center;
     @media only screen and (max-width: 1024px) {
       font-size: 18px !important;
+    }
+  `,
+  Text24Zekton400To32: styled(Typography).attrs<typographyProps>({
+    fw: 'fw400',
+    fsz: 'fz24',
+    ff: 'zek',
+    selector: 'div',
+    fzType: 'px',
+  })`
+    text-align: center;
+    @media only screen and (max-width: 1024px) {
+      font-size: 32px !important;
     }
   `,
   Text20Zekton400: styled(Typography).attrs<typographyProps>({
