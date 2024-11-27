@@ -2,7 +2,7 @@ package dto
 
 import (
 	"fmt"
-	"github.com/roflan.io/helpers"
+	"github.com/cyberpunkattack/helpers"
 	"reflect"
 	"regexp"
 	"sync"

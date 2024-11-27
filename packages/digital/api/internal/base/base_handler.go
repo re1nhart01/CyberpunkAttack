@@ -2,9 +2,9 @@ package base
 
 import (
 	"fmt"
+	"github.com/cyberpunkattack/dto"
+	"github.com/cyberpunkattack/helpers"
 	"github.com/gin-gonic/gin"
-	"github.com/roflan.io/dto"
-	"github.com/roflan.io/helpers"
 )
 
 const (
