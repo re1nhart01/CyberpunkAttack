@@ -3,6 +3,7 @@ package api
 import (
 	"fmt"
 	"github.com/cyberpunkattack/api/middleware"
+	"github.com/cyberpunkattack/api/routes"
 	"github.com/cyberpunkattack/environment"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -44,8 +45,8 @@ func (app *Application) RunDatabaseBackgroundTasks() {
 }
 
 func (app *Application) BindHandlers() {
+	routes.RegisterHttpAppRouter(app.Instance, app.ApiPath)
 	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
-
 }
 
 func (app *Application) Run(port string) error {

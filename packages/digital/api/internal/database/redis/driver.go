@@ -1,6 +1,8 @@
 package redis
 
 import (
+	"context"
+	"fmt"
 	"github.com/cyberpunkattack/environment"
 	"github.com/redis/go-redis/v9"
 	"strconv"
@@ -33,6 +35,11 @@ func New() *RedisDB {
 		password: REDIS_PASSWORD,
 		db: REDIS_DBNAME,
 	}
+
+	redisDbInstance.Get().Set(context.Background(), "hello", "world", 5000)
+	res := redisDbInstance.Get().Get(context.Background(), "hello").String()
+	fmt.Println(res);
+
 
 	return redisDbInstance
 }

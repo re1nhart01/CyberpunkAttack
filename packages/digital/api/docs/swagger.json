@@ -1,0 +1,59 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Server Docs.",
+        "title": "Swagger CyberpunkAttack Docs",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:43234",
+    "basePath": "/api/v2",
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Returns a JSON response indicating the API is alive and the current version based on the timestamp.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "health"
+                ],
+                "summary": "Check API health and version",
+                "responses": {
+                    "200": {
+                        "description": "Response containing isAlive status and version",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.GetHandlerResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handlers.GetHandlerResponse": {
+            "type": "object",
+            "properties": {
+                "isAlive": {
+                    "type": "boolean"
+                },
+                "ver": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "OpenAPI",
+        "url": "https://swagger.io/resources/open-api/"
+    }
+}
