@@ -1,3 +1,3 @@
-module github.com/roflan.io/api/base
+module github.com/cyberpunkattack/api/base
 
-go 1.21.6
+go 1.23

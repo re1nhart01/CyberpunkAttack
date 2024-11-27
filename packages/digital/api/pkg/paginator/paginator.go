@@ -3,7 +3,6 @@ package paginator
 import (
 	"errors"
 	"fmt"
-	"github.com/cyberpunkattack/pg"
 	"gorm.io/gorm"
 	"math"
 	"strconv"
@@ -11,6 +10,20 @@ import (
 )
 
 type IMethods interface {
+	Where(v string) IMethods
+	Order(v string) IMethods
+	Limit(v int) IMethods
+	Select(v []string) IMethods
+	Count(v any) struct {
+		Error error
+	}
+	Preload(v any, vv ...any) IMethods
+	Table(v string) IMethods
+	Joins(v string) IMethods
+	Offset(v any) IMethods
+	Scan(v any) struct {
+		Error error
+	}
 }
 
 type functorFunc func(item map[string]any, tx *gorm.DB) *gorm.DB
@@ -120,9 +133,9 @@ func (pag *Paginator) Pick(queries map[string][]string) *Paginator {
 }
 
 // Ignite ?page=3&limit=10&order=id^asc
-func (pag *Paginator) Ignite(obj *ObjectPaginator) error {
+func (pag *Paginator) Ignite(obj *ObjectPaginator, w IMethods) error {
 	var dataset []map[string]any
-	q := pg.GDB().Instance.Table(pag.Table)
+	q := w.Table(pag.Table)
 	countResponse := new(int64)
 	calculatedOffset := pag.Page * pag.Limit
 
@@ -220,7 +233,7 @@ func (pag *Paginator) fromContextWhere(querystring string) string {
 	return resultedQuery
 }
 
-func MergeTo[T any](obj *ObjectPaginator, toField string, functor functorFunc) error {
+func MergeTo[T any](instance *gorm.DB, obj *ObjectPaginator, toField string, functor functorFunc) error {
 	if len(obj.Data) <= 0 {
 		return nil
 	}
@@ -230,7 +243,7 @@ func MergeTo[T any](obj *ObjectPaginator, toField string, functor functorFunc) e
 
 	for _, v := range obj.Data {
 		var result T
-		if tx := functor(v, pg.GDB().Instance).Scan(&result); tx.Error != nil {
+		if tx := functor(v, instance).Scan(&result); tx.Error != nil {
 			return tx.Error
 		}
 

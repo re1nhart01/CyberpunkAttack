@@ -1,12 +1,10 @@
 package environment
 
 import (
+	_ "embed"
 	"encoding/json"
-	"errors"
-	"fmt"
-	"io"
+	embed "github.com/cyberpunkattack"
 	"os"
-	"path"
 )
 
 type Environment interface {
@@ -20,23 +18,23 @@ type Handler struct {
 	TookVariables map[string]string
 }
 
-func parseFile(relativePath string) (map[string]any, error) {
+func parseFile() (map[string]any, error) {
 	unmarshalledDict := map[string]any{}
-	cwd, err := os.Getwd()
-	if err != nil {
-		return unmarshalledDict, errors.New("roflan.io error! on parseFile getWd")
-	}
-	absolutePath := path.Join(path.Dir(cwd), relativePath)
-	file, err := os.Open("C:\\Users\\eugen\\Documents\\GitHub\\roflan\\server\\internal\\config\\.env.development.json")
-	if err != nil {
-		return unmarshalledDict, errors.New(fmt.Sprintf("roflan.io error! on os.Open, path: %s", absolutePath))
-	}
-	defer file.Close()
-	byteJson, err := io.ReadAll(file)
-	if err != nil {
-		return unmarshalledDict, errors.New(fmt.Sprintf("roflan.io error! on ioutils.ReadAll, path: %s", absolutePath))
-	}
-	_ = json.Unmarshal(byteJson, &unmarshalledDict)
+//	cwd, err := os.Getwd()
+//	if err != nil {
+//		return unmarshalledDict, errors.New("roflan.io error! on parseFile getWd")
+//	}
+//	absolutePath := path.Join(path.Dir(cwd), relativePath)
+//	file, err := os.Open("")
+//	if err != nil {
+//		return unmarshalledDict, errors.New(fmt.Sprintf("roflan.io error! on os.Open, path: %s", absolutePath))
+//	}
+//	defer file.Close()
+//	byteJson, err := io.ReadAll(file)
+//	if err != nil {
+//		return unmarshalledDict, errors.New(fmt.Sprintf("roflan.io error! on ioutils.ReadAll, path: %s", absolutePath))
+//	}
+	_ = json.Unmarshal(embed.EmbedEnvConfig, &unmarshalledDict)
 	return unmarshalledDict, nil
 }
 
@@ -54,11 +52,11 @@ func (env *Handler) SetVariable(key, value string) error {
 	return err
 }
 
-func InitEnvironment(path string) {
+func InitEnvironment() {
 	SingletonEnvHandler = &Handler{
 		TookVariables: map[string]string{},
 	}
-	dict, _ := parseFile(path)
+	dict, _ := parseFile()
 
 	for key, value := range dict {
 		stringRepresentation, isOk := value.(string)
