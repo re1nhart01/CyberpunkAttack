@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { Images } from '../constants/images';
 import SocialButton from '../components/SocialButton/SocialButton';
 import { linksDictionary } from '../constants';
@@ -6,8 +7,9 @@ import PunkCarousel from '../components/PunkCarousel/PunkCarousel';
 import SocialButtonSmall from '../components/SocialButtonSmall/SocialButtonSmall';
 
 const IndexPage = () => {
+  typeof window !== 'undefined' && window.location.replace('https://cyberpunkattack.com');
+
   return (
-  <>
     <main className="linker-container">
       <header className="linker-header flex flex-col justify-between items-center pt-[32px] mb-[8px] z-[2]">
         <img className="linker-header__logo" src={Images.Logo} alt="LOGO_IMAGE" />
@@ -56,7 +58,6 @@ const IndexPage = () => {
         </div>
       </div>
     </main>
-  </>
   );
 };
 

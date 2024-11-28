@@ -27,20 +27,20 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-a304c5bb58b52e39acf9.js"
+    "url": "webpack-runtime-f787a72b69f77c4fe63e.js"
   },
   {
     "url": "framework-c8509c2a075027cc4e40.js"
   },
   {
-    "url": "styles.c3ccceef720d2527dcf7.css"
+    "url": "styles.34d28157e669877e57f2.css"
   },
   {
     "url": "app-807d9b79469109e93f62.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "8a9e7f3387a89e2bc41bdddada511598"
+    "revision": "011c1ea5f5a97d69fcd83d3592ce1392"
   },
   {
     "url": "manifest.webmanifest",
