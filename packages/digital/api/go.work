@@ -1,0 +1,15 @@
+go 1.23
+
+use (
+	.
+	./internal/api
+	./internal/base
+	./internal/database
+	./pkg/crypto
+	./pkg/dto
+	./pkg/env
+	./pkg/fs
+	./pkg/helpers
+	./pkg/jwt
+	./pkg/paginator
+)

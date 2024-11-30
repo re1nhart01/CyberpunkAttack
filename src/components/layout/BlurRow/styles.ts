@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ICONS } from '../../../services/constant/icons';
+import { ICONS } from '../../../constant/icons';
 
 export const blurRowStyles = {
   Wrapper: styled.div`

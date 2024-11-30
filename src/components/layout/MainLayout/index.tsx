@@ -18,12 +18,7 @@ const MainLayout: FC<mainLayoutProps> = ({ Footer, Header, children }) => {
       <ThemeProvider theme={theme}>
         <MainWrapper>
           { Header || null }
-          <ContentWrapper>
-            <FullContainer>
-              { children }
-            </FullContainer>
-          </ContentWrapper>
-          { Footer || null }
+          { children }
         </MainWrapper>
       </ThemeProvider>
     </I18nextProvider>

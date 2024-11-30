@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ButtonView from '../Button';
-import { ICONS } from '../../../services/constant/icons';
+import { ICONS } from '../../../constant/icons';
 
 const HeaderButton = styled(ButtonView)`
       padding: 12px 24px;

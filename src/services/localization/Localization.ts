@@ -13,8 +13,9 @@ export class Localization extends ServiceBuilder {
   constructor() {
     super();
   }
+
   public static get currentLanguage(): Languages {
-    return i18n.language as Languages || Languages.Ukrainian;
+    return i18n.language as Languages || Languages.English;
   }
 
   public static get resources() {

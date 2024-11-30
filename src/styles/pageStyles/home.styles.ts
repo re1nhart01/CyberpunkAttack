@@ -1,8 +1,157 @@
 import styled from 'styled-components';
-import { HEADER_HEIGHT, ICONS } from '../../services/constant/icons';
-import RowView from '../../components/layout/RowView';
+import { ICONS } from '../../constant/icons';
 
 export const HomePageStyles = {
+  PageContainer: styled.div`
+    background: url(${ICONS.mainBackground}) repeat;
+    background-size: 60% 15%;
+    height: 100%;
+    max-width: 100%;
+  `,
+  PageSection: styled.section`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    @media only screen and (max-width: 1024px) {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  `,
+  Separator: styled.div`
+    height: 48px;
+    background-color: ${({ theme }) => theme.colors.main};
+    width: 2px;
+    @media only screen and (max-width: 1024px) {
+      width: 1px;
+      height: 24px;
+    }
+  `,
+  KickstarterContainer: styled.div`
+    width: 453px;
+    height: 90px;
+    background-color: rgba(0,0,0,0.5);
+    clip-path: polygon(100% 0, 100% 61%, 94% 100%, 0 100%, 0 0);
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @media only screen and (max-width: 1024px) {
+      position: initial;
+      background: transparent;
+      flex-direction: column;
+      min-width: 100%;
+      width: 100%;
+      height: initial;
+      box-sizing: border-box;
+      
+      & > div {
+        width: 100%;
+        margin-top: 12px;
+        margin-bottom: 24px;
+      }
+      
+      #kickstarter-block > div:nth-child(1) {
+        font-size: 32px !important;
+      }
+
+      #kickstarter-block > div:nth-child(2) {
+        font-size: 18px !important;
+        text-align: center;
+      }
+      
+    }
+    
+    & > div {
+      text-align: left;
+    }
+    
+    & > div:nth-child(1) > div:nth-child(1) {
+      font-size: 24px !important;
+    }
+
+    & > div:nth-child(1) > div:nth-child(2) {
+      font-size: 20px !important;
+      text-align: left;
+    }
+
+    @media only screen and (min-width: 1024px) {
+      & > div > div > button {
+        width: 180px;
+        height: 48px;
+        background: url("${ICONS.smallBg}") no-repeat;
+        background-size: 100% 100%;
+      }
+
+      & > div > div > button:hover {
+        width: 180px;
+        height: 48px;
+        background: url("${ICONS.smallBgBlack}") no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    
+   
+    
+  `,
+  PageSectionInner: styled.div`
+    max-width: 840px;
+    min-width: 840px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    @media only screen and (max-width: 1024px) {
+      max-width: 100%;
+      min-width: 100%;
+    }
+  `,
+  FormWrapper: styled.div.attrs<{ $isStretch?: boolean }>({})<{ $isStretch?: boolean }>`
+    padding-top: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: ${({ $isStretch }) => ($isStretch ? 'initial' : '100%')};
+    flex-wrap: wrap;
+    @media only screen and (max-width: 1024px) {
+      width: ${({ $isStretch }) => ($isStretch ? 'initial' : '100%')};
+      flex-direction: column;
+      & > * {
+        box-sizing: border-box;
+        width: 100%;
+      }
+    }
+  `,
+  InnerWrapper: styled.div`
+    padding-top: 16px;
+  `,
+  SocialButtonInner: styled.div`
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 35px;
+    gap: 35px;
+    @media only screen and (max-width: 1024px) {
+      gap: 0px;    
+      padding-top: 0px;
+      
+      & svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  `,
   Del: styled.div`
       display: flex;
       flex-direction: row;
@@ -13,83 +162,23 @@ export const HomePageStyles = {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background: url(${ICONS.headlinerBG}) lightgray 50% / cover no-repeat;
-    `,
-  FBlockContainer: styled.section`
-      width: 100vw;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      height: 100vh;
-      margin-top: ${HEADER_HEIGHT}px;
-      padding-left: 8.3%;
-      padding-right: 7.6%;
-    `,
-  FBlockImage: styled.img`
-      object-fit: fill;
-    `,
-  FHeaderWrapper: styled.div`
-      gap: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding-top: 10%;
-      max-width: 625px;
-    `,
-  ContainedRowView: styled(RowView)`
-      width: 100%;
-    `,
-  VerticalLineWhite2: styled.div`
-      width:2px;
-      height:40px;
-      background-color: ${({ theme }) => theme.colors.white};
-    `,
-  GradientRowView: styled(RowView)`
-      width: 100%;
-      height: 160px;
-      background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 100%);
-      z-index: 999;
+      margin-bottom: 24px;
       position: relative;
-      top: -220px;
+      @media only screen and (max-width: 1024px) {
+      }
     `,
-  AboutBlockWrapper: styled.section`
-      width: 100vw;
-      height: 100vh;
-      background: url(${ICONS.backgroundAbout}) no-repeat;
-      background-size: 100% 100%;
-    `,
-  AboutBlockContent: styled.div`
-      padding-left: 4.16%;
-      padding-right: 4.16%;
-      padding-top: 80px;
-      z-index: 10;
-    `,
-  AboutCarousel: styled.div`
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    `,
-  AboutSeparator: styled.div`
-      width: 22%;
-      height: 1px;
-      background-color: ${({ theme }) => theme.colors.white};
-      margin-top: 17px;
-      margin-bottom: 40px;
-    `,
-  AboutTheGameWrapper: styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 63px;
-  `,
-  AboutTheGameContainer: styled.section`
-    position: relative;
-    display: block;
-    width: 100vw;
-    min-height: 76vh;
-    background-color: ${({ theme }) => theme.colors.white};
-  `,
   BorderView: styled.span`
     border: 8px solid ${({ theme }) => theme.colors.black}
+  `,
+  Spacer: styled.div<{ height: number | string }>`
+    width: 1%;
+    height: ${({ height }) => height}px;
+    background-color: transparent;
+  `,
+  WhiteColorText: styled.div`
+    & > * {
+      color: ${({ theme }) => theme.colors.white};
+      font-family: Zekton;
+    }
   `,
 };
