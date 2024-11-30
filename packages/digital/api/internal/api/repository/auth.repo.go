@@ -2,14 +2,11 @@ package repository
 
 import "github.com/cyberpunkattack/api/base"
 
-type UserRepository struct {
+type AuthRepository struct {
 	*base.Repository
 }
 
-
-
-
-func NewUserRepository() *UserRepository {
+func NewAuthRepository() *UserRepository {
 	return &UserRepository{
 	Repository:	&base.Repository{
 			TableName: "users",

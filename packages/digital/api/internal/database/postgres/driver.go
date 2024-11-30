@@ -52,3 +52,7 @@ func DB() *PostgresDb {
 func (db *PostgresDb) Get() *gorm.DB {
   return db.instance
 }
+
+func (db *PostgresDb) Clear() {
+  pgDbInstance = nil
+}

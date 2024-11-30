@@ -5,13 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type IUserHandler interface {
+type IAuthHandler interface {
 	base.IHandler
 }
 
 
 
-func UserRoute(engine *gin.Engine, handler IUserHandler) {
+func AuthRoute(engine *gin.Engine, handler IAuthHandler) {
 	group := engine.Group(handler.GetPath())
 	{
 		group.GET("/", func(context *gin.Context) {

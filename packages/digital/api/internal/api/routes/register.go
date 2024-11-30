@@ -11,3 +11,14 @@ func RegisterHttpAppRouter(engine *gin.Engine, basePath string) {
 	handler := handlers.NewAppHandler(basePath, repository.NewAppRepository())
 	http.AppRoute(engine, handler)
 }
+
+
+func RegisterHttpUserRouter(engine *gin.Engine, basePath string) {
+	handler := handlers.NewUserHandler(basePath, repository.NewUserRepository())
+	http.UserRoute(engine, handler)
+}
+
+func RegisterHttpAuthRouter(engine *gin.Engine, basePath string) {
+	handler := handlers.NewAuthHandler(basePath, repository.NewAuthRepository())
+	http.AuthRoute(engine, handler)
+}

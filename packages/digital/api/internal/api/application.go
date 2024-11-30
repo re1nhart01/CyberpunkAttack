@@ -1,9 +1,12 @@
 package api
 
 import (
+	"context"
 	"fmt"
 	"github.com/cyberpunkattack/api/middleware"
 	"github.com/cyberpunkattack/api/routes"
+	"github.com/cyberpunkattack/database"
+	models "github.com/cyberpunkattack/database/model"
 	"github.com/cyberpunkattack/environment"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -41,12 +44,18 @@ func NewApp(withLogger bool) *Application {
 }
 
 func (app *Application) RunDatabaseBackgroundTasks() {
-	var _ sync.WaitGroup
+	var wg sync.WaitGroup
+	ctx := context.Background()
+	wg.Add(2)
+	go database.CreatePostgresTables(ctx, &wg, &models.Models{})
+	go database.CreatePostgresFunctions(ctx, &wg)
 }
 
 func (app *Application) BindHandlers() {
 	routes.RegisterHttpAppRouter(app.Instance, app.ApiPath)
 	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
+	routes.RegisterHttpAuthRouter(app.Instance, app.ApiPath)
+	routes.RegisterHttpUserRouter(app.Instance, app.ApiPath)
 }
 
 func (app *Application) Run(port string) error {
