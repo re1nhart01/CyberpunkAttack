@@ -8,7 +8,7 @@ import { APIErrorsResponse } from "./axios.config";
 export let promiseTimeoutId: ReturnType<typeof setTimeout> | null = null;
 const TIMEOUT45SECOND = 45000;
 export const refreshTokenRequest: {
-  promise: Promise<AxiosResponse<GetUserTokenResponseDTO>> | null;
+  promise: Promise<AxiosResponse<any>> | null;
   access_token: string | null;
 } = {
   promise: null,
