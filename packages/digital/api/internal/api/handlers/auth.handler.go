@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"github.com/cyberpunkattack/api/base"
+	"github.com/gin-gonic/gin"
 )
 
 const AUTH_ROUTER = "auth"
@@ -24,6 +25,11 @@ func (auth *AuthHandler) GetName() string {
 
 func (auth *AuthHandler) GetPath() string {
 	return auth.Path
+}
+
+
+func (auth *AuthHandler) SignUpHandler(ctx *gin.Context) {
+	
 }
 
 
