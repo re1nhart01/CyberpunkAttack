@@ -111,3 +111,18 @@ func validateFile(v *FieldDto, typeEqual bool, fieldFromBody any, errors *ErrorL
 		}
 	}
 }
+
+func envelopeDefaultValue(v *FieldDto, fieldFromBody any, errors *ErrorList, index string, finalBody map[string]any) {
+	if v.DefaultValue != nil && v.Required {
+		addError(errors, index, fmt.Sprintf("Field %s have default value but it's required, it's neccesary", fieldFromBody.(string)))
+	}
+	if v.DefaultValue != nil {
+		typeofField := MapTypes[v.Type]
+		typeofDefaultValue := reflect.TypeOf(v.DefaultValue).String()
+		if typeofField != typeofDefaultValue {
+			addError(errors, index, fmt.Sprintf("Field type of defaultValue %s is not valid", fieldFromBody.(string)))
+			return
+		}
+		finalBody[v.Name] = v.DefaultValue
+	}
+}

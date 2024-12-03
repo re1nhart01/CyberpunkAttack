@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"github.com/cyberpunkattack/api/base"
+	"github.com/cyberpunkattack/api/dtos"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,7 +29,23 @@ func (auth *AuthHandler) GetPath() string {
 }
 
 
-func (auth *AuthHandler) SignUpHandler(ctx *gin.Context) {
+func (auth *AuthHandler) SignUpHandler(context *gin.Context) {
+	body, stopped := auth.Unwrap(context, dtos.InitialSignUpDto)
+	if stopped { return }
+
+	fmt.Println(body)
+}
+
+func (auth *AuthHandler) ValidatePhoneOrEmailHandler(context *gin.Context) {
+
+}
+
+
+func (auth *AuthHandler) LogInHandler(context *gin.Context) {
+
+}
+
+func (auth *AuthHandler) RefreshTokenHandler(context *gin.Context) {
 	
 }
 

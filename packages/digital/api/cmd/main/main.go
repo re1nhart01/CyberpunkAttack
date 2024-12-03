@@ -8,8 +8,8 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 
 	"github.com/swaggo/gin-swagger"
-
-    _ "github.com/cyberpunkattack/docs" // Import the generated docs
+	_ "github.com/cyberpunkattack/docs"
+	"github.com/cyberpunkattack/pkg/cron"
 )
 
 // @title           Swagger CyberpunkAttack Docs
@@ -30,9 +30,11 @@ import (
 // @externalDocs.description  OpenAPI
 // @externalDocs.url          https://swagger.io/resources/open-api/
 func main() {
-	environment.InitEnvironment()
+	environment.New()
 	redis.New()
 	postgres.New()
+	cron.New(true)
+
 	PORT := environment.GEnv().GetVariable("PORT")
 	if PORT == "" {
 		panic("NO PORT TOOK FROM ENVIRONMENT")

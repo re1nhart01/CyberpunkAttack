@@ -13,6 +13,10 @@ const (
 	BUG_REPORT_TABLE = "bug_report"
 )
 
+const (
+	ROLES_USER = "User"
+	)
+
 
 const EmailConstaint = `CONSTRAINT email_format_check CHECK (
         email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'

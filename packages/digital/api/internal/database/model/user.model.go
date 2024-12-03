@@ -11,7 +11,9 @@ type UserModel struct {
 	Username string `json:"username"`
 	Email string `json:"email"`
 	Phone string `json:"phone"`
+	Role string `json:"role"`
 	FullName string `json:"full_name"`
+	Temporary bool `json:"temporary"`
 	Contry string `json:"contry"`
 	City string `json:"city"`
 	ClanTag string `json:"clan_tag"`
@@ -29,10 +31,12 @@ func (m *Models) NewUserModel() string {
 		email VARCHAR(100) UNIQUE,
 		phone VARCHAR(500) UNIQUE,
 		full_name VARCHAR(500),
-		country VARCHAR(500),
+		country VARCHAR(500) DEFAULT "World",
+		role VARCHAR(500) NOT NULL DEFAULT "User" CHECK(role in ('User', 'Admin'))
 		city VARCHAR(500),
 		clan_tag SERIAL REFERENCES clans(id) ON DELETE SET NULL,
 		description VARCHAR(2000),
+		temporary BOOLEAN DEFAULT true,
 		active BOOLEAN DEFAULT true,
 		password VARCHAR(500) NOT NULL,
 		%s,

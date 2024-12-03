@@ -119,6 +119,7 @@ func ValidateModelWithDto(body map[string]any, typeModel *FieldsMapping, errors 
 			addError(errors, k, fmt.Sprintf("Type mismatch, expects %s but got %s", MapTypes[v.Type], typeOfField))
 			continue
 		}
+		envelopeDefaultValue(v, fieldFromBody, errors, k, body)
 		validateString(v, typeEqual, fieldFromBody, errors, k)
 		validateInteger(v, typeEqual, fieldFromBody, errors, k)
 		validateFloat64(v, typeEqual, fieldFromBody, errors, k)

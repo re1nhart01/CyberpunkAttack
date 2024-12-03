@@ -52,7 +52,7 @@ func (env *Handler) SetVariable(key, value string) error {
 	return err
 }
 
-func InitEnvironment() {
+func New() {
 	SingletonEnvHandler = &Handler{
 		TookVariables: map[string]string{},
 	}
