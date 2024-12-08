@@ -35,7 +35,7 @@ func main() {
 	postgres.New()
 	cron.New(true)
 
-	PORT := environment.GEnv().GetVariable("PORT")
+	PORT := environment.GEnv().Get("PORT")
 	if PORT == "" {
 		panic("NO PORT TOOK FROM ENVIRONMENT")
 	}

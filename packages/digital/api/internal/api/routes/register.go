@@ -19,6 +19,8 @@ func RegisterHttpUserRouter(engine *gin.Engine, basePath string) {
 }
 
 func RegisterHttpAuthRouter(engine *gin.Engine, basePath string) {
-	handler := handlers.NewAuthHandler(basePath, repository.NewAuthRepository())
+	injectable := repository.InjectableStructs{User: repository.NewUserRepository()}
+
+	handler := handlers.NewAuthHandler(basePath, repository.NewAuthRepository(injectable))
 	http.AuthRoute(engine, handler)
 }

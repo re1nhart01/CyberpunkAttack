@@ -8,6 +8,7 @@ import (
 	"github.com/cyberpunkattack/database"
 	models "github.com/cyberpunkattack/database/model"
 	"github.com/cyberpunkattack/environment"
+	"github.com/cyberpunkattack/pkg/cron"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -51,8 +52,18 @@ func (app *Application) RunDatabaseBackgroundTasks() {
 	go database.CreatePostgresFunctions(ctx, &wg)
 }
 
+func (app *Application) TryTest() {
+	ctx := context.Background()
+	c := cron.New(true)
+	c.CreateJob(ctx, "hubba", time.Duration(time.Second * 5), time.Now().Add(time.Hour * 5), func() error {
+		fmt.Println("CRON IS EXECUTED!")
+		return nil
+	})
+}
+
 func (app *Application) BindHandlers() {
 	routes.RegisterHttpAppRouter(app.Instance, app.ApiPath)
+	app.Instance.Use(middleware.ClientBaseSecurity)
 	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
 	routes.RegisterHttpAuthRouter(app.Instance, app.ApiPath)
 	routes.RegisterHttpUserRouter(app.Instance, app.ApiPath)
@@ -70,7 +81,9 @@ func (app *Application) Run(port string) error {
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
+
 	go app.RunDatabaseBackgroundTasks()
+	go app.TryTest()
 
 	go func() {
 		if err := httpServer.ListenAndServe(); err != nil {

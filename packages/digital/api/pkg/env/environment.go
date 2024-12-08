@@ -46,6 +46,14 @@ func (env *Handler) GetVariable(key string) string {
 	}
 }
 
+func (env *Handler) Get(key string) string {
+	if env.TookVariables[key] == "" {
+		return os.Getenv(key)
+	} else {
+		return env.TookVariables[key]
+	}
+}
+
 func (env *Handler) SetVariable(key, value string) error {
 	err := os.Setenv(key, value)
 	env.TookVariables[key] = value

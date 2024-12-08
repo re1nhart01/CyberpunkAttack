@@ -15,11 +15,11 @@ var pgDbInstance *PostgresDb = nil
 
 func New() *PostgresDb {
 
-  POSTGRES_PORT := environment.GEnv().GetVariable("POSTGRES_PORT")
-  POSTGRES_HOST := environment.GEnv().GetVariable("POSTGRES_HOST")
-  POSTGRES_PASSWORD := environment.GEnv().GetVariable("POSTGRES_PASSWORD")
-  POSTGRES_USER := environment.GEnv().GetVariable("POSTGRES_USER")
-  POSTGRES_DB := environment.GEnv().GetVariable("DB_NAME")
+  POSTGRES_PORT := environment.GEnv().Get("POSTGRES_PORT")
+  POSTGRES_HOST := environment.GEnv().Get("POSTGRES_HOST")
+  POSTGRES_PASSWORD := environment.GEnv().Get("POSTGRES_PASSWORD")
+  POSTGRES_USER := environment.GEnv().Get("POSTGRES_USER")
+  POSTGRES_DB := environment.GEnv().Get("DB_NAME")
 
   db, err := gorm.Open(postgres.New(postgres.Config{
     DSN: fmt.Sprintf(

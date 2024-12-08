@@ -20,6 +20,19 @@ func GiveUnprocessed(customMsg string) (int, map[string]any) {
 	}
 }
 
+func GiveBadRequestCoded(code int, customMsg string, data any) (int, map[string]any) {
+	store := map[string]any{
+		"statusCode": http.StatusBadRequest,
+		"message":    "StatusBadRequest",
+		"hint":       customMsg,
+		"errorCode": code,
+	}
+	if data != nil {
+		store["data"] = data
+	}
+	return http.StatusBadRequest, store
+}
+
 func GiveBadRequest(customMsg string, data any) (int, map[string]any) {
 	store := map[string]any{
 		"statusCode": http.StatusBadRequest,

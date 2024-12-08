@@ -10,6 +10,7 @@ import (
 )
 
 type UserClaim struct {
+	Email 	  string `json:"email"`
 	UserHash  string `json:"user_hash,omitempty"`
 	Id        int    `json:"id,omitempty"`
 	TokenType string `json:"token_type"`
@@ -21,10 +22,11 @@ const (
 	AccessTokenType  = "access"
 )
 
-func CreateToken(userHash string, id int, tokenType string, expirationTime *time.Time) (string, error) {
-	serverKey := environment.GEnv().GetVariable("SERVER_KEY")
+func CreateToken(email, userHash string, id int, tokenType string, expirationTime *time.Time) (string, error) {
+	serverKey := environment.GEnv().Get("SERVER_KEY")
 
 	claims := &UserClaim{
+		Email: email,
 		UserHash:         userHash,
 		Id:               id,
 		TokenType:        tokenType,
@@ -43,28 +45,28 @@ func CreateToken(userHash string, id int, tokenType string, expirationTime *time
 }
 
 func VerifyToken(tokenString string) (*UserClaim, error) {
-	serverKey := environment.GEnv().GetVariable("SERVER_KEY")
+	serverKey := environment.GEnv().Get("SERVER_KEY")
 	claimsInstance := &UserClaim{}
-	println(serverKey)
+
 	tToken, err := jwt.ParseWithClaims(tokenString, claimsInstance, func(token *jwt.Token) (interface{}, error) {
-		//if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-		//	return nil, errors.New("unexpected signing method")
-		//}
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, errors.New("unexpected signing method")
+		}
 		return []byte(serverKey), nil
 	})
 
 	if err != nil || !tToken.Valid {
-		return new(UserClaim), err
+		return nil, err
 	}
 
 	if !tToken.Valid {
-		return new(UserClaim), err
+		return nil, err
 	}
 	return claimsInstance, nil
 }
 
 func ValidateToken(tokenString string) bool {
-	serverKey := environment.GEnv().GetVariable("SERVER_KEY")
+	serverKey := environment.GEnv().Get("SERVER_KEY")
 	_, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, errors.New("unexpected signing method")
@@ -80,7 +82,7 @@ func ValidateToken(tokenString string) bool {
 }
 
 func CheckIsTokenExpired(token string) bool {
-	serverKey := environment.GEnv().GetVariable("SERVER_KEY")
+	serverKey := environment.GEnv().Get("SERVER_KEY")
 	_, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, errors.New("unexpected signing method")
