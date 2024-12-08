@@ -8,7 +8,7 @@ type InjectableStructs struct {
 
 
 type UserCredentials struct {
-	AccessToken string
-	RefreshToken string
-	ExpireIn int64
+	AccessToken string `json:"accessToken"`
+	RefreshToken string `json:"refreshToken"`
+	ExpireIn int64 `json:"expireIn"`
 }

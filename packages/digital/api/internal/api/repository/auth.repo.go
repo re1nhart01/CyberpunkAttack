@@ -176,7 +176,7 @@ func (repo *AuthRepository) ValidateToken(refreshToken, grantType string) (*jwt.
 
 	claims, err := jwt.VerifyToken(refreshToken)
 
-	if err != nil || claims.TokenType != jwt.RefreshTokenType {
+	if err != nil || claims.TokenType != constants.USER_CREDS_TOKEN_TYPE {
 		return nil, errors.New("refresh token has invalid signature")
 	}
 
