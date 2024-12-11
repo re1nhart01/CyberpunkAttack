@@ -70,13 +70,16 @@ func (repo *AuthRepository) SendEmailToRedis(email, name string) error {
 		return status.Err()
 	}
 
-	sp := sendpulse.New()
+	go func () error {
+		sp := sendpulse.New()
 
-	user := sp.CreateUser(email, name)
+		user := sp.CreateUser(email, name)
 
-	if err := sp.CreateMessage(230, constants.REGISTER_SUBJECT, constants.FROM_EMAIL, user).Send(ctx); err != nil {
-		return err
-	}
+		if err := sp.CreateMessage(230, constants.REGISTER_SUBJECT, constants.FROM_EMAIL, user).Send(ctx); err != nil {
+			return err
+		}
+		return nil
+	}()
 
 	return nil
 }
