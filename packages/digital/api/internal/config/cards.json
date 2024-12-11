@@ -1,6 +1,106 @@
 {
     "actions": {
-        
+        "hacks": [
+            {
+                "id": 1,
+                "type": "actions",
+                "action_type": "hacks",
+                "name": "Script",
+                "spec": "action_hack_script",
+                "description": "The selected opponent discards (1) random card",
+                "illustration": "script_ill",
+                "target": "single",
+                "payload": {
+                    "action": "discard",
+                    "what": "deck",
+                    "howMuch": 1
+                }
+            },
+            {
+                "id": 2,
+                "type": "actions",
+                "action_type": "hacks",
+                "name": "D-DOS",
+                "spec": "action_hack_ddos",
+                "description": "You take (1) random card from the opponent's hand",
+                "illustration": "ddos_ill",
+                "target": "single",
+                "payload": {
+                    "action": "take",
+                    "what": "deck",
+                    "howMuch": 1
+                },
+                "payload_after": null
+            },
+            {
+                "id": 3,
+                "type": "actions",
+                "action_type": "hacks",
+                "name": "D-Activation",
+                "spec": "action_hack_deactivation",
+                "description": "Discard (1) cyberimplant or Cybervirus from an opponent cyberbody of your choice",
+                "illustration": "deactivation_ill",
+                "target": "single",
+                "payload": {
+                    "action": "discard",
+                    "what": "implant",
+                    "howMuch": 1
+                },
+                "payload_after": null
+            }
+        ],
+        "boom": [
+            {
+                "id": 4,
+                "type": "actions",
+                "action_type": "boom",
+                "name": "Plan-A",
+                "spec": "action_boom_plan-a",
+                "description": "",
+                "illustration": "plan-a_ill",
+                "target": "mass",
+                "payload": {
+                    "action": "damage",
+                    "howMuch": 1
+                },
+                "payload_after": null
+            },
+            {
+                "id": 5,
+                "type": "actions",
+                "action_type": "boom",
+                "name": "Plan-B",
+                "spec": "action_boom_plan-b",
+                "description": "",
+                "illustration": "plan-b_ill",
+                "target": "mass",
+                "payload": {
+                    "action": "damage",
+                    "howMuch": 2
+                },
+                "payload_after": null
+            },
+            {
+                "id": 6,
+                "type": "actions",
+                "action_type": "boom",
+                "name": "Plan-C4",
+                "spec": "action_boom_plan-c4",
+                "description": "",
+                "illustration": "plan-c4_ill",
+                "target": "mass",
+                "payload": {
+                    "action": "damage",
+                    "howMuch": 4
+                },
+                "payload_after": null
+            }
+        ],
+        "heals": [
+            {
+
+            }
+        ]
     },
     "implants": {
 

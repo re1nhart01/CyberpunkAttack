@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/cyberpunkattack/api"
+	"github.com/cyberpunkattack/database/mongo"
 	"github.com/cyberpunkattack/database/postgres"
 	"github.com/cyberpunkattack/database/redis"
 	"github.com/cyberpunkattack/environment"
@@ -33,6 +34,7 @@ func main() {
 	environment.New()
 	redis.New()
 	postgres.New()
+	mongo.New()
 	cron.New(true)
 
 	PORT := environment.GEnv().Get("PORT")
