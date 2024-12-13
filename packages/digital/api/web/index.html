@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Glow Effect</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .video-container {
+        position: relative;
+        width: 80%;
+        max-width: 800px;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: 15px;
+      }
+
+      /* Duplicate video for the glow effect */
+      .video-blur {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.2);
+        filter: blur(30px);
+        z-index: 0;
+        width: 120%;
+        height: auto;
+        pointer-events: none; /* Prevent interference with controls */
+      }
+
+      /* Foreground video */
+      .video-main {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="video-container">
+      <!-- Duplicate video for glow -->
+      <video class="video-blur" autoplay muted loop>
+        <source src="video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Main video -->
+      <video class="video-main" controls>
+        <source src="video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </body>
+</html>

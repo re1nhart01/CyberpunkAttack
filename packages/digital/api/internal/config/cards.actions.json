@@ -1,0 +1,846 @@
+{
+  "actions": {
+    "hacks": [
+      {
+        "id": 1,
+        "type": "actions",
+        "action_type": "hacks",
+        "name": "Script",
+        "spec": "action_hack_script",
+        "description": "The selected opponent discards (1) random card",
+        "illustration": "script_ill",
+        "target": "single",
+        "payload": [
+          {
+            "action": "discard",
+            "what": "deck",
+            "howMuch": 1,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "type": "actions",
+        "action_type": "hacks",
+        "name": "D-DOS",
+        "spec": "action_hack_ddos",
+        "description": "You take (1) random card from the opponent's hand",
+        "illustration": "ddos_ill",
+        "target": "single",
+        "payload": [
+          {
+            "action": "take",
+            "what": "deck",
+            "howMuch": 1,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "type": "actions",
+        "action_type": "hacks",
+        "name": "D-Activation",
+        "spec": "action_hack_deactivation",
+        "description": "Discard (1) cyberimplant or Cybervirus from an opponent cyberbody of your choice",
+        "illustration": "deactivation_ill",
+        "target": "single",
+        "payload": [
+          {
+            "action": "discard",
+            "what": "implant",
+            "howMuch": 1,
+            "target": "target"
+          }
+        ]
+      }
+    ],
+    "boom": [
+      {
+        "id": 4,
+        "type": "actions",
+        "action_type": "boom",
+        "name": "Plan-A",
+        "spec": "action_boom_plan-a",
+        "description": "",
+        "illustration": "plan-a_ill",
+        "target": "mass",
+        "payload": [
+          {
+            "action": "damage",
+            "howMuch": 1
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "type": "actions",
+        "action_type": "boom",
+        "name": "Plan-B",
+        "spec": "action_boom_plan-b",
+        "description": "",
+        "illustration": "plan-b_ill",
+        "target": "mass",
+        "payload": [
+          {
+            "action": "damage",
+            "howMuch": 2
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "type": "actions",
+        "action_type": "boom",
+        "name": "Plan-C4",
+        "spec": "action_boom_plan-c4",
+        "description": "",
+        "illustration": "plan-c4_ill",
+        "target": "mass",
+        "payload": [
+          {
+            "action": "damage",
+            "howMuch": 4
+          }
+        ]
+      }
+    ],
+    "heals": [
+      {
+        "id": 7,
+        "type": "actions",
+        "action_type": "heals",
+        "name": "Cybervit",
+        "spec": "action_heals_cybervit",
+        "description": "",
+        "illustration": "cybervit_ill",
+        "target": "single",
+        "payload": [
+          {
+            "action": "heal",
+            "howMuch": 9,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "type": "actions",
+        "action_type": "heals",
+        "name": "CBD-4",
+        "spec": "actions_heals_cbd-4",
+        "illustration": "cbd-4_ill",
+        "description": "Another player with the lowest hp level also regains (3)",
+        "target": "single",
+        "payload": [
+          {
+            "action": "heal",
+            "howMuch": 5,
+            "target": "target"
+          },
+          {
+            "action": "heal",
+            "howMuch": 3,
+            "target": "lowest_hp"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "type": "actions",
+        "action_type": "heals",
+        "name": "Ura-N",
+        "spec": "actions_heals_ura-n",
+        "illustration": "ura-n_ill",
+        "description": "",
+        "target": "mass",
+        "payload": [
+          {
+            "action": "heal",
+            "howMuch": 3,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "type": "actions",
+        "action_type": "heals",
+        "name": "DTK",
+        "spec": "actions_heals_dtk",
+        "illustration": "dtk_ill",
+        "description": "",
+        "target": "single",
+        "payload": [
+          {
+            "action": "heal",
+            "howMuch": 2,
+            "target": "target"
+          }
+        ]
+      }
+    ],
+    "runners": [
+      {
+        "id": 11,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "DonDon",
+        "spec": "actions_runner_dondon",
+        "illustration": "dondon_ill",
+        "description": "Health",
+        "target": "single",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 1,
+            "health": 2,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "Donna",
+        "spec": "actions_runner_donna",
+        "illustration": "donna_ill",
+        "description": "Health",
+        "target": "single",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 1,
+            "health": 2,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "Donny",
+        "spec": "actions_runner_donny",
+        "illustration": "donny_ill",
+        "description": "Health",
+        "target": "single",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 2,
+            "health": 3,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "Fingers",
+        "spec": "actions_runner_fingers",
+        "illustration": "fingers_ill",
+        "description": "Health",
+        "target": "single",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 2,
+            "health": 2,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "Gunblade",
+        "spec": "actions_runner_gunblade",
+        "illustration": "gunblade_ill",
+        "description": "Health",
+        "target": "single",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 4,
+            "health": 5,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "Levy",
+        "spec": "actions_runner_levy",
+        "illustration": "levy_ill",
+        "description": "Health",
+        "target": "single",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 2,
+            "health": 4,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "Mexler",
+        "spec": "actions_runner_mexler",
+        "illustration": "mexler_ill",
+        "description": "Health",
+        "target": "single",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 4,
+            "health": 1,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "Saturo",
+        "spec": "actions_runner_saturo",
+        "illustration": "saturo_ill",
+        "description": "Health",
+        "target": "single",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 3,
+            "health": 3,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "Vexler",
+        "spec": "actions_runner_vexler",
+        "illustration": "vexler_ill",
+        "description": "Health",
+        "target": "single",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 5,
+            "health": 2,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "type": "actions",
+        "action_type": "runner",
+        "name": "Bulletstorm",
+        "spec": "actions_runner_bulletstorm",
+        "illustration": "bulletstorm_ill",
+        "description": "Health \n (mass confrontation)",
+        "target": "mass",
+        "payload": [
+          {
+            "action": "runner",
+            "damage": 5,
+            "health": 8,
+            "target": "mass"
+          }
+        ]
+      }
+    ],
+    "evades": [
+      {
+        "id": 21,
+        "type": "actions",
+        "action_type": "evade",
+        "name": "Evade",
+        "spec": "actions_evade_evade1",
+        "illustration": "evade1_ill",
+        "description": "{{ evade_icon }}",
+        "target": "single",
+        "payload": [
+          {
+            "action": "evade",
+            "evade_type": ["boom", "gun", "combat_implant"],
+            "is_return_back": false,
+            "can_be_dodget": false
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "type": "actions",
+        "action_type": "evade",
+        "name": "Evade 2.0",
+        "spec": "actions_evade_evade2",
+        "illustration": "evade2_ill",
+        "description": "{{ evade_icon }}",
+        "target": "single",
+        "payload": [
+          {
+            "action": "evade",
+            "evade_type": ["boom", "gun", "combat_implant"]
+          },
+          {
+            "action": "draw",
+            "howMuch": 1,
+            "deck": "actions"
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "type": "actions",
+        "action_type": "evade",
+        "name": "Super Evade",
+        "spec": "actions_evade_super-evade",
+        "illustration": "super-evade_ill",
+        "description": "{{ evade_icon }}",
+        "target": "single",
+        "payload": [
+          {
+            "action": "evade",
+            "evade_type": ["boom", "gun", "combat_implant"]
+          },
+          {
+            "action": "return_damage_back",
+            "can_be_dodged": false
+          }
+        ]
+      }
+    ],
+    "gun": [
+      {
+        "id": 23,
+        "action_type": "gun",
+        "name": "Megas",
+        "spec": "action_gun_megas",
+        "illustration": "super-evade_ill",
+        "description": "If a player dies during your turn, you discard all cards from your hand",
+        "target": "single",
+        "payload": [
+          {
+            "action": "attack",
+            "range": "full",
+            "deal_damage": {
+              "shots": 1,
+              "damage": 8
+            },
+            "target": "target",
+            "buff": null,
+            "debuff": "drop_all_cards_if_kill"
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "action_type": "gun",
+        "name": "Star Hit",
+        "spec": "action_gun_star-hit",
+        "illustration": "star-hit_ill",
+        "description": "It makes (2) shots, each dealing (-3) damage",
+        "target": "single",
+        "payload": [
+          {
+            "action": "attack",
+            "range": "full",
+            "deal_damage": {
+              "shots": 2,
+              "damage": 3
+            },
+            "target": "target",
+            "buff": null,
+            "debuff": null
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "action_type": "gun",
+        "name": "Stinger",
+        "spec": "action_gun_stinger",
+        "illustration": "stinger_ill",
+        "description": "Always returns to its owner's hand after draw or if he drops it",
+        "target": "single",
+        "payload": [
+          {
+            "action": "attack",
+            "range": "full",
+            "deal_damage": {
+              "shots": 1,
+              "damage": 4
+            },
+            "target": "target",
+            "buff": "return_back",
+            "debuff": null
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "action_type": "gun",
+        "name": "Anti Heal",
+        "spec": "action_gun_antiheal",
+        "illustration": "antiheal_ill",
+        "description": "In case of a successful hit, the target won't be able to regenerate hp during the next turn",
+        "target": "single",
+        "payload": [
+          {
+            "action": "attack",
+            "range": "full",
+            "deal_damage": {
+              "shots": 1,
+              "damage": 2
+            },
+            "target": "target",
+            "buff": null,
+            "debuff": null
+          },
+          {
+            "action": "disable_heal",
+            "forRounds": 1,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "action_type": "gun",
+        "name": "AWP Prime",
+        "spec": "action_gun_awp",
+        "illustration": "awp_ill",
+        "description": "The damage increases to (-4) if the shot is fired at a non-adjacent player",
+        "target": "single",
+        "payload": [
+          {
+            "action": "attack",
+            "range": "adjacent",
+            "deal_damage": {
+              "shots": 1,
+              "damage": 2
+            },
+            "target": "target",
+            "buff": null,
+            "debuff": null
+          },
+          {
+            "action": "attack",
+            "range": "full",
+            "deal_damage": {
+              "shots": 1,
+              "damage": 4
+            },
+            "target": "target",
+            "buff": null,
+            "debuff": null
+          },
+          {
+            "id": 28,
+            "action_type": "gun",
+            "name": "Charger",
+            "spec": "action_gun_charger",
+            "illustration": "charger_ill",
+            "description": "For each additional discarded card, there is an additional (-1) damage",
+            "target": "single",
+            "payload": [
+              {
+                "action": "attack",
+                "range": "full",
+                "deal_damage": {
+                  "shots": 1,
+                  "damage": 2
+                },
+                "target": "target",
+                "buff": "add_damage_as_cards_added",
+                "debuff": null
+              }
+            ]
+          },
+          {
+            "id": 29,
+            "action_type": "gun",
+            "name": "Psy-X",
+            "spec": "action_gun_psy-x",
+            "illustration": "psy-x_ill",
+            "description": "If the target is a cyberdamaged or runner, it will receive an additional (-2) damage",
+            "target": "single",
+            "payload": [
+              {
+                "action": "attack",
+                "range": "full",
+                "deal_damage": {
+                  "shots": 1,
+                  "damage": 3
+                },
+                "target": "target",
+                "buff": "cyberdamaged_or_runner_two_damage",
+                "debuff": null
+              }
+            ]
+          },
+          {
+            "id": 30,
+            "action_type": "gun",
+            "name": "X-Blast",
+            "spec": "action_gun_x-blast",
+            "illustration": "x-blast_ill",
+            "description": "Final damage increased by (-1) for each active cyber implant of the enemy",
+            "target": "single",
+            "payload": [
+              {
+                "action": "attack",
+                "range": "full",
+                "deal_damage": {
+                  "shots": 1,
+                  "damage": 2
+                },
+                "target": "target",
+                "buff": {
+                  "name": "one_damage_for_every_enemy_cyberimplant",
+                  "action": "attack_accumulate",
+                  "howMuch": 1,
+                  "reason": "active_implant"
+                },
+                "debuff": null
+              }
+            ]
+          },
+          {
+            "id": 31,
+            "action_type": "gun",
+            "name": "XLR",
+            "spec": "action_gun_xlr",
+            "illustration": "xlr_ill",
+            "description": "Performs (3) shots, each dealing (-1) damage",
+            "target": "single",
+            "payload": [
+              {
+                "action": "attack",
+                "range": "full",
+                "deal_damage": {
+                  "shots": 3,
+                  "damage": 1
+                },
+                "target": "target",
+                "buff": null,
+                "debuff": null
+              }
+            ]
+          },
+          {
+            "id": 32,
+            "action_type": "gun",
+            "name": "M4",
+            "spec": "action_gun_m4",
+            "illustration": "m4_ill",
+            "description": "If there is (2) or more cyber implants in the target, it will receive an additional (-2) damage",
+            "target": "single",
+            "payload": [
+              {
+                "action": "attack",
+                "range": "full",
+                "deal_damage": {
+                  "shots": 1,
+                  "damage": 2
+                },
+                "target": "target",
+                "buff": {
+                  "name": "two_or_more_implants_two_damage",
+                  "action": "attack",
+                  "howMuch": 2,
+                  "reason": "two_or_more_implants"
+                },
+                "debuff": null
+              }
+            ]
+          },
+          {
+            "id": 33,
+            "action_type": "gun",
+            "name": "Ceed-9M",
+            "spec": "action_gun_ceed9m",
+            "illustration": "ceed9m_ill",
+            "description": "If there is (1) or more cyber implants in the target, it will receive an additional (-1) damage",
+            "target": "single",
+            "payload": [
+              {
+                "action": "attack",
+                "range": "full",
+                "deal_damage": {
+                  "shots": 1,
+                  "damage": 2
+                },
+                "target": "target",
+                "buff": {
+                  "name": "one_or_more_implants_one_damage",
+                  "action": "attack",
+                  "howMuch": 1,
+                  "reason": "two_or_more_implants"
+                },
+                "debuff": null
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "other": [
+      {
+        "id": 34,
+        "action_type": "other",
+        "name": "Coooombo",
+        "spec": "action_other_coo0ombo",
+        "illustration": "cooombo_ill",
+        "description": "Each opponent takes (1) card",
+        "target": "single",
+        "payload": [
+          {
+            "action": "draw",
+            "howMuch": 4,
+            "useOnly": "self",
+            "target": "target"
+          },
+          {
+            "action": "draw",
+            "howMuch": 1,
+            "target": "mass"
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "action_type": "other",
+        "name": "Cyberhub",
+        "spec": "action_other_cyberhub",
+        "illustration": "cyberhub_ill",
+        "description": "Open the top (3) cyber implants and take (1) of your choice",
+        "target": "single",
+        "payload": [
+          {
+            "action": "take_top_implants",
+            "howMuch": 3,
+            "takeHowMuch": 1,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "action_type": "other",
+        "name": "Take More",
+        "spec": "action_other_take-more",
+        "illustration": "take-more_ill",
+        "description": "{{ draw_icon }}+3",
+        "target": "single",
+        "payload": [
+          {
+            "action": "draw",
+            "howMuch": 3,
+            "useOnly": "self",
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "action_type": "other",
+        "name": "Lucky Card",
+        "spec": "action_other_lucky-card",
+        "illustration": "lucky-card_ill",
+        "description": "{{ draw_icon }}+2",
+        "target": "single",
+        "payload": [
+          {
+            "action": "draw",
+            "howMuch": 2,
+            "useOnly": "self",
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "action_type": "other",
+        "name": "Mia",
+        "spec": "action_other_mia",
+        "illustration": "mia_ill",
+        "description": "{{ implants_icon }}+1",
+        "target": "single",
+        "payload": [
+          {
+            "action": "take_implants",
+            "howMuch": 1,
+            "useOnly": "self",
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "action_type": "other",
+        "name": "Sub Clinic",
+        "spec": "action_other_sub-clinic",
+        "illustration": "sub-clinic_ill",
+        "description": "Open the top (2) cyber implants and take (1) of your choice",
+        "target": "single",
+        "payload": [
+          {
+            "action": "take_top_implants",
+            "howMuch": 2,
+            "takeHowMuch": 1,
+            "target": "target"
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "action_type": "other",
+        "name": "Chpock Shop",
+        "spec": "action_other_chpok-shop",
+        "illustration": "chpok-shop_ill",
+        "description": "Reveal cards from the action deck equal to the number of players, and each player takes on in clockwise",
+        "target": "single",
+        "payload": [
+          {
+            "custom_name": "chpok-mechanic",
+            "action": "draw-clockwise",
+            "howMuch": 1,
+            "target": "mass"
+          }
+        ]
+      },
+      {
+        "id": 41,
+        "action_type": "other",
+        "name": "Ryder",
+        "spec": "action_other_ryder",
+        "illustration": "ryder_ill",
+        "description": "{{ implants_icon }}+1",
+        "target": "single",
+        "payload": [
+          {
+            "action": "take_implants",
+            "howMuch": 1,
+            "useOnly": "self",
+            "target": "target"
+          }
+        ]
+      }
+    ]
+  }
+}
