@@ -3,6 +3,13 @@ package api
 import (
 	"context"
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"sync"
+	"time"
+
 	"github.com/cyberpunkattack/api/middleware"
 	"github.com/cyberpunkattack/api/routes"
 	"github.com/cyberpunkattack/database"
@@ -10,12 +17,6 @@ import (
 	"github.com/cyberpunkattack/environment"
 	"github.com/cyberpunkattack/pkg/cron"
 	"github.com/gin-gonic/gin"
-	"log"
-	"net/http"
-	"os"
-	"os/signal"
-	"sync"
-	"time"
 )
 
 type Application struct {
@@ -55,7 +56,7 @@ func (app *Application) RunDatabaseBackgroundTasks() {
 func (app *Application) TryTest() {
 	ctx := context.Background()
 	c := cron.New(true)
-	c.CreateJob(ctx, "hubba", time.Duration(time.Second * 5), time.Now().Add(time.Hour * 5), func() error {
+	c.CreateJob(ctx, "hubba", time.Duration(time.Second*5), time.Now().Add(time.Hour*5), func() error {
 		fmt.Println("CRON IS EXECUTED!")
 		return nil
 	})
@@ -67,6 +68,7 @@ func (app *Application) BindHandlers() {
 	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
 	routes.RegisterHttpAuthRouter(app.Instance, app.ApiPath)
 	routes.RegisterHttpUserRouter(app.Instance, app.ApiPath)
+	routes.RegisterHttpSessionRouter(app.Instance, app.ApiPath)
 }
 
 func (app *Application) Run(port string) error {

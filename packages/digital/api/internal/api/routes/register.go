@@ -12,7 +12,6 @@ func RegisterHttpAppRouter(engine *gin.Engine, basePath string) {
 	http.AppRoute(engine, handler)
 }
 
-
 func RegisterHttpUserRouter(engine *gin.Engine, basePath string) {
 	handler := handlers.NewUserHandler(basePath, repository.NewUserRepository())
 	http.UserRoute(engine, handler)
@@ -23,4 +22,11 @@ func RegisterHttpAuthRouter(engine *gin.Engine, basePath string) {
 
 	handler := handlers.NewAuthHandler(basePath, repository.NewAuthRepository(injectable))
 	http.AuthRoute(engine, handler)
+}
+
+func RegisterHttpSessionRouter(engine *gin.Engine, basePath string) {
+	// injectable := repository.InjectableStructs{User: repository.NewUserRepository()}
+
+	handler := handlers.NewSessionHandler(basePath, repository.NewSessionRepository())
+	http.SessionRoute(engine, handler)
 }
