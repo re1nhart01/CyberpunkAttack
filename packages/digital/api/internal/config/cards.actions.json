@@ -419,6 +419,7 @@
           },
           {
             "action": "return_damage_back",
+            "back_only": ["gun"],
             "can_be_dodged": false
           }
         ]
@@ -427,6 +428,7 @@
     "gun": [
       {
         "id": 23,
+        "type": "actions",
         "action_type": "gun",
         "name": "Megas",
         "spec": "action_gun_megas",
@@ -449,6 +451,7 @@
       },
       {
         "id": 24,
+        "type": "actions",
         "action_type": "gun",
         "name": "Star Hit",
         "spec": "action_gun_star-hit",
@@ -471,6 +474,7 @@
       },
       {
         "id": 25,
+        "type": "actions",
         "action_type": "gun",
         "name": "Stinger",
         "spec": "action_gun_stinger",
@@ -493,6 +497,7 @@
       },
       {
         "id": 26,
+        "type": "actions",
         "action_type": "gun",
         "name": "Anti Heal",
         "spec": "action_gun_antiheal",
@@ -520,6 +525,7 @@
       },
       {
         "id": 27,
+        "type": "actions",
         "action_type": "gun",
         "name": "AWP Prime",
         "spec": "action_gun_awp",
@@ -551,6 +557,7 @@
           },
           {
             "id": 28,
+            "type": "actions",
             "action_type": "gun",
             "name": "Charger",
             "spec": "action_gun_charger",
@@ -573,6 +580,7 @@
           },
           {
             "id": 29,
+            "type": "actions",
             "action_type": "gun",
             "name": "Psy-X",
             "spec": "action_gun_psy-x",
@@ -595,6 +603,7 @@
           },
           {
             "id": 30,
+            "type": "actions",
             "action_type": "gun",
             "name": "X-Blast",
             "spec": "action_gun_x-blast",
@@ -622,6 +631,7 @@
           },
           {
             "id": 31,
+            "type": "actions",
             "action_type": "gun",
             "name": "XLR",
             "spec": "action_gun_xlr",
@@ -644,6 +654,7 @@
           },
           {
             "id": 32,
+            "type": "actions",
             "action_type": "gun",
             "name": "M4",
             "spec": "action_gun_m4",
@@ -671,6 +682,7 @@
           },
           {
             "id": 33,
+            "type": "actions",
             "action_type": "gun",
             "name": "Ceed-9M",
             "spec": "action_gun_ceed9m",
@@ -702,6 +714,7 @@
     "other": [
       {
         "id": 34,
+        "type": "actions",
         "action_type": "other",
         "name": "Coooombo",
         "spec": "action_other_coo0ombo",
@@ -724,6 +737,7 @@
       },
       {
         "id": 35,
+        "type": "actions",
         "action_type": "other",
         "name": "Cyberhub",
         "spec": "action_other_cyberhub",
@@ -741,6 +755,7 @@
       },
       {
         "id": 36,
+        "type": "actions",
         "action_type": "other",
         "name": "Take More",
         "spec": "action_other_take-more",
@@ -758,6 +773,7 @@
       },
       {
         "id": 37,
+        "type": "actions",
         "action_type": "other",
         "name": "Lucky Card",
         "spec": "action_other_lucky-card",
@@ -775,6 +791,7 @@
       },
       {
         "id": 38,
+        "type": "actions",
         "action_type": "other",
         "name": "Mia",
         "spec": "action_other_mia",
@@ -792,6 +809,7 @@
       },
       {
         "id": 39,
+        "type": "actions",
         "action_type": "other",
         "name": "Sub Clinic",
         "spec": "action_other_sub-clinic",
@@ -809,6 +827,7 @@
       },
       {
         "id": 40,
+        "type": "actions",
         "action_type": "other",
         "name": "Chpock Shop",
         "spec": "action_other_chpok-shop",
@@ -826,6 +845,7 @@
       },
       {
         "id": 41,
+        "type": "actions",
         "action_type": "other",
         "name": "Ryder",
         "spec": "action_other_ryder",
