@@ -6,12 +6,13 @@ import (
 )
 
 func TestCreateToken(t *testing.T) {
+	argsEmail := "test@gmail.com"
 	argsUserHash := "my_user_hash"
 	argsId := 0
 
 	expirationTime := time.Now().Add(50 * time.Minute)
 
-	got1, err := CreateToken(argsUserHash, argsId, "access", &expirationTime)
+	got1, err := CreateToken(argsEmail, argsUserHash, argsId, "access", &expirationTime)
 	println(got1)
 	if err != nil {
 		t.Error(err)
@@ -52,12 +53,13 @@ func TestCheckIsTokenExpired(t *testing.T) {
 }
 
 func TestVerifyToken(t *testing.T) {
+	argsEmail := "test@gmail.com"
 	argsUserHash := "my_user_hash"
 	argsId := 0
 
 	expirationTime := time.Now().Add(50 * time.Minute)
 
-	got1, err := CreateToken(argsUserHash, argsId, "refresh", &expirationTime)
+	got1, err := CreateToken(argsEmail, argsUserHash, argsId, "refresh", &expirationTime)
 	print(got1)
 	if err != nil {
 		t.Error(err)
