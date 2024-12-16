@@ -3,11 +3,12 @@ package mongo
 import (
 	"context"
 	"fmt"
+	"time"
+
 	"github.com/cyberpunkattack/environment"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 	"go.mongodb.org/mongo-driver/v2/mongo/readpref"
-	"time"
 )
 
 type MongoDB struct {
@@ -16,14 +17,12 @@ type MongoDB struct {
 
 var mongoInstance *MongoDB
 
-
 func DB() *MongoDB {
-  return mongoInstance
+	return mongoInstance
 }
-func (mdb *MongoDB) Get() *mongo.Client {
-	return mdb.instance
+func (mdb *MongoDB) Get() *mongo.Database {
+	return mdb.instance.Database(environment.GEnv().Get("MONGO_DB_DATABASE"))
 }
-
 
 func New() *MongoDB {
 	API_URL := environment.GEnv().Get("MONGO_DB_DSN")
@@ -33,7 +32,7 @@ func New() *MongoDB {
 		return nil
 	}
 
-	ctx, _ := context.WithTimeout(context.Background(), time.Second * 15)
+	ctx, _ := context.WithTimeout(context.Background(), time.Second*15)
 
 	defer instance.Ping(ctx, readpref.Primary())
 

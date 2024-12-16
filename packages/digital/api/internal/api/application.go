@@ -14,6 +14,7 @@ import (
 	"github.com/cyberpunkattack/api/routes"
 	"github.com/cyberpunkattack/database"
 	models "github.com/cyberpunkattack/database/model"
+	"github.com/cyberpunkattack/database/mongo"
 	"github.com/cyberpunkattack/environment"
 	"github.com/cyberpunkattack/pkg/cron"
 	"github.com/gin-gonic/gin"
@@ -55,8 +56,11 @@ func (app *Application) RunDatabaseBackgroundTasks() {
 
 func (app *Application) TryTest() {
 	ctx := context.Background()
+
+	mongo.DB().Get().Collection("sessions").InsertOne(ctx, &models.SessionIM{})
+
 	c := cron.New(true)
-	c.CreateJob(ctx, "hubba", time.Duration(time.Second*5), time.Now().Add(time.Hour*5), func() error {
+	c.CreateJob(ctx, "hubba", time.Duration(time.Second*25), time.Now().Add(time.Hour*5), func() error {
 		fmt.Println("CRON IS EXECUTED!")
 		return nil
 	})
