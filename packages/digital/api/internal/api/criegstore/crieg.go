@@ -13,7 +13,7 @@ type CriegStore struct {
 	sessions crieg.MapListStorage
 }
 
-var CriegStored = crieg.New[CriegStore](&CriegStore{}, &crieg.CriegConfig{})
+var CriegStored = crieg.New(&CriegStore{}, &crieg.CriegConfig{})
 
 func Crieg() *CriegStore {
 	return CriegStored.Group
