@@ -4,6 +4,7 @@ import (
 	"github.com/cyberpunkattack/api/handlers"
 	"github.com/cyberpunkattack/api/repository"
 	"github.com/cyberpunkattack/api/routes/http"
+	"github.com/cyberpunkattack/api/routes/ws"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,4 +30,9 @@ func RegisterHttpSessionRouter(engine *gin.Engine, basePath string) {
 
 	handler := handlers.NewSessionHandler(basePath, repository.NewSessionRepository())
 	http.SessionRoute(engine, handler)
+}
+
+func RegisterWsGatewayRouter(engine *gin.Engine, basePath string) {
+	handler := handlers.NewGatewayHandler(basePath, repository.NewServiceRepository())
+	ws.GatewayWsRoute(engine, handler)
 }

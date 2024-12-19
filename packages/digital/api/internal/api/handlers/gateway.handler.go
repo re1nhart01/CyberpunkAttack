@@ -2,14 +2,15 @@ package handlers
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 
 	"github.com/cyberpunkattack/api/base"
 	"github.com/cyberpunkattack/api/constants"
-	"github.com/cyberpunkattack/api/criegstore"
 	inlineErrors "github.com/cyberpunkattack/api/errors"
+	"github.com/cyberpunkattack/api/wstore"
 	"github.com/cyberpunkattack/helpers"
-	"github.com/cyberpunkattack/pkg/crieg"
+	"github.com/cyberpunkattack/pkg/wstorify"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 )
@@ -19,6 +20,9 @@ const GATEWAY_ROUTE = "gateway"
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
 }
 
 type IGatewayRepo interface {
@@ -48,16 +52,14 @@ func (gateway *GatewayHandler) ServiceChannelHandler(context *gin.Context) {
 			))
 		return
 	}
-	defer ws.Close()
-
-	user := crieg.CriegNewClient{
+	user := wstorify.NewClient{
 		IntoChannel: constants.GLOBAL_CHANNEL,
-		User: &crieg.CriegUser{
+		User: &wstorify.Account{
 			Name:         "test",
 			FromGroup:    constants.GLOBAL_CHANNEL,
 			Role:         "ADMIN",
 			WsConnection: ws,
-			UserCredentials: criegstore.CriegUserCredentials{
+			UserCredentials: wstore.UserCredentials{
 				Id:       1,
 				UserHash: "zxczxcz",
 				Username: "zxczxc",
@@ -65,10 +67,11 @@ func (gateway *GatewayHandler) ServiceChannelHandler(context *gin.Context) {
 			TTC: time.Now(),
 		},
 	}
-	criegstore.Crieg().Global.Register <- &user
-
+	wstore.Store().Global.Register <- &user
+	go wstore.ReadGlobalPump(&user, wstore.Store().Global)
+	go wstore.ListenGlobal(wstore.Store().Global)
 }
-func NewGatewayHandler(basePath string, repo IUserRepo) *GatewayHandler {
+func NewGatewayHandler(basePath string, repo IGatewayRepo) *GatewayHandler {
 	return &GatewayHandler{
 		&base.Handler{
 			Name: GATEWAY_ROUTE,

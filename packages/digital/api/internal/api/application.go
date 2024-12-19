@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/cyberpunkattack/api/criegstore"
 	"github.com/cyberpunkattack/api/middleware"
 	"github.com/cyberpunkattack/api/routes"
+	"github.com/cyberpunkattack/api/wstore"
 	"github.com/cyberpunkattack/database"
 	models "github.com/cyberpunkattack/database/model"
 	"github.com/cyberpunkattack/database/mongo"
@@ -47,14 +47,14 @@ func NewApp(withLogger bool) *Application {
 	return inst
 }
 
-func (app *Application) RunDatabaseBackgroundTasks() {
+func (app *Application) RunBackgroundRoutineTasks() {
 	var wg sync.WaitGroup
 	ctx := context.Background()
 	wg.Add(4)
 	go database.CreatePostgresTables(ctx, &wg, &models.Models{})
 	go database.CreatePostgresFunctions(ctx, &wg)
-	go criegstore.ListenGlobal(criegstore.CriegStored.Group.Global)
-	go criegstore.ListenSessions(criegstore.CriegStored.Group.Sessions)
+	go wstore.ListenGlobal(wstore.AllocatedWsStore.Group.Global)
+	go wstore.ListenSessions(wstore.AllocatedWsStore.Group.Sessions)
 }
 
 func (app *Application) TryTest() {
@@ -71,6 +71,7 @@ func (app *Application) TryTest() {
 
 func (app *Application) BindHandlers() {
 	routes.RegisterHttpAppRouter(app.Instance, app.ApiPath)
+	routes.RegisterWsGatewayRouter(app.Instance, app.ApiPath)
 	app.Instance.Use(middleware.ClientBaseSecurity)
 	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
 	routes.RegisterHttpAuthRouter(app.Instance, app.ApiPath)
@@ -91,7 +92,7 @@ func (app *Application) Run(port string) error {
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	go app.RunDatabaseBackgroundTasks()
+	go app.RunBackgroundRoutineTasks()
 	go app.TryTest()
 
 	go func() {

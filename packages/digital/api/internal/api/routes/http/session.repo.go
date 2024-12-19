@@ -9,7 +9,7 @@ type ISessionHandler interface {
 	base.IHandler
 }
 
-func SessionRoute(engine *gin.Engine, handler IUserHandler) {
+func SessionRoute(engine *gin.Engine, handler ISessionHandler) {
 	group := engine.Group(handler.GetPath())
 	{
 		group.GET("/", func(context *gin.Context) {

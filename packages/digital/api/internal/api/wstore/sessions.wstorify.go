@@ -1,12 +1,12 @@
-package criegstore
+package wstore
 
 import (
 	"fmt"
 
-	"github.com/cyberpunkattack/pkg/crieg"
+	"github.com/cyberpunkattack/pkg/wstorify"
 )
 
-func ListenSessions(path *crieg.CriegStorePath[crieg.MapListStorage]) error {
+func ListenSessions(path *wstorify.StorePath[wstorify.MapListStorage]) error {
 	store := path.Store
 	for {
 		select {
