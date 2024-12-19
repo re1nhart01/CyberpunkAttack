@@ -26,6 +26,10 @@ func (session *SessionHandler) GetPath() string {
 	return session.Path
 }
 
+func (sesion *SessionHandler) CreateSessionHandler(context *gin.Context) {
+
+}
+
 func (user *SessionHandler) GetMyUserProfileHandler(context *gin.Context) {
 	context.JSON(http.StatusCreated, map[string]any{
 		"status":  http.StatusAccepted,
