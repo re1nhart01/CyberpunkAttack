@@ -10,7 +10,6 @@ import (
 func ListenGlobal(path *wstorify.StorePath[wstorify.MapStorage]) error {
 	store := path.Store
 	for {
-		fmt.Println("zxczcxz")
 		select {
 		case client := <-path.Register:
 			fmt.Println("client", client)

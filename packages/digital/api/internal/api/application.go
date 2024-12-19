@@ -15,7 +15,6 @@ import (
 	"github.com/cyberpunkattack/api/wstore"
 	"github.com/cyberpunkattack/database"
 	models "github.com/cyberpunkattack/database/model"
-	"github.com/cyberpunkattack/database/mongo"
 	"github.com/cyberpunkattack/environment"
 	"github.com/cyberpunkattack/pkg/cron"
 	"github.com/gin-gonic/gin"
@@ -60,7 +59,7 @@ func (app *Application) RunBackgroundRoutineTasks() {
 func (app *Application) TryTest() {
 	ctx := context.Background()
 
-	mongo.DB().Get().Collection("sessions").InsertOne(ctx, &models.SessionIM{})
+	// mongo.DB().Get().Collection("sessions").InsertOne(ctx, &models.SessionIM{})
 
 	c := cron.New(true)
 	c.CreateJob(ctx, "hubb1a", time.Duration(time.Second*25), time.Now().Add(time.Hour*5), func() error {
@@ -69,9 +68,13 @@ func (app *Application) TryTest() {
 	})
 }
 
+func (app *Application) BindSocket() {
+	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
+	routes.RegisterWsGatewayRouter(app.Instance, app.ApiPath)
+}
+
 func (app *Application) BindHandlers() {
 	routes.RegisterHttpAppRouter(app.Instance, app.ApiPath)
-	routes.RegisterWsGatewayRouter(app.Instance, app.ApiPath)
 	app.Instance.Use(middleware.ClientBaseSecurity)
 	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
 	routes.RegisterHttpAuthRouter(app.Instance, app.ApiPath)
@@ -81,7 +84,7 @@ func (app *Application) BindHandlers() {
 
 func (app *Application) Run(port string) error {
 
-	//app.BindSocket()
+	app.BindSocket()
 	app.BindHandlers()
 
 	httpServer := &http.Server{
