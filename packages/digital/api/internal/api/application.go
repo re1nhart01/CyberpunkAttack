@@ -10,6 +10,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/cyberpunkattack/api/criegstore"
 	"github.com/cyberpunkattack/api/middleware"
 	"github.com/cyberpunkattack/api/routes"
 	"github.com/cyberpunkattack/database"
@@ -49,9 +50,11 @@ func NewApp(withLogger bool) *Application {
 func (app *Application) RunDatabaseBackgroundTasks() {
 	var wg sync.WaitGroup
 	ctx := context.Background()
-	wg.Add(2)
+	wg.Add(4)
 	go database.CreatePostgresTables(ctx, &wg, &models.Models{})
 	go database.CreatePostgresFunctions(ctx, &wg)
+	go criegstore.ListenGlobal(criegstore.CriegStored.Group.Global)
+	go criegstore.ListenSessions(criegstore.CriegStored.Group.Sessions)
 }
 
 func (app *Application) TryTest() {
