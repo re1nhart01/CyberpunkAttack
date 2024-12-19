@@ -7,10 +7,12 @@ import (
 	"time"
 )
 
+type ListenerCallback func(args map[string]any) (time.Time, error)
+
 type Listener struct {
 	Name          string
 	UniqueName    string
-	CallbackFunc  func() (time.Time, error)
+	CallbackFunc  ListenerCallback
 	CreatedAt     time.Time
 	LastExecution *time.Time
 }
@@ -20,7 +22,7 @@ type Dispatcher struct {
 	mu        sync.Mutex
 }
 
-func (dispatcher *Dispatcher) AddListener(name, uname string, cb func() (time.Time, error)) {
+func (dispatcher *Dispatcher) AddListener(name, uname string, cb ListenerCallback) {
 	dispatcher.mu.Lock()
 	defer dispatcher.mu.Unlock()
 	listener := &Listener{
@@ -37,7 +39,7 @@ func (dispatcher *Dispatcher) AddListener(name, uname string, cb func() (time.Ti
 func (dispatcher *Dispatcher) AddManyListener(data []struct {
 	name  string
 	uname string
-	cb    func() (time.Time, error)
+	cb    ListenerCallback
 }) {
 	for _, v := range data {
 		dispatcher.AddListener(v.name, v.uname, v.cb)
@@ -59,23 +61,23 @@ func (dispatcher *Dispatcher) RemoveListener(name, uname string) {
 	}
 }
 
-func (dispatcher *Dispatcher) Execute(uname string, logfunc func(err error)) {
+func (dispatcher *Dispatcher) Execute(uname string, args map[string]any, logfunc func(err error)) {
 	listeners := dispatcher.listeners
 	for _, v := range listeners {
 		name := v.UniqueName
 		if name == uname {
-			now, err := v.CallbackFunc()
+			now, err := v.CallbackFunc(args)
 			v.LastExecution = &now
 			logfunc(err)
 		}
 	}
 }
 
-func (dispatcher *Dispatcher) ExecuteGroup(name string, logfunc func(err error)) {
+func (dispatcher *Dispatcher) ExecuteGroup(name string, args map[string]any, logfunc func(err error)) {
 	listeners := dispatcher.listeners
 	for _, v := range listeners {
 		if name == v.Name {
-			now, err := v.CallbackFunc()
+			now, err := v.CallbackFunc(args)
 			v.LastExecution = &now
 			logfunc(err)
 		}
