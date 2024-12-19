@@ -97,7 +97,7 @@ func (app *Application) Run(port string) error {
 
 	go func() {
 		if err := httpServer.ListenAndServe(); err != nil {
-			log.Println("Failed to listen and serve: %+v", err)
+			log.Printf("Failed to listen and serve: %+v", err)
 		}
 	}()
 
