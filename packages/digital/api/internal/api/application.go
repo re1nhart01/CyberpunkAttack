@@ -59,8 +59,6 @@ func (app *Application) RunBackgroundRoutineTasks() {
 func (app *Application) TryTest() {
 	ctx := context.Background()
 
-	// mongo.DB().Get().Collection("sessions").InsertOne(ctx, &models.SessionIM{})
-
 	c := cron.New(true)
 	c.CreateJob(ctx, "hubb1a", time.Duration(time.Second*25), time.Now().Add(time.Hour*5), func() error {
 		fmt.Println("CRON IS EXECUTED!")

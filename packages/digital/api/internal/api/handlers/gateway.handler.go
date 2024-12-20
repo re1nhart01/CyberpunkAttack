@@ -10,6 +10,7 @@ import (
 	inlineErrors "github.com/cyberpunkattack/api/errors"
 	"github.com/cyberpunkattack/api/wstore"
 	"github.com/cyberpunkattack/helpers"
+	"github.com/cyberpunkattack/pkg/dispatcher"
 	"github.com/cyberpunkattack/pkg/wstorify"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
@@ -25,12 +26,18 @@ var upgrader = websocket.Upgrader{
 	},
 }
 
+type IGatewayService interface {
+	SubscribeAllEvents() *dispatcher.Dispatcher
+	UnsubscribeAllEvents() error
+}
+
 type IGatewayRepo interface {
 }
 
 type GatewayHandler struct {
 	*base.Handler
 	IGatewayRepo
+	IGatewayService
 }
 
 func (gateway *GatewayHandler) GetName() string {
@@ -52,6 +59,7 @@ func (gateway *GatewayHandler) ServiceChannelHandler(context *gin.Context) {
 			))
 		return
 	}
+
 	user := wstorify.NewClient{
 		IntoChannel: constants.GLOBAL_CHANNEL,
 		User: &wstorify.Account{
@@ -67,16 +75,21 @@ func (gateway *GatewayHandler) ServiceChannelHandler(context *gin.Context) {
 			TTC: time.Now(),
 		},
 	}
+
+	dispatcher := gateway.SubscribeAllEvents()
+
 	wstore.Store().Global.Register <- &user
 	go wstore.ReadGlobalPump(&user, wstore.Store().Global)
 	go wstore.ListenGlobal(wstore.Store().Global)
 }
-func NewGatewayHandler(basePath string, repo IGatewayRepo) *GatewayHandler {
+
+func NewGatewayHandler(basePath string, repo IGatewayRepo, services IGatewayService) *GatewayHandler {
 	return &GatewayHandler{
 		&base.Handler{
 			Name: GATEWAY_ROUTE,
 			Path: fmt.Sprintf("/%s/%s", basePath, GATEWAY_ROUTE),
 		},
 		repo,
+		services,
 	}
 }

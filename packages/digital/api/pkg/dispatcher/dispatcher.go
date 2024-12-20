@@ -17,6 +17,12 @@ type Listener struct {
 	LastExecution *time.Time
 }
 
+type DispatcherSubscription = []struct {
+	Name  string
+	Uname string
+	Cb    ListenerCallback
+}
+
 type Dispatcher struct {
 	listeners []*Listener
 	mu        sync.Mutex
@@ -36,13 +42,9 @@ func (dispatcher *Dispatcher) AddListener(name, uname string, cb ListenerCallbac
 	dispatcher.listeners = append(dispatcher.listeners, listener)
 }
 
-func (dispatcher *Dispatcher) AddManyListener(data []struct {
-	name  string
-	uname string
-	cb    ListenerCallback
-}) {
+func (dispatcher *Dispatcher) AddManyListener(data DispatcherSubscription) {
 	for _, v := range data {
-		dispatcher.AddListener(v.name, v.uname, v.cb)
+		dispatcher.AddListener(v.Name, v.Uname, v.Cb)
 	}
 }
 

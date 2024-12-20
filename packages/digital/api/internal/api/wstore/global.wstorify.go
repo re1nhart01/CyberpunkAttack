@@ -12,7 +12,6 @@ func ListenGlobal(path *wstorify.StorePath[wstorify.MapStorage]) error {
 	for {
 		select {
 		case client := <-path.Register:
-			fmt.Println("client", client)
 			withMutex(func() error {
 				return store.Create(client.User.Name, client.User)
 			}, path.Mutex)
@@ -44,6 +43,6 @@ func ReadGlobalPump(client *wstorify.NewClient, path *wstorify.StorePath[wstorif
 		path.Broadcast <- message
 
 		msg, err := wstorify.NewEchoSocketMessage(message, client.User.Name, client.IntoChannel)
-		client.User.WsConnection.WriteMessage(websocket.TextMessage, msg) // echo message back
+		client.User.WsConnection.WriteMessage(websocket.TextMessage, msg)
 	}
 }
