@@ -52,8 +52,14 @@ func (app *Application) RunBackgroundRoutineTasks() {
 	wg.Add(4)
 	go database.CreatePostgresTables(ctx, &wg, &models.Models{})
 	go database.CreatePostgresFunctions(ctx, &wg)
-	go wstore.ListenGlobal(wstore.AllocatedWsStore.Group.Global)
-	go wstore.ListenSessions(wstore.AllocatedWsStore.Group.Sessions)
+	go func() {
+		err := wstore.ListenGlobal(wstore.AllocatedWsStore.Group.Global)
+		fmt.Println("err", err)
+	}()
+	go func() {
+		wstore.ListenSessions(wstore.AllocatedWsStore.Group.Sessions)
+	}()
+
 }
 
 func (app *Application) TryTest() {

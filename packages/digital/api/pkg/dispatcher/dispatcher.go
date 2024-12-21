@@ -28,7 +28,7 @@ type Dispatcher struct {
 	mu        sync.Mutex
 }
 
-func (dispatcher *Dispatcher) AddListener(name, uname string, cb ListenerCallback) {
+func (dispatcher *Dispatcher) AddListener(name, uname string, cb func(args map[string]any) (time.Time, error)) {
 	dispatcher.mu.Lock()
 	defer dispatcher.mu.Unlock()
 	listener := &Listener{
@@ -75,10 +75,10 @@ func (dispatcher *Dispatcher) Execute(uname string, args map[string]any, logfunc
 	}
 }
 
-func (dispatcher *Dispatcher) ExecuteGroup(name string, args map[string]any, logfunc func(err error)) {
+func (dispatcher *Dispatcher) ExecuteGroup(group string, name string, args map[string]any, logfunc func(err error)) {
 	listeners := dispatcher.listeners
 	for _, v := range listeners {
-		if name == v.Name {
+		if group == v.Name && name == v.UniqueName {
 			now, err := v.CallbackFunc(args)
 			v.LastExecution = &now
 			logfunc(err)
@@ -89,5 +89,21 @@ func (dispatcher *Dispatcher) ExecuteGroup(name string, args map[string]any, log
 func New() *Dispatcher {
 	return &Dispatcher{
 		listeners: []*Listener{},
+	}
+}
+
+func NewSubscription(group, name string, cb ListenerCallback) struct {
+	Name  string
+	Uname string
+	Cb    ListenerCallback
+} {
+	return struct {
+		Name  string
+		Uname string
+		Cb    ListenerCallback
+	}{
+		Name:  group,
+		Uname: name,
+		Cb:    cb,
 	}
 }

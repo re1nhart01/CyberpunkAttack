@@ -23,12 +23,20 @@ type Factory[T any] struct {
 	Mutex  *sync.Mutex
 }
 
+type IDispatch interface {
+	Execute(uname string, args map[string]any, logfunc func(err error))
+	ExecuteGroup(name string, args map[string]any, logfunc func(err error))
+	AddListener(name, uname string, cb func(args map[string]any) (time.Time, error))
+}
+
 type StorePath[T any] struct {
 	Store      *T
 	Broadcast  chan []byte
 	Register   chan *NewClient
 	Unregister chan map[string]string
 	Mutex      *sync.Mutex
+	Dispatch   any
+	Injections any
 }
 
 type Config struct{}
@@ -62,13 +70,15 @@ func New[T any](store Store[T], config *Config) *Factory[T] {
 	}
 }
 
-func NewStorePath[T any](store *T) *StorePath[T] {
+func NewStorePath[T any](store *T, dispatcher any, injections any) *StorePath[T] {
 	return &StorePath[T]{
 		Store:      store,
+		Dispatch:   dispatcher,
 		Broadcast:  make(chan []byte),
 		Register:   make(chan *NewClient),
 		Unregister: make(chan map[string]string),
 		Mutex:      &sync.Mutex{},
+		Injections: injections,
 	}
 }
 

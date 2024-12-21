@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"sync"
 
+	"github.com/cyberpunkattack/api/service"
+	"github.com/cyberpunkattack/pkg/dispatcher"
 	"github.com/cyberpunkattack/pkg/wstorify"
 )
 
@@ -13,14 +15,30 @@ type UserCredentials struct {
 	Username string `json:"username"`
 }
 
+type SocketEvent struct {
+	Event   string         `json:"event"`
+	From    string         `json:"from"`
+	Channel string         `json:"channel"`
+	Data    map[string]any `json:"data"`
+}
+
 type WStorifyStore struct {
 	Global   *wstorify.StorePath[wstorify.MapStorage]
 	Sessions *wstorify.StorePath[wstorify.MapListStorage]
 }
 
 var AllocatedWsStore = wstorify.New(&WStorifyStore{
-	Global:   wstorify.NewStorePath(wstorify.NewMapStore()),
-	Sessions: wstorify.NewStorePath(wstorify.NewMapListStorage()),
+	Global: wstorify.NewStorePath(
+		wstorify.NewMapStore(),
+		dispatcher.New(),
+		service.InjectableServices{
+			Gateway: service.NewGatewayService(),
+		}),
+	Sessions: wstorify.NewStorePath(
+		wstorify.NewMapListStorage(),
+		dispatcher.New(),
+		service.InjectableServices{},
+	),
 }, &wstorify.Config{})
 
 func Store() *WStorifyStore {

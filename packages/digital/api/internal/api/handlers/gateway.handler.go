@@ -27,7 +27,7 @@ var upgrader = websocket.Upgrader{
 }
 
 type IGatewayService interface {
-	SubscribeAllEvents() *dispatcher.Dispatcher
+	GetAllSubscriptions() dispatcher.DispatcherSubscription
 	UnsubscribeAllEvents() error
 }
 
@@ -63,7 +63,7 @@ func (gateway *GatewayHandler) ServiceChannelHandler(context *gin.Context) {
 	user := wstorify.NewClient{
 		IntoChannel: constants.GLOBAL_CHANNEL,
 		User: &wstorify.Account{
-			Name:         "test",
+			Name:         time.Now().String(),
 			FromGroup:    constants.GLOBAL_CHANNEL,
 			Role:         "ADMIN",
 			WsConnection: ws,
@@ -76,11 +76,10 @@ func (gateway *GatewayHandler) ServiceChannelHandler(context *gin.Context) {
 		},
 	}
 
-	dispatcher := gateway.SubscribeAllEvents()
+	fmt.Println("zxczxczxc")
 
 	wstore.Store().Global.Register <- &user
 	go wstore.ReadGlobalPump(&user, wstore.Store().Global)
-	go wstore.ListenGlobal(wstore.Store().Global)
 }
 
 func NewGatewayHandler(basePath string, repo IGatewayRepo, services IGatewayService) *GatewayHandler {

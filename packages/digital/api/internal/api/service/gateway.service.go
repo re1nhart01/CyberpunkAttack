@@ -1,12 +1,12 @@
 package service
 
 import (
-	"context"
+	"fmt"
 	"time"
 
 	"github.com/cyberpunkattack/api/base"
-	models "github.com/cyberpunkattack/database/model"
-	"github.com/cyberpunkattack/database/mongo"
+	// models "github.com/cyberpunkattack/database/model"
+	// "github.com/cyberpunkattack/database/mongo"
 	"github.com/cyberpunkattack/pkg/dispatcher"
 )
 
@@ -14,21 +14,17 @@ type GatewayService struct {
 	*base.Service
 }
 
-func (gateway *GatewayService) SubscribeAllEvents() *dispatcher.Dispatcher {
-	dp := *dispatcher.New()
-	ctx := context.Background()
-	dp.AddManyListener(dispatcher.DispatcherSubscription{
-		{
-			Name:  "testing",
-			Uname: "app.ws.global",
-			Cb: func(args map[string]any) (time.Time, error) {
-				mongo.DB().Get().Collection("sessions").InsertOne(ctx, &models.SessionIM{})
-				return time.Now(), nil
-			},
-		},
-	})
+func (gateway *GatewayService) GetAllSubscriptions() dispatcher.DispatcherSubscription {
+	// ctx := context.Background()
+	list := dispatcher.DispatcherSubscription{
+		dispatcher.NewSubscription("app.ws.global", "testing", func(args map[string]any) (time.Time, error) {
+			// mongo.DB().Get().Collection("sessions").InsertOne(ctx, &models.SessionIM{})
+			fmt.Println("event", args)
+			return time.Now(), nil
+		}),
+	}
 
-	return &dp
+	return list
 }
 
 func (gateway *GatewayService) UnsubscribeAllEvents() error {
