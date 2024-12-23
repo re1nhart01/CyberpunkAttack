@@ -9,54 +9,56 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-type Store[T any] *T
+type (
+	Store[T any] *T
 
-type NewClient struct {
-	IntoChannel string
-	User        *Account
-	Payload     map[string]any
-}
+	NewClient struct {
+		IntoChannel string
+		User        *Account
+		Payload     map[string]any
+	}
 
-type Factory[T any] struct {
-	Config *Config
-	Group  Store[T]
-	Mutex  *sync.Mutex
-}
+	Factory[T any] struct {
+		Config *Config
+		Group  Store[T]
+		Mutex  *sync.Mutex
+	}
 
-type IDispatch interface {
-	Execute(uname string, args map[string]any, logfunc func(err error))
-	ExecuteGroup(name string, args map[string]any, logfunc func(err error))
-	AddListener(name, uname string, cb func(args map[string]any) (time.Time, error))
-}
+	IDispatch interface {
+		Execute(uname string, args map[string]any, logfunc func(err error))
+		ExecuteGroup(name string, args map[string]any, logfunc func(err error))
+		AddListener(name, uname string, cb func(args map[string]any) (time.Time, error))
+	}
 
-type StorePath[T any] struct {
-	Store      *T
-	Broadcast  chan []byte
-	Register   chan *NewClient
-	Unregister chan map[string]string
-	Mutex      *sync.Mutex
-	Dispatch   any
-	Injections any
-}
+	StorePath[T any] struct {
+		Store      *T
+		Broadcast  chan []byte
+		Register   chan *NewClient
+		Unregister chan map[string]string
+		Mutex      *sync.Mutex
+		Dispatch   any
+		Injections any
+	}
 
-type Config struct{}
+	Config struct{}
 
-type Account struct {
-	Name            string
-	FromGroup       string
-	Role            string
-	WsConnection    *websocket.Conn
-	UserCredentials any
-	TTC             time.Time
-}
+	Account struct {
+		Name            string
+		FromGroup       string
+		Role            string
+		WsConnection    *websocket.Conn
+		UserCredentials any
+		TTC             time.Time
+	}
 
-type SocketMessage struct {
-	IsSended   bool           `json:"is_sended"`
-	ReceivedAt time.Time      `json:"received_at"`
-	FromUser   string         `json:"from_user"`
-	Group      string         `json:"group"`
-	Data       map[string]any `json:"payload"`
-}
+	SocketMessage struct {
+		IsSended   bool           `json:"is_sended"`
+		ReceivedAt time.Time      `json:"received_at"`
+		FromUser   string         `json:"from_user"`
+		Group      string         `json:"group"`
+		Data       map[string]any `json:"payload"`
+	}
+)
 
 func isMap(v interface{}) bool {
 	return reflect.TypeOf(v).Kind() == reflect.Map

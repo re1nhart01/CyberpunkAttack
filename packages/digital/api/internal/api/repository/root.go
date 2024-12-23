@@ -1,14 +1,14 @@
 package repository
 
 type InjectableStructs struct {
-	Auth *AuthRepository
-	User *UserRepository
-	App *AppRepository
+	Auth  *AuthRepository
+	User  *UserRepository
+	App   *AppRepository
+	Clans *ClansRepository
 }
 
-
 type UserCredentials struct {
-	AccessToken string `json:"accessToken"`
+	AccessToken  string `json:"accessToken"`
 	RefreshToken string `json:"refreshToken"`
-	ExpireIn int64 `json:"expireIn"`
+	ExpireIn     int64  `json:"expireIn"`
 }

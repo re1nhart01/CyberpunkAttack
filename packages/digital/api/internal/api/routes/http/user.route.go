@@ -7,15 +7,12 @@ import (
 
 type IUserHandler interface {
 	base.IHandler
+	GetMyUserProfileHandler(context *gin.Context)
 }
-
-
 
 func UserRoute(engine *gin.Engine, handler IUserHandler) {
 	group := engine.Group(handler.GetPath())
 	{
-		group.GET("/", func(context *gin.Context) {
-
-		})
+		group.GET(USER_ME_ROUTE, handler.GetMyUserProfileHandler)
 	}
 }

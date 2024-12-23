@@ -15,7 +15,7 @@ type ISessionRepo interface {
 
 type SessionHandler struct {
 	*base.Handler
-	IUserRepo
+	ISessionRepo
 }
 
 func (session *SessionHandler) GetName() string {
@@ -37,7 +37,7 @@ func (user *SessionHandler) GetMyUserProfileHandler(context *gin.Context) {
 	})
 }
 
-func NewSessionHandler(basePath string, repo IUserRepo) *SessionHandler {
+func NewSessionHandler(basePath string, repo ISessionRepo) *SessionHandler {
 	return &SessionHandler{
 		&base.Handler{
 			Name: SESSION_ROUTE,

@@ -2,8 +2,23 @@ package models
 
 import (
 	"fmt"
+
 	"github.com/cyberpunkattack/database"
 )
+
+type PublicUserModel struct {
+	*BaseModel
+	UserHash string `json:"user_hash"` //not null unique
+	Username string `json:"username"`
+	Email string `json:"email"`
+	Phone string `json:"phone"`
+	Role string `json:"role"`
+	FullName string `json:"full_name"`
+	Country string `json:"country"`
+	City string `json:"city"`
+	ClanTag *int `json:"clan_tag"`
+	Description string `json:"description"`
+}
 
 type UserModel struct {
 	*BaseModel

@@ -9,8 +9,20 @@ import (
 
 type UserRepository struct {
 	*base.Repository
+	injections struct {
+		Clans *ClansRepository
+	}
 }
 
+func (user *UserRepository) GetUserByField(field string, value any) (*models.UserModel, error) {
+	userModel := models.UserModel{}
+	payload := postgres.DB().Get().Table(database.USERS_TABLE).Where("? = ?", field, value).First(&userModel)
+	if payload.Error != nil {
+		return &userModel, payload.Error
+	}
+
+	return &userModel, nil
+}
 
 func (user *UserRepository) GetUserByEmail(email string) (*models.UserModel, bool) {
 	userModel := models.UserModel{}
@@ -22,11 +34,41 @@ func (user *UserRepository) GetUserByEmail(email string) (*models.UserModel, boo
 	return &userModel, true
 }
 
+func (user *UserRepository) GetFriendsListByUserHash(userHash string) ([]models.FriendModel, error) {
+	result := []models.FriendModel{}
 
-func NewUserRepository() *UserRepository {
+	//TODO: implement select list
+
+	return result, nil
+}
+
+func (user *UserRepository) GetUserByUserHash(userHash string, is_me bool) (*models.CompoundUserProfile, error) {
+	result := &models.CompoundUserProfile{}
+
+	if userData, err := user.GetUserByField("user_hash", userHash); err != nil {
+		return result, err
+	} else {
+		result.UserData = models.ToObfuscateUser(*userData)
+	}
+
+	if clanData, isExists, _ := user.injections.Clans.GetClanByUserHash(userHash); isExists {
+		result.CurrentClan = *clanData
+	}
+
+	if friendList, err := user.GetFriendsListByUserHash(userHash); err != nil {
+		return result, err
+	} else {
+		result.Friends = friendList
+	}
+
+	return result, nil
+}
+
+func NewUserRepository(injections InjectableStructs) *UserRepository {
 	return &UserRepository{
-	Repository:	&base.Repository{
+		Repository: &base.Repository{
 			TableName: "users",
 		},
+		injections: struct{ Clans *ClansRepository }{Clans: injections.Clans},
 	}
 }
