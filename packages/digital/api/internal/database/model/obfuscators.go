@@ -1,7 +1,7 @@
 package models
 
-func ToObfuscateUser(user UserModel) PublicUserModel {
-	return PublicUserModel{
+func ToObfuscateUser(user UserModel) *PublicUserModel {
+	return &PublicUserModel{
 		BaseModel:   user.BaseModel,
 		UserHash:    user.UserHash,
 		Username:    user.Username,

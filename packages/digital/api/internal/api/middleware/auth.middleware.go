@@ -1,17 +1,18 @@
 package middleware
 
 import (
+	"strings"
+
 	"github.com/cyberpunkattack/environment"
 	"github.com/cyberpunkattack/helpers"
 	"github.com/cyberpunkattack/jwt"
 	"github.com/gin-gonic/gin"
-	"strings"
 )
 
 func AuthMiddlewareHandler(context *gin.Context) {
 	authHeader := context.Request.Header.Get("Authorization")
 
-	if len(authHeader) < 20 {
+	if authHeader == "" {
 		context.AbortWithStatusJSON(helpers.GiveUnauthorized())
 		return
 	}
@@ -19,6 +20,11 @@ func AuthMiddlewareHandler(context *gin.Context) {
 	word := environment.GEnv().GetVariable("SPECIAL_WORD_BEARER")
 	separator := environment.GEnv().GetVariable("SPECIAL_SYMBOL_BEARER")
 	parsedHeader := strings.Split(authHeader, separator)
+
+	if len(parsedHeader) < 2 {
+		context.AbortWithStatusJSON(helpers.GiveUnauthorized())
+		return
+	}
 	if parsedHeader[0] != word {
 		context.AbortWithStatusJSON(helpers.GiveUnauthorized())
 		return
@@ -30,6 +36,7 @@ func AuthMiddlewareHandler(context *gin.Context) {
 		context.AbortWithStatusJSON(helpers.GiveUnauthorized())
 		return
 	}
+
 	body := map[string]any{
 		"userHash":       claims.UserHash,
 		"id":             claims.Id,

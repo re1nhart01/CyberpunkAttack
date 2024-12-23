@@ -72,23 +72,23 @@ func (app *Application) TryTest() {
 	})
 }
 
-func (app *Application) BindSocket() {
-	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
-	routes.RegisterWsGatewayRouter(app.Instance, app.ApiPath)
-}
-
 func (app *Application) BindHandlers() {
-	routes.RegisterHttpAppRouter(app.Instance, app.ApiPath)
 	app.Instance.Use(middleware.ClientBaseSecurity)
 	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
-	routes.RegisterHttpAuthRouter(app.Instance, app.ApiPath)
-	routes.RegisterHttpUserRouter(app.Instance, app.ApiPath)
-	routes.RegisterHttpSessionRouter(app.Instance, app.ApiPath)
+	{
+		routes.RegisterWsGatewayRouter(app.Instance, app.ApiPath)
+		routes.RegisterHttpAppRouter(app.Instance, app.ApiPath)
+		routes.RegisterHttpAuthRouter(app.Instance, app.ApiPath)
+	}
+	app.Instance.Use(middleware.AuthMiddlewareHandler)
+	{
+		routes.RegisterHttpUserRouter(app.Instance, app.ApiPath)
+		routes.RegisterHttpSessionRouter(app.Instance, app.ApiPath)
+	}
 }
 
 func (app *Application) Run(port string) error {
 
-	app.BindSocket()
 	app.BindHandlers()
 
 	httpServer := &http.Server{

@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"fmt"
+
 	"github.com/cyberpunkattack/api/base"
 	"github.com/cyberpunkattack/database"
 	models "github.com/cyberpunkattack/database/model"
@@ -16,7 +18,7 @@ type UserRepository struct {
 
 func (user *UserRepository) GetUserByField(field string, value any) (*models.UserModel, error) {
 	userModel := models.UserModel{}
-	payload := postgres.DB().Get().Table(database.USERS_TABLE).Where("? = ?", field, value).First(&userModel)
+	payload := postgres.DB().Get().Table(database.USERS_TABLE).Where(fmt.Sprintf("%s = ?", field), value).First(&userModel)
 	if payload.Error != nil {
 		return &userModel, payload.Error
 	}
@@ -42,7 +44,7 @@ func (user *UserRepository) GetFriendsListByUserHash(userHash string) ([]models.
 	return result, nil
 }
 
-func (user *UserRepository) GetUserByUserHash(userHash string, is_me bool) (*models.CompoundUserProfile, error) {
+func (user *UserRepository) GetUserByUserHash(userHash string, isMe bool) (*models.CompoundUserProfile, error) {
 	result := &models.CompoundUserProfile{}
 
 	if userData, err := user.GetUserByField("user_hash", userHash); err != nil {
@@ -52,7 +54,7 @@ func (user *UserRepository) GetUserByUserHash(userHash string, is_me bool) (*mod
 	}
 
 	if clanData, isExists, _ := user.injections.Clans.GetClanByUserHash(userHash); isExists {
-		result.CurrentClan = *clanData
+		result.CurrentClan = clanData
 	}
 
 	if friendList, err := user.GetFriendsListByUserHash(userHash); err != nil {

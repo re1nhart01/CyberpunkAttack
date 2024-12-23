@@ -45,8 +45,9 @@ func (user *UserHandler) GetUserHandler(context *gin.Context) {
 }
 
 func (user *UserHandler) GetMyUserProfileHandler(context *gin.Context) {
-	creds, ok := user.UnwrapUserData(context)
-	if !ok {
+	creds, _ := user.UnwrapUserData(context)
+
+	if creds["userHash"] == nil {
 		context.JSON(helpers.GiveUnauthorized())
 		return
 	}

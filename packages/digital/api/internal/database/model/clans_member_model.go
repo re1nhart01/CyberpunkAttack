@@ -21,7 +21,7 @@ func (m *Models) NewClansMemberTable() string {
 	member_hash VARCHAR(500) REFERENCES users(user_hash) ON DELETE CASCADE,
 	is_owner BOOL NOT NULL DEFAULT false
 );
-	CREATE UNIQUE INDEX unique_owner_per_clan
+	CREATE UNIQUE INDEX IF NOT EXISTS unique_owner_per_clan
 	ON clan_member (clan_id)
 	WHERE (is_owner = true);
 `, database.CLANS_MEMBER_TABLE, NewBaseModels())

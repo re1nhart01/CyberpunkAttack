@@ -1,9 +1,9 @@
 package models
 
 type CompoundUserProfile struct {
-	UserData    PublicUserModel        `json:"user_data"`
-	CurrentClan CompouldClanWithMember `json:"current_clan"`
-	Friends     []FriendModel          `json:"friends"`
+	UserData    *PublicUserModel        `json:"user_data"`
+	CurrentClan *CompouldClanWithMember `json:"current_clan"`
+	Friends     []FriendModel           `json:"friends"`
 }
 
 type CompouldClanWithMember struct {

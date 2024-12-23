@@ -2,9 +2,10 @@ package middleware
 
 import (
 	"encoding/json"
+	"io"
+
 	"github.com/cyberpunkattack/helpers"
 	"github.com/gin-gonic/gin"
-	"io"
 )
 
 const (

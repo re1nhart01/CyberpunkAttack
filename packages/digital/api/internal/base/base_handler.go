@@ -2,6 +2,7 @@ package base
 
 import (
 	"fmt"
+
 	"github.com/cyberpunkattack/dto"
 	"github.com/cyberpunkattack/helpers"
 	"github.com/gin-gonic/gin"
@@ -73,7 +74,7 @@ func (h *Handler) Unwrap(context *gin.Context, dtoMap *dto.FieldsMapping) (map[s
 func (h *Handler) UnwrapUserData(context *gin.Context) (map[string]any, bool) {
 	bodyData, ok := context.Get("userData")
 	if !ok {
-		context.JSON(helpers.GiveBadRequest(BodyNotExists, nil))
+		context.AbortWithStatusJSON(helpers.GiveBadRequest(BodyNotExists, nil))
 		return map[string]any{}, true
 	}
 
