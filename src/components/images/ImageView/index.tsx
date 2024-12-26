@@ -1,12 +1,12 @@
-import React, { FC, PropsWithChildren } from 'react';
-import { ICONS } from '../../../constant/icons';
+import { ICONS } from "../../../constant/icons";
+import React, { FC, PropsWithChildren } from "react";
 
 interface imageViewProps extends PropsWithChildren {
-    source?: keyof typeof ICONS;
-    className?: string;
-    alterText?: string;
-    append?: this['children'] extends undefined ? undefined : 'left' | 'right';
-    loading?: 'lazy' | 'eager';
+  source?: keyof typeof ICONS;
+  className?: string;
+  alterText?: string;
+  append?: this["children"] extends undefined ? undefined : "left" | "right";
+  loading?: "lazy" | "eager";
 }
 
 const ImageView: FC<imageViewProps> = ({
@@ -19,9 +19,14 @@ const ImageView: FC<imageViewProps> = ({
 }) => {
   return (
     <>
-      { append === 'left' ? children : null }
-      <img loading={loading} className={className} src={ICONS[source as keyof typeof ICONS]} alt={alterText} />
-      { append === 'right' ? children : null }
+      {append === "left" ? children : null}
+      <img
+        loading={loading}
+        className={className}
+        src={ICONS[source as keyof typeof ICONS]}
+        alt={alterText}
+      />
+      {append === "right" ? children : null}
     </>
   );
 };

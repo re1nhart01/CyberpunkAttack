@@ -16,18 +16,23 @@ globals:
   JSX: true
   NodeJS: true
 rules:
-  sort-imports: [2, {
-    "ignoreCase": false,
-    "ignoreDeclarationSort": true,
-    "ignoreMemberSort": false,
-    "memberSyntaxSortOrder": ["single", "multiple", "all", "none"],
-    "allowSeparatedGroups": true,
-  }]
+  sort-imports:
+    [
+      2,
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["single", "multiple", "all", "none"],
+        "allowSeparatedGroups": true,
+      },
+    ]
+  quotes: ["error", "double"]
   no-unused-vars: off
   no-empty-pattern: off
   react/no-unescaped-entities: off
-  no-multiple-empty-lines: [2, { 'max': 1, 'maxBOF': 0, 'maxEOF': 0 }]
-  prefer-const: [2, { 'destructuring': all }]
+  no-multiple-empty-lines: [2, { "max": 1, "maxBOF": 0, "maxEOF": 0 }]
+  prefer-const: [2, { "destructuring": all }]
   no-path-concat: 2
   global-require: off
   no-class-assign: 0
@@ -45,11 +50,11 @@ rules:
   react/jsx-boolean-value: 2
   react/jsx-fragments: 0
   react/require-extension: 0
-  no-shadow:  off
+  no-shadow: off
   no-useless-constructor: off
   react/jsx-props-no-spreading: off
   react/forbid-prop-types: 0
-  react/jsx-first-prop-new-line: [2, 'multiline']
+  react/jsx-first-prop-new-line: [2, "multiline"]
   import/no-unresolved: 0
   import/extensions: 0
   no-nested-ternary: off
@@ -74,16 +79,16 @@ rules:
     [
       2,
       {
-        'components': ['Label'],
-        'required': { 'some': ['nesting', 'id'] },
-        'allowChildren': false,
+        "components": ["Label"],
+        "required": { "some": ["nesting", "id"] },
+        "allowChildren": false,
       },
     ]
   jsx-a11y/mouse-events-have-key-events: 2
   jsx-a11y/role-has-required-aria-props: 2
   jsx-a11y/role-supports-aria-props: 2
   jsx-a11y/anchor-is-valid:
-    [2, { 'components': ['Link'], 'specialLink': ['to'] }]
+    [2, { "components": ["Link"], "specialLink": ["to"] }]
   jsx-a11y/media-has-caption: 0
   max-len: [0, { "code": 120 }]
   object-curly-newline: 0
@@ -99,11 +104,11 @@ rules:
   react/no-unused-prop-types: off
   react/button-has-type: off
   experimentalDecorators: 0
-  react-hooks/rules-of-hooks: 'error'
+  react-hooks/rules-of-hooks: "error"
   react-hooks/exhaustive-deps: off
   no-void: off
   no-unused-expressions: [2, { allowTernary: true, allowShortCircuit: true }]
 overrides:
-  - files: '*.test.js'
+  - files: "*.test.js"
     rules:
       react/jsx-props-no-spreading: 0

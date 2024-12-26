@@ -1,23 +1,31 @@
-import * as React from 'react';
-import type { HeadFC, PageProps } from 'gatsby';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useRef, useState } from 'react';
-import { Html } from '../components/html';
-import MainLayout from '../components/layout/MainLayout';
-import HeaderView from '../components/layout/Header';
-import FooterView from '../components/layout/Footer';
-import { HomePageStyles } from '../styles/pageStyles/home.styles';
-import { OverrideTypographyComponents, TypographyComponents } from '../components/typography/typography.styles';
-import { ImageViewComponents } from '../components/images/ImageView/styles';
-import { ButtonComponents } from '../components/buttons/Button/components';
-import { service } from '../services';
-import { InputStyles } from '../components/inputs/styles';
-import { SocialButton } from '../components/buttons/SocialButton';
-import { svgs } from '../constant/svgs';
-import { contactUs, discordLink, instagramLink, kickstarter } from '../constant/constants';
-import { FullScreenMenuComponent } from '../components/layout/FullScreenMenu/FullScreenMenu';
-import { UserForm } from '../components/forms/UserForm/UserForm';
-import Preloader from '../components/layout/Preloader/Preloader';
+import { ButtonComponents } from "../components/buttons/Button/components";
+import { SocialButton } from "../components/buttons/SocialButton";
+import { UserForm } from "../components/forms/UserForm/UserForm";
+import { Html } from "../components/html";
+import { ImageViewComponents } from "../components/images/ImageView/styles";
+import { InputStyles } from "../components/inputs/styles";
+import FooterView from "../components/layout/Footer";
+import { FullScreenMenuComponent } from "../components/layout/FullScreenMenu/FullScreenMenu";
+import HeaderView from "../components/layout/Header";
+import MainLayout from "../components/layout/MainLayout";
+import Preloader from "../components/layout/Preloader/Preloader";
+import {
+  OverrideTypographyComponents,
+  TypographyComponents,
+} from "../components/typography/typography.styles";
+import {
+  contactUs,
+  discordLink,
+  instagramLink,
+  kickstarter,
+} from "../constant/constants";
+import { svgs } from "../constant/svgs";
+import { service } from "../services";
+import { HomePageStyles } from "../styles/pageStyles/home.styles";
+import type { HeadFC, PageProps } from "gatsby";
+import * as React from "react";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const {
   FBlockWrapper,
@@ -48,34 +56,40 @@ const {
 
 const HomePage: React.FC<PageProps> = () => {
   const { t } = useTranslation();
-  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false;
+  const isMobile =
+    typeof window !== "undefined" ? window.innerWidth < 1024 : false;
   const subscribeRef = useRef<HTMLDivElement | null>(null);
   const aboutGameRef = useRef<HTMLDivElement>(null);
   const trailerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const onScrollIntoView = (arg: 'subscribe' | 'about' | 'trailer' | 'start') => {
+  const onScrollIntoView = (
+    arg: "subscribe" | "about" | "trailer" | "start"
+  ) => {
     switch (arg) {
-      case 'start':
+      case "start":
         window.scroll({
           top: 0,
           left: 0,
-          behavior: 'smooth',
+          behavior: "smooth",
         });
         break;
-      case 'subscribe':
+      case "subscribe":
         subscribeRef.current?.scrollIntoView({
-          behavior: 'smooth', block: 'center',
+          behavior: "smooth",
+          block: "center",
         });
         break;
-      case 'about':
+      case "about":
         aboutGameRef.current?.scrollIntoView({
-          behavior: 'smooth', block: 'nearest',
+          behavior: "smooth",
+          block: "nearest",
         });
         break;
-      case 'trailer':
+      case "trailer":
         trailerRef.current?.scrollIntoView({
-          behavior: 'smooth', block: 'center',
+          behavior: "smooth",
+          block: "center",
         });
         break;
       default:
@@ -83,7 +97,7 @@ const HomePage: React.FC<PageProps> = () => {
   };
 
   const goTo = (url: string) => {
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   };
 
   useEffect(() => {
@@ -92,8 +106,18 @@ const HomePage: React.FC<PageProps> = () => {
 
   return (
     <MainLayout>
-      <HeaderView setIsOpen={setIsOpen} isOpen={isOpen} onScrollIntoView={onScrollIntoView} />
-      {isMobile && <FullScreenMenuComponent setIsOpen={setIsOpen} onScrollIntoView={onScrollIntoView} isOpen={isOpen} />}
+      <HeaderView
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+        onScrollIntoView={onScrollIntoView}
+      />
+      {isMobile && (
+        <FullScreenMenuComponent
+          setIsOpen={setIsOpen}
+          onScrollIntoView={onScrollIntoView}
+          isOpen={isOpen}
+        />
+      )}
       <Preloader />
       <PageContainer>
         <FBlockWrapper>
@@ -101,19 +125,15 @@ const HomePage: React.FC<PageProps> = () => {
           <KickstarterContainer>
             <div id="kickstarter-block">
               <Text24Zekton400To32 color="white">
-                {t('cyberpunk')}
+                {t("cyberpunk")}
               </Text24Zekton400To32>
               <Text16Zekton400NoColor color="main">
-                {t('available')}
+                {t("available")}
               </Text16Zekton400NoColor>
             </div>
-            <div style={{ boxSizing: 'border-box' }}>
-              <SocialButton
-                goTo={() => goTo(kickstarter)}
-              >
-                <Text24Zekton700>
-                  {t('getNow')}
-                </Text24Zekton700>
+            <div style={{ boxSizing: "border-box" }}>
+              <SocialButton goTo={() => goTo(kickstarter)}>
+                <Text24Zekton700>{t("getNow")}</Text24Zekton700>
               </SocialButton>
             </div>
           </KickstarterContainer>
@@ -123,34 +143,31 @@ const HomePage: React.FC<PageProps> = () => {
         <PageSection ref={aboutGameRef}>
           <PageSectionInner>
             <Text56Bangers400 color="rgbaw09">
-              {t('diveInto')}
-              {' '}
-              <Text56Bangers400 color="main">{t('cyberFuture')}</Text56Bangers400>
+              {t("diveInto")}{" "}
+              <Text56Bangers400 color="main">
+                {t("cyberFuture")}
+              </Text56Bangers400>
             </Text56Bangers400>
             <SeparatorBlue />
             <Spacer height={34} />
-            <Text18Zekton400 color="rgbaw09">
-              {t('firstText')}
-            </Text18Zekton400>
+            <Text18Zekton400 color="rgbaw09">{t("firstText")}</Text18Zekton400>
             <Spacer height={34} />
             <Text18Zekton400 color="main">
-              {t('gameMechanics')}
-              {' '}
+              {t("gameMechanics")}{" "}
               <Text18Zekton400 color="rgbaw09">
-                {t('gameMechanicsText')}
+                {t("gameMechanicsText")}
               </Text18Zekton400>
             </Text18Zekton400>
             <Spacer height={34} />
             <VersusIllustration loading="lazy" />
             <Spacer height={34} />
             <Text56Bangers400 color="rgbaw09">
-              {t('about')}
-              {' '}
-              <Text56Bangers400 color="main">{t('lore')}</Text56Bangers400>
+              {t("about")}{" "}
+              <Text56Bangers400 color="main">{t("lore")}</Text56Bangers400>
             </Text56Bangers400>
             <Spacer height={34} />
             <Text18Zekton400 color="rgbaw09">
-              {t('aboutLoreText')}
+              {t("aboutLoreText")}
             </Text18Zekton400>
             <Spacer height={67} />
             <CyberpunkText />
@@ -158,9 +175,8 @@ const HomePage: React.FC<PageProps> = () => {
             <CyberbodyImage loading="lazy" />
             <Spacer height={34} />
             <Text26Space400>
-              {t('join')}
-              {' '}
-              <Text26Space400 color="white">{t('toTheBattle')}</Text26Space400>
+              {t("join")}{" "}
+              <Text26Space400 color="white">{t("toTheBattle")}</Text26Space400>
             </Text26Space400>
             <Spacer height={16} />
             <CardsList loading="lazy" />
@@ -172,7 +188,7 @@ const HomePage: React.FC<PageProps> = () => {
             <iframe
               loading="lazy"
               width="100%"
-              style={{ width: '100%', aspectRatio: 16 / 9 }}
+              style={{ width: "100%", aspectRatio: 16 / 9 }}
               src="https://www.youtube.com/embed/W4agXL6aVow?si=mMg4nYVPUDCl3PHR"
               title="YouTube video player"
               frameBorder="0"
@@ -187,29 +203,17 @@ const HomePage: React.FC<PageProps> = () => {
           <PageSectionInner>
             <Separator />
             <SocialButtonInner>
-              <SocialButton
-                goTo={() => goTo(instagramLink)}
-              >
+              <SocialButton goTo={() => goTo(instagramLink)}>
                 <svgs.instagram />
-                <Text24Zekton700>
-                  {t('socials.instagram')}
-                </Text24Zekton700>
+                <Text24Zekton700>{t("socials.instagram")}</Text24Zekton700>
               </SocialButton>
-              <SocialButton
-                goTo={() => goTo(discordLink)}
-              >
+              <SocialButton goTo={() => goTo(discordLink)}>
                 <svgs.discord />
-                <Text24Zekton700>
-                  {t('socials.discord')}
-                </Text24Zekton700>
+                <Text24Zekton700>{t("socials.discord")}</Text24Zekton700>
               </SocialButton>
-              <SocialButton
-                goTo={() => goTo(contactUs)}
-              >
+              <SocialButton goTo={() => goTo(contactUs)}>
                 <svgs.contactUs />
-                <Text24Zekton700>
-                  {t('socials.contactUs')}
-                </Text24Zekton700>
+                <Text24Zekton700>{t("socials.contactUs")}</Text24Zekton700>
               </SocialButton>
             </SocialButtonInner>
           </PageSectionInner>
@@ -223,4 +227,9 @@ const HomePage: React.FC<PageProps> = () => {
 
 export default HomePage;
 
-export const Head: HeadFC = () => <Html meta="This board game is a cooperative team techno fight game where 2 - 8 players can clash in a battle. Join the battle as a resistance hacker or take control of the corporation as its boss." title="Cyberpunk Attack - cooperative team techno fight game" />;
+export const Head: HeadFC = () => (
+  <Html
+    meta="This board game is a cooperative team techno fight game where 2 - 8 players can clash in a battle. Join the battle as a resistance hacker or take control of the corporation as its boss."
+    title="Cyberpunk Attack - cooperative team techno fight game"
+  />
+);
