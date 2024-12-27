@@ -142,13 +142,21 @@ export const ImageViewComponents = {
     source: "formImage1",
     alterText: "FORM_IMAGE_1",
   })`
-    padding-top: 60px;
+    object-fit: contain;
+    max-width: 25vw;
+    @media only screen and (max-width: 1024px) {
+      display: none;
+    }
   `,
   FormImage2: styled(ImageView).attrs({
     source: "formImage2",
     alterText: "FORM_IMAGE_2",
   })`
-    padding-top: 60px;
+    object-fit: contain;
+    max-width: 25vw;
+    @media only screen and (max-width: 1024px) {
+      display: none;
+    }
   `,
   LogoRed: styled(ImageView).attrs({
     source: "logoRed",

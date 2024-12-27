@@ -11,9 +11,7 @@ import (
 
 type UserRepository struct {
 	*base.Repository
-	injections struct {
-		Clans *ClansRepository
-	}
+	injections *Injectable
 }
 
 func (user *UserRepository) GetUserByField(field string, value any) (*models.UserModel, error) {
@@ -66,11 +64,11 @@ func (user *UserRepository) GetUserByUserHash(userHash string, isMe bool) (*mode
 	return result, nil
 }
 
-func NewUserRepository(injections InjectableStructs) *UserRepository {
+func NewUserRepository(injections *Injectable) *UserRepository {
 	return &UserRepository{
 		Repository: &base.Repository{
 			TableName: "users",
 		},
-		injections: struct{ Clans *ClansRepository }{Clans: injections.Clans},
+		injections: injections,
 	}
 }

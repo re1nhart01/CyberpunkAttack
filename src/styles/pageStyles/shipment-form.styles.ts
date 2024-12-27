@@ -6,49 +6,49 @@ export const shipmentFormStyles = {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     flex: 1;
     padding-top: ${HEADER_HEIGHT + 30}px;
     padding-left: 32px;
     padding-right: 32px;
-    padding-bottom: 80px;
+    margin-bottom: 80px;
+    flex: 1;
+    height: 100%;
   `,
   FormContainer: styled.div<{ $isStretch?: boolean }>`
     padding-top: 24px;
     display: flex;
     flex-direction: column;
+
     align-items: center;
     gap: 8px;
     width: ${({ $isStretch }) => ($isStretch ? "initial" : "100%")};
-    flex-wrap: wrap;
     max-width: 650px;
 
-    & > div span {
-      align-self: start;
-      padding-left: 10px;
-    }
-
     @media only screen and (max-width: 1024px) {
-      width: ${({ $isStretch }) => ($isStretch ? "initial" : "100%")};
       flex-direction: column;
+      margin-left: auto;
+      margin-right: auto;
       & > * {
-        box-sizing: border-box;
         width: 100%;
       }
     }
   `,
+  InputListContainer: styled.div``,
   InputContainer: styled.div`
-    max-height: 53px;
     width: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 8px;
+    max-width: 650px;
+    flex-wrap: wrap;
+    flex: 1;
     & > input {
+      display: flex;
+      min-width: 120px;
     }
   `,
   TextContainer: styled.div<{ paddingTop: number }>`
-    margin-bottom: 16px;
     margin-top: ${({ paddingTop }) => paddingTop}px;
     width: 100%;
   `,

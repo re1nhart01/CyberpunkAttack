@@ -1,125 +1,126 @@
-import styled from 'styled-components';
-import Typography, { typographyProps } from './index';
+import Typography, { typographyProps } from "./index";
+import styled from "styled-components";
 
 export const TypographyComponents = {
   Text22space400: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw400',
-    fsz: 'fz22',
-    ff: 'space',
-    selector: 'span',
+    color: "white",
+    fw: "fw400",
+    fsz: "fz22",
+    ff: "space",
+    selector: "span",
   })`
-      line-height: 120%;
-      letter-spacing: 3.242px;
-    `,
+    line-height: 120%;
+    letter-spacing: 3.242px;
+  `,
   Text11aquantix400: styled(Typography).attrs<typographyProps>({
-    color: 'purple',
-    fw: 'fw400',
-    fsz: 'fz11',
-    ff: 'aquantix',
-    selector: 'span',
+    color: "purple",
+    fw: "fw400",
+    fsz: "fz11",
+    ff: "aquantix",
+    selector: "span",
   })`
-      line-height: 100%;
-      letter-spacing: 18.526px;
-    `,
+    line-height: 100%;
+    letter-spacing: 18.526px;
+  `,
   // FIRST BLOCK INDEX.TSX
   Text76orbitron700: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw700',
-    fsz: 'fz76',
-    ff: 'orbitron',
-    selector: 'span',
-    fzType: 'rem',
+    color: "white",
+    fw: "fw700",
+    fsz: "fz76",
+    ff: "orbitron",
+    selector: "span",
+    fzType: "rem",
   })`
-      text-shadow: -2px -2px 0px ${({ theme }) => theme.colors.main}, 2px 2px 0px ${({ theme }) => theme.colors.purple};
-      line-height: 100%;
-      text-transform: uppercase;
-    `,
+    text-shadow: -2px -2px 0px ${({ theme }) => theme.colors.main},
+      2px 2px 0px ${({ theme }) => theme.colors.purple};
+    line-height: 100%;
+    text-transform: uppercase;
+  `,
   Text18boxed500: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw500',
-    fsz: 'fz18',
-    ff: 'boxedRound',
-    selector: 'span',
-    fzType: 'px',
+    color: "white",
+    fw: "fw500",
+    fsz: "fz18",
+    ff: "boxedRound",
+    selector: "span",
+    fzType: "px",
   })`
-      line-height: 150%;
-      opacity: 0.8;
-    `,
+    line-height: 150%;
+    opacity: 0.8;
+  `,
   Text24boxed600: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw600',
-    fsz: 'fz24',
-    ff: 'boxedRound',
-    selector: 'span',
-    fzType: 'px',
+    color: "white",
+    fw: "fw600",
+    fsz: "fz24",
+    ff: "boxedRound",
+    selector: "span",
+    fzType: "px",
   })`
-      line-height: 100%;
-    `,
+    line-height: 100%;
+  `,
   Text16boxed500: styled(Typography).attrs<typographyProps>({
-    color: 'main',
-    fw: 'fw500',
-    fsz: 'fz16',
-    ff: 'boxedRound',
-    selector: 'span',
-    fzType: 'px',
+    color: "main",
+    fw: "fw500",
+    fsz: "fz16",
+    ff: "boxedRound",
+    selector: "span",
+    fzType: "px",
   })`
-      line-height: 110%;
-    `,
+    line-height: 110%;
+  `,
   Text16boxed600: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw600',
-    fsz: 'fz16',
-    ff: 'boxedRound',
-    selector: 'span',
-    fzType: 'px',
+    color: "white",
+    fw: "fw600",
+    fsz: "fz16",
+    ff: "boxedRound",
+    selector: "span",
+    fzType: "px",
   })``,
   Text40orbitron700: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw700',
-    fsz: 'fz40',
-    ff: 'orbitron',
-    selector: 'span',
-    fzType: 'px',
+    color: "white",
+    fw: "fw700",
+    fsz: "fz40",
+    ff: "orbitron",
+    selector: "span",
+    fzType: "px",
   })``,
   Text16boxed700: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw700',
-    fsz: 'fz16',
-    ff: 'boxedRound',
-    selector: 'span',
-    fzType: 'px',
+    color: "white",
+    fw: "fw700",
+    fsz: "fz16",
+    ff: "boxedRound",
+    selector: "span",
+    fzType: "px",
   })`
     line-height: 150%;
     opacity: 0.5;
-    `,
+  `,
   Text60orbitron700: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw700',
-    fsz: 'fz60',
-    ff: 'orbitron',
-    selector: 'span',
-    fzType: 'px',
+    color: "white",
+    fw: "fw700",
+    fsz: "fz60",
+    ff: "orbitron",
+    selector: "span",
+    fzType: "px",
   })`
-      text-shadow: -2px -1px 0px #01D1FF, 2px 1px 0px #FC2B87;
-      text-transform: uppercase;
-      line-height: 110%;
-    `,
+    text-shadow: -2px -1px 0px #01d1ff, 2px 1px 0px #fc2b87;
+    text-transform: uppercase;
+    line-height: 110%;
+  `,
   Text20boxed400: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw400',
-    fsz: 'fz20',
-    ff: 'boxedRound',
-    selector: 'span',
-    fzType: 'px',
+    color: "white",
+    fw: "fw400",
+    fsz: "fz20",
+    ff: "boxedRound",
+    selector: "span",
+    fzType: "px",
   })``,
   Text170space700: styled(Typography).attrs<typographyProps>({
-    color: 'dark',
-    fw: 'fw700',
-    fsz: 'fz170',
-    ff: 'space',
-    selector: 'span',
-    fzType: 'rem',
+    color: "dark",
+    fw: "fw700",
+    fsz: "fz170",
+    ff: "space",
+    selector: "span",
+    fzType: "rem",
   })`
     position: absolute;
     top: 0;
@@ -128,102 +129,102 @@ export const TypographyComponents = {
     opacity: 0.05;
   `,
   Text60orbitron800: styled(Typography).attrs<typographyProps>({
-    color: 'dark',
-    fw: 'fw800',
-    fsz: 'fz60',
-    ff: 'orbitron',
-    selector: 'span',
-    fzType: 'px',
+    color: "dark",
+    fw: "fw800",
+    fsz: "fz60",
+    ff: "orbitron",
+    selector: "span",
+    fzType: "px",
   })`
     line-height: 110%;
     text-transform: uppercase;
   `,
   Text24bebas400: styled(Typography).attrs<typographyProps>({
-    color: 'main',
-    fw: 'fw400',
-    fsz: 'fz24',
-    ff: 'bebas',
-    selector: 'span',
-    fzType: 'px',
+    color: "main",
+    fw: "fw400",
+    fsz: "fz24",
+    ff: "bebas",
+    selector: "span",
+    fzType: "px",
   })`
     line-height: 80%; /* 19.2px */
     text-transform: uppercase;
   `,
   Text18boxed400: styled(Typography).attrs<typographyProps>({
-    color: 'black',
-    fw: 'fw400',
-    fsz: 'fz14',
-    ff: 'boxedRound',
-    selector: 'span',
-    fzType: 'px',
+    color: "black",
+    fw: "fw400",
+    fsz: "fz14",
+    ff: "boxedRound",
+    selector: "span",
+    fzType: "px",
   })`
     font-weight: 400;
     line-height: 150%; /* 27px */
   `,
   Text16Zekton400: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw400',
-    fsz: 'fz16',
-    ff: 'zek',
-    selector: 'span',
-    fzType: 'px',
+    color: "white",
+    fw: "fw400",
+    fsz: "fz16",
+    ff: "zek",
+    selector: "span",
+    fzType: "px",
   })``,
   Text16Zekton400NoColor: styled(Typography).attrs<typographyProps>({
-    fw: 'fw400',
-    fsz: 'fz16',
-    ff: 'zek',
-    selector: 'span',
-    fzType: 'px',
+    fw: "fw400",
+    fsz: "fz16",
+    ff: "zek",
+    selector: "span",
+    fzType: "px",
   })``,
   Text18Zekton400: styled(Typography).attrs<typographyProps>({
-    fw: 'fw400',
-    fsz: 'fz18',
-    ff: 'zek',
-    selector: 'span',
-    fzType: 'px',
+    fw: "fw400",
+    fsz: "fz18",
+    ff: "zek",
+    selector: "span",
+    fzType: "px",
   })``,
   Text16Zekton700: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw700',
-    fsz: 'fz16',
-    ff: 'zek',
-    selector: 'span',
-    fzType: 'px',
+    color: "white",
+    fw: "fw700",
+    fsz: "fz16",
+    ff: "zek",
+    selector: "span",
+    fzType: "px",
   })``,
   Text14Zekton700: styled(Typography).attrs<typographyProps>({
-    fw: 'fw700',
-    fsz: 'fz16',
-    ff: 'zek',
-    selector: 'span',
-    fzType: 'px',
+    fw: "fw700",
+    fsz: "fz16",
+    ff: "zek",
+    selector: "span",
+    fzType: "px",
   })``,
   Text18Zekton700: styled(Typography).attrs<typographyProps>({
-    fw: 'fw700',
-    fsz: 'fz18',
-    ff: 'zek',
-    selector: 'span',
-    fzType: 'px',
+    fw: "fw700",
+    fsz: "fz18",
+    ff: "zek",
+    selector: "span",
+    fzType: "px",
   })``,
   Text48Orbitron700: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw700',
-    fsz: 'fz48',
-    ff: 'orbitron',
-    selector: 'div',
-    fzType: 'px',
+    color: "white",
+    fw: "fw700",
+    fsz: "fz48",
+    ff: "orbitron",
+    selector: "div",
+    fzType: "px",
   })`
-    text-shadow: #01D1FF -1px -1px 0px 0px, #FC2B87 1px 1px 0px 0px;
+    text-shadow: #01d1ff -1px -1px 0px 0px, #fc2b87 1px 1px 0px 0px;
     text-align: center;
     @media only screen and (max-width: 1024px) {
       font-size: 28px !important;
     }
   `,
   Text24Zekton400: styled(Typography).attrs<typographyProps>({
-    fw: 'fw400',
-    fsz: 'fz24',
-    ff: 'zek',
-    selector: 'div',
-    fzType: 'px',
+    fw: "fw400",
+    fsz: "fz24",
+    ff: "zek",
+    selector: "div",
+    fzType: "px",
   })`
     text-align: center;
     @media only screen and (max-width: 1024px) {
@@ -231,11 +232,11 @@ export const TypographyComponents = {
     }
   `,
   Text24Zekton400To32: styled(Typography).attrs<typographyProps>({
-    fw: 'fw400',
-    fsz: 'fz24',
-    ff: 'zek',
-    selector: 'div',
-    fzType: 'px',
+    fw: "fw400",
+    fsz: "fz24",
+    ff: "zek",
+    selector: "div",
+    fzType: "px",
   })`
     text-align: center;
     @media only screen and (max-width: 1024px) {
@@ -243,11 +244,11 @@ export const TypographyComponents = {
     }
   `,
   Text20Zekton400: styled(Typography).attrs<typographyProps>({
-    fw: 'fw400',
-    fsz: 'fz20',
-    ff: 'zek',
-    selector: 'div',
-    fzType: 'px',
+    fw: "fw400",
+    fsz: "fz20",
+    ff: "zek",
+    selector: "div",
+    fzType: "px",
   })`
     text-align: center;
     @media only screen and (max-width: 1024px) {
@@ -255,54 +256,63 @@ export const TypographyComponents = {
     }
   `,
   Text24Zekton700: styled(Typography).attrs<typographyProps>({
-    color: 'white',
-    fw: 'fw700',
-    fsz: 'fz24',
-    ff: 'zek',
-    selector: 'div',
-    fzType: 'px',
+    color: "white",
+    fw: "fw700",
+    fsz: "fz24",
+    ff: "zek",
+    selector: "div",
+    fzType: "px",
   })`
     text-align: center;
     @media only screen and (max-width: 1024px) {
       font-size: 18px !important;
     }
   `,
+  Text26Bangers400: styled(Typography).attrs<typographyProps>({
+    fw: "fw400",
+    fsz: "fz56",
+    ff: "bangers",
+    selector: "span",
+    fzType: "px",
+  })`
+    align-self: flex-start;
+  `,
   Text56Bangers400: styled(Typography).attrs<typographyProps>({
-    fw: 'fw400',
-    fsz: 'fz56',
-    ff: 'bangers',
-    selector: 'span',
-    fzType: 'px',
+    fw: "fw400",
+    fsz: "fz56",
+    ff: "bangers",
+    selector: "span",
+    fzType: "px",
   })`
     align-self: flex-start;
   `,
   Text26Space400: styled(Typography).attrs<typographyProps>({
-    fw: 'fw400',
-    fsz: 'fz26',
-    ff: 'space',
-    selector: 'span',
+    fw: "fw400",
+    fsz: "fz26",
+    ff: "space",
+    selector: "span",
   })`
-    text-shadow: 0px 0px 4.44px 0px #01E1FF;
+    text-shadow: 0px 0px 4.44px 0px #01e1ff;
     @media only screen and (max-width: 1024px) {
       font-size: 14px !important;
     }
   `,
   Text12Space400: styled(Typography).attrs<typographyProps>({
-    fw: 'fw400',
-    fsz: 'fz12',
-    ff: 'space',
-    selector: 'span',
+    fw: "fw400",
+    fsz: "fz12",
+    ff: "space",
+    selector: "span",
   })`
-    text-shadow: 0px 0px 4.44px 0px #01E1FF;
+    text-shadow: 0px 0px 4.44px 0px #01e1ff;
     @media only screen and (max-width: 1024px) {
       font-size: 14px !important;
     }
     letter-spacing: 1.63px;
   `,
   Text14Zekton400: styled(Typography).attrs<typographyProps>({
-    fw: 'fw400',
-    fsz: 'fz14',
-    ff: 'zek',
+    fw: "fw400",
+    fsz: "fz14",
+    ff: "zek",
   })`
     opacity: 0.5;
   `,
@@ -314,5 +324,18 @@ export const OverrideTypographyComponents = {
     font-weight: 700 !important;
     color: ${({ theme }) => theme.colors.black} !important;
     text-align: center;
+  `,
+  Text24Zekton400Link: styled(Typography).attrs<typographyProps>({
+    fw: "fw400",
+    fsz: "fz24",
+    ff: "zek",
+    selector: "a",
+    fzType: "px",
+  })`
+    text-align: center;
+    cursor: pointer;
+    @media only screen and (max-width: 1024px) {
+      font-size: 18px !important;
+    }
   `,
 };

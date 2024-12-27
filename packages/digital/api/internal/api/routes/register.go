@@ -15,14 +15,14 @@ func RegisterHttpAppRouter(engine *gin.Engine, basePath string) {
 }
 
 func RegisterHttpUserRouter(engine *gin.Engine, basePath string) {
-	injectable := repository.InjectableStructs{Clans: repository.NewClansRepository()}
+	injectable := &repository.Injectable{Clans: *repository.NewClansRepository()}
 
 	handler := handlers.NewUserHandler(basePath, repository.NewUserRepository(injectable))
 	http.UserRoute(engine, handler)
 }
 
 func RegisterHttpAuthRouter(engine *gin.Engine, basePath string) {
-	injectable := repository.InjectableStructs{User: repository.NewUserRepository(repository.InjectableStructs{})}
+	injectable := &repository.Injectable{User: *repository.NewUserRepository(nil)}
 
 	handler := handlers.NewAuthHandler(basePath, repository.NewAuthRepository(injectable))
 	http.AuthRoute(engine, handler)

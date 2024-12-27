@@ -1,3 +1,4 @@
+import { ButtonComponents } from "../components/buttons/Button/components";
 import { Html } from "../components/html";
 import { ImageViewComponents } from "../components/images/ImageView/styles";
 import { InputStyles } from "../components/inputs/styles";
@@ -18,53 +19,53 @@ import {
 } from "../constant/constants";
 import { svgs } from "../constant/svgs";
 import { service } from "../services";
+import {
+  IShipmentFormTemplate,
+  shipmentForm,
+} from "../services/forms/shipment.form";
+import {
+  FormadjoAsyncSubmitFn,
+  FormadjoForm,
+} from "../services/validators/FormadjoForm";
+import { formValuesType } from "../services/validators/MainFormadjo";
 import { HomePageStyles } from "../styles/pageStyles/home.styles";
 import { shipmentFormStyles } from "../styles/pageStyles/shipment-form.styles";
 import type { HeadFC, PageProps } from "gatsby";
 import * as React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const { Container, FormContainer, InputContainer, TextContainer } =
   shipmentFormStyles;
 
-const {
-  FBlockWrapper,
-  PageContainer,
-  PageSection,
-  PageSectionInner,
-  Spacer,
-  SocialButtonInner,
-  Separator,
-  KickstarterContainer,
-} = HomePageStyles;
-const {
-  Text24Zekton400To32,
-  Text16Zekton400NoColor,
-  Text24Zekton700,
-  Text56Bangers400,
-  Text18Zekton400,
-  Text26Space400,
-} = TypographyComponents;
-const {
-  HeaderIllustration,
-  SeparatorBlue,
-  VersusIllustration,
-  CyberpunkText,
-  CyberbodyImage,
-  CardsList,
-  FormImage1,
-  FormImage2,
-} = ImageViewComponents;
+const { PageContainer, Spacer, InnerWrapper } = HomePageStyles;
+const { Text26Bangers400, Text48Orbitron700, Text24Zekton400 } =
+  TypographyComponents;
+const { Text16Zekton400Black, Text24Zekton400Link } =
+  OverrideTypographyComponents;
+const { FormImage1, FormImage2, CheckImage } = ImageViewComponents;
 const { PrimaryInput } = InputStyles;
+const { ShipmentFormButton } = ButtonComponents;
+
+const workerUrl = "https://small-tooth-64b0.attackcyberpunk.workers.dev/";
 
 const HomePage: React.FC<PageProps> = () => {
   const { t } = useTranslation();
+  const params = new URLSearchParams(
+    (typeof window !== "undefined"
+      ? window
+      : { location: { search: "" } }
+    ).location.search
+  );
   const isMobile =
     typeof window !== "undefined" ? window.innerWidth < 1024 : false;
   const [isOpen, setIsOpen] = useState(false);
-
-  const [firstName, setFirstName] = useState("");
+  const isCompleted = (
+    typeof localStorage !== "undefined"
+      ? localStorage
+      : { getItem: (t: string) => {} }
+  )?.getItem("isAnswered");
+  const [isAnswered, setIsAnswered] = useState(!!isCompleted);
 
   const onScrollIntoView = (
     arg: "subscribe" | "about" | "trailer" | "start"
@@ -80,9 +81,40 @@ const HomePage: React.FC<PageProps> = () => {
     }
   };
 
+  const handleLoadEmailFromParam = (
+    func: (k: keyof IShipmentFormTemplate, v: formValuesType) => void
+  ) => {
+    const redirectValue = params.get("invite_id");
+    if (redirectValue) {
+      const email = decodeURIComponent(escape(atob(redirectValue)));
+      email &&
+        setTimeout(() => {
+          func("email", email);
+        }, 0);
+    }
+  };
+
   const goTo = (url: string) => {
     window.open(url, "_blank");
   };
+
+  const onFormSubmit: FormadjoAsyncSubmitFn<IShipmentFormTemplate> =
+    useCallback(async (values) => {
+      try {
+        const response = await fetch(workerUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "no-cors",
+          body: JSON.stringify(values),
+        });
+        setIsAnswered(true);
+        localStorage.setItem("isAnswered", "true");
+      } catch (e) {
+        console.log(e);
+      }
+    }, []);
 
   useEffect(() => {
     service.initServices().then();
@@ -106,119 +138,206 @@ const HomePage: React.FC<PageProps> = () => {
       <PageContainer>
         <Container>
           <FormImage1 />
-          <FormContainer>
-            <TextContainer paddingTop={0}>
-              <Text26Space400 color="white">Full Name</Text26Space400>
-            </TextContainer>
-            <InputContainer>
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-            </InputContainer>
-            <TextContainer paddingTop={32}>
-              <Text26Space400 color="white">
-                Email & Phone Number
-              </Text26Space400>
-            </TextContainer>
-            <InputContainer>
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-            </InputContainer>
-            <TextContainer paddingTop={32}>
-              <Text26Space400 color="white">Shipping Address</Text26Space400>
-            </TextContainer>
-            <InputContainer>
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-              <PrimaryInput
-                type="text"
-                maxLength={150}
-                value={firstName}
-                onChange={({ target }) => setFirstName(target.value)}
-                placeholder="Name"
-              />
-            </InputContainer>
-          </FormContainer>
+          {isAnswered ? (
+            <FormContainer>
+              <CheckImage />
+              <InnerWrapper>
+                <Text48Orbitron700>
+                  {t("shipmentForm.header")}
+                </Text48Orbitron700>
+              </InnerWrapper>
+              <InnerWrapper>
+                <Text24Zekton400 color="white">
+                  {t("shipmentForm.subheader")}
+                  <Text24Zekton400Link href="mailto:attackcyberpunk@gmail.com">
+                    attackcyberpunk@gmail.com
+                  </Text24Zekton400Link>
+                </Text24Zekton400>
+              </InnerWrapper>
+            </FormContainer>
+          ) : (
+            <FormadjoForm<IShipmentFormTemplate>
+              removeErrorOnChange
+              onLoad={handleLoadEmailFromParam}
+              onFinishSubmit={onFormSubmit}
+              initialProps={{
+                firstName: "",
+                patronymic: "",
+                lastName: "",
+                email: "",
+                phoneNumber: "",
+                country: "",
+                state: "",
+                city: "",
+                street: "",
+                house: "",
+                apartment: "",
+                zipcode: "",
+              }}
+              form={shipmentForm}
+            >
+              {({ onSubmit, errorsList, updateFormState, values }) => {
+                return (
+                  <FormContainer>
+                    <TextContainer paddingTop={0}>
+                      <Text26Bangers400 color="white">
+                        Email & Phone Number
+                      </Text26Bangers400>
+                    </TextContainer>
+                    <InputContainer>
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.email}
+                        onChange={({ target }) =>
+                          updateFormState("email", target.value)
+                        }
+                        placeholder="Email"
+                        $isError={errorsList.email.isError}
+                      />
+                    </InputContainer>
+                    <InputContainer>
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.phoneNumber}
+                        onChange={({ target }) =>
+                          updateFormState("phoneNumber", target.value)
+                        }
+                        placeholder="Phone number"
+                        $isError={errorsList.phoneNumber.isError}
+                      />
+                    </InputContainer>
+                    <TextContainer paddingTop={32}>
+                      <Text26Bangers400 color="white">
+                        Full Name
+                      </Text26Bangers400>
+                    </TextContainer>
+                    <InputContainer>
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.firstName}
+                        onChange={({ target }) =>
+                          updateFormState("firstName", target.value)
+                        }
+                        placeholder="First Name"
+                        $isError={errorsList.firstName.isError}
+                      />
+                    </InputContainer>
+                    <InputContainer>
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.patronymic}
+                        onChange={({ target }) =>
+                          updateFormState("patronymic", target.value)
+                        }
+                        placeholder="Patronymic"
+                        $isError={errorsList.patronymic.isError}
+                      />
+                    </InputContainer>
+                    <InputContainer>
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.lastName}
+                        onChange={({ target }) =>
+                          updateFormState("lastName", target.value)
+                        }
+                        placeholder="Last Name"
+                        $isError={errorsList.lastName.isError}
+                      />
+                    </InputContainer>
+                    <TextContainer paddingTop={32}>
+                      <Text26Bangers400 color="white">
+                        Shipping Address
+                      </Text26Bangers400>
+                    </TextContainer>
+                    <InputContainer>
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.country}
+                        onChange={({ target }) =>
+                          updateFormState("country", target.value)
+                        }
+                        placeholder="Country"
+                        $isError={errorsList.country.isError}
+                      />
+                    </InputContainer>
+                    <InputContainer>
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.state}
+                        onChange={({ target }) =>
+                          updateFormState("state", target.value)
+                        }
+                        placeholder="State/Region"
+                        $isError={errorsList.state.isError}
+                      />
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.city}
+                        onChange={({ target }) =>
+                          updateFormState("city", target.value)
+                        }
+                        placeholder="City"
+                        $isError={errorsList.city.isError}
+                      />
+                    </InputContainer>
+                    <InputContainer>
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.street}
+                        onChange={({ target }) =>
+                          updateFormState("street", target.value)
+                        }
+                        placeholder="Street"
+                        $isError={errorsList.street.isError}
+                      />
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.house}
+                        onChange={({ target }) =>
+                          updateFormState("house", target.value)
+                        }
+                        placeholder="House"
+                        $isError={errorsList.house.isError}
+                      />
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.apartment}
+                        onChange={({ target }) =>
+                          updateFormState("apartment", target.value)
+                        }
+                        placeholder="Apartment"
+                        $isError={errorsList.apartment.isError}
+                      />
+                      <PrimaryInput
+                        type="text"
+                        maxLength={150}
+                        value={values.zipcode}
+                        onChange={({ target }) =>
+                          updateFormState("zipcode", target.value)
+                        }
+                        placeholder="Zip Code"
+                        $isError={errorsList.zipcode.isError}
+                      />
+                    </InputContainer>
+                    <ShipmentFormButton onPress={onSubmit}>
+                      <Text16Zekton400Black>{t("submit")}</Text16Zekton400Black>
+                    </ShipmentFormButton>
+                  </FormContainer>
+                );
+              }}
+            </FormadjoForm>
+          )}
           <FormImage2 />
         </Container>
         <Spacer height={100} />

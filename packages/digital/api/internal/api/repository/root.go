@@ -1,10 +1,10 @@
 package repository
 
-type InjectableStructs struct {
-	Auth  *AuthRepository
-	User  *UserRepository
-	App   *AppRepository
-	Clans *ClansRepository
+type Injectable struct {
+	Auth  AuthRepository
+	User  UserRepository
+	App   AppRepository
+	Clans ClansRepository
 }
 
 type UserCredentials struct {

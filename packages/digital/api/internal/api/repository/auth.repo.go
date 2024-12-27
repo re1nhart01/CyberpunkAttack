@@ -4,6 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strings"
+	"time"
+
 	"github.com/cyberpunkattack/api/base"
 	"github.com/cyberpunkattack/api/constants"
 	inlineErrors "github.com/cyberpunkattack/api/errors"
@@ -15,25 +18,23 @@ import (
 	"github.com/cyberpunkattack/environment"
 	"github.com/cyberpunkattack/internal/external/sendpulse"
 	"github.com/cyberpunkattack/jwt"
-	"strings"
-	"time"
 )
+
+type AuthInjections interface {
+}
 
 type AuthRepository struct {
 	*base.Repository
-	injections struct {
-		User *UserRepository
-	}
+	injections *Injectable
 }
 
 type InitialUser struct {
 	Username string
-	Email string
-	Phone string
+	Email    string
+	Phone    string
 	FullName string
 	Password string
 }
-
 
 func (repo *AuthRepository) CreateInitialUser(data InitialUser) error {
 	serverKey := environment.GEnv().GetVariable("SERVER_KEY")
@@ -41,15 +42,15 @@ func (repo *AuthRepository) CreateInitialUser(data InitialUser) error {
 	hashedPassword := crypto.HashPassword(data.Password)
 
 	newUserData := &models.UserModel{
-		UserHash:    userHash,
-		Username:    data.Username,
-		Email:       data.Email,
-		Phone:       data.Phone,
-		Role:        database.ROLES_USER,
-		FullName:    data.FullName,
-		Temporary:   true,
-		Active:      false,
-		Password:    hashedPassword,
+		UserHash:  userHash,
+		Username:  data.Username,
+		Email:     data.Email,
+		Phone:     data.Phone,
+		Role:      database.ROLES_USER,
+		FullName:  data.FullName,
+		Temporary: true,
+		Active:    false,
+		Password:  hashedPassword,
 	}
 
 	if payload := postgres.DB().Get().Table(database.USERS_TABLE).Create(&newUserData); payload.Error != nil {
@@ -62,7 +63,7 @@ func (repo *AuthRepository) CreateInitialUser(data InitialUser) error {
 func (repo *AuthRepository) SendEmailToRedis(email, name string) error {
 	ctx := context.Background()
 	inviteHash := crypto.GetSha1(environment.GEnv().Get("SERVER_KEY"), time.Now().String())
-	status := redis.Db().Get().Set(ctx, fmt.Sprintf("%s:%s", constants.REDIS_INVITES_TABLE, email), inviteHash, time.Hour * 24)
+	status := redis.Db().Get().Set(ctx, fmt.Sprintf("%s:%s", constants.REDIS_INVITES_TABLE, email), inviteHash, time.Hour*24)
 
 	fmt.Println("inviteHash: ", inviteHash)
 
@@ -70,7 +71,7 @@ func (repo *AuthRepository) SendEmailToRedis(email, name string) error {
 		return status.Err()
 	}
 
-	go func () error {
+	go func() error {
 		sp := sendpulse.New()
 
 		user := sp.CreateUser(email, name)
@@ -86,7 +87,7 @@ func (repo *AuthRepository) SendEmailToRedis(email, name string) error {
 
 func (repo *AuthRepository) ValidateEmail(email, code string) (bool, error) {
 	ctx := context.Background()
-	rdb :=  redis.
+	rdb := redis.
 		Db().
 		Get()
 	key := fmt.Sprintf("%s:%s", constants.REDIS_INVITES_TABLE, email)
@@ -120,7 +121,6 @@ func (repo *AuthRepository) ValidateEmail(email, code string) (bool, error) {
 	return true, nil
 }
 
-
 func (repo *AuthRepository) LogInUser(email, password string) error {
 
 	user, ok := repo.injections.User.GetUserByEmail(email)
@@ -137,7 +137,6 @@ func (repo *AuthRepository) LogInUser(email, password string) error {
 
 	return nil
 }
-
 
 func (repo *AuthRepository) GenerateUserTokens(email string) (*UserCredentials, error) {
 	user, ok := repo.injections.User.GetUserByEmail(email)
@@ -183,17 +182,14 @@ func (repo *AuthRepository) ValidateToken(refreshToken, grantType string) (*jwt.
 		return nil, errors.New("refresh token has invalid signature")
 	}
 
-
 	return claims, nil
 }
 
-
-
-func NewAuthRepository(injectable InjectableStructs) *AuthRepository {
+func NewAuthRepository(injectable *Injectable) *AuthRepository {
 	return &AuthRepository{
-		Repository:	&base.Repository{
+		Repository: &base.Repository{
 			TableName: "users",
-			},
-			injections: struct{ User *UserRepository }{User: injectable.User },
+		},
+		injections: injectable,
 	}
 }
