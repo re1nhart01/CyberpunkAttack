@@ -2,9 +2,12 @@ package base
 
 import (
 	"fmt"
+	"strings"
 
+	inlineErrors "github.com/cyberpunkattack/api/errors"
 	"github.com/cyberpunkattack/dto"
 	"github.com/cyberpunkattack/helpers"
+	"github.com/cyberpunkattack/jwt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -79,6 +82,23 @@ func (h *Handler) UnwrapUserData(context *gin.Context) (map[string]any, bool) {
 	}
 
 	return bodyData.(map[string]any), false
+}
+
+func (h *Handler) UnwrapQueryClaims(context *gin.Context, key string) *jwt.UserClaim {
+	accessToken := context.Query(key)
+	fmt.Println(accessToken)
+	claims, err := jwt.VerifyToken(strings.TrimSpace(accessToken))
+	fmt.Println(claims)
+	if err != nil {
+		context.JSON(
+			helpers.GiveBadRequestCoded(
+				inlineErrors.ERROR_CODE_9,
+				"invalid token",
+				nil,
+			))
+		return &jwt.UserClaim{}
+	}
+	return claims
 }
 
 func (h *Handler) Knox(context *gin.Context, val []string) (map[string]any, bool) {

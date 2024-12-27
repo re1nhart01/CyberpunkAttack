@@ -15,14 +15,14 @@ func RegisterHttpAppRouter(engine *gin.Engine, basePath string) {
 }
 
 func RegisterHttpUserRouter(engine *gin.Engine, basePath string) {
-	injectable := &repository.Injectable{Clans: *repository.NewClansRepository()}
+	injectable := &repository.UserInjections{Clans: *repository.NewClansRepository()}
 
 	handler := handlers.NewUserHandler(basePath, repository.NewUserRepository(injectable))
 	http.UserRoute(engine, handler)
 }
 
 func RegisterHttpAuthRouter(engine *gin.Engine, basePath string) {
-	injectable := &repository.Injectable{User: *repository.NewUserRepository(nil)}
+	injectable := &repository.AuthInjections{User: repository.NewUserRepository(nil)}
 
 	handler := handlers.NewAuthHandler(basePath, repository.NewAuthRepository(injectable))
 	http.AuthRoute(engine, handler)
@@ -36,6 +36,13 @@ func RegisterHttpSessionRouter(engine *gin.Engine, basePath string) {
 }
 
 func RegisterWsGatewayRouter(engine *gin.Engine, basePath string) {
-	handler := handlers.NewGatewayHandler(basePath, repository.NewServiceRepository(), service.NewGatewayService())
+	args := handlers.GatewayHandlerArgs{
+		BasePath: basePath,
+		Repo:     repository.NewServiceRepository(nil),
+		UserRepo: repository.NewUserRepository(&repository.UserInjections{Clans: *repository.NewClansRepository()}),
+		Services: service.NewGatewayService(),
+	}
+
+	handler := handlers.NewGatewayHandler(args)
 	ws.GatewayWsRoute(engine, handler)
 }

@@ -11,7 +11,11 @@ import (
 
 type UserRepository struct {
 	*base.Repository
-	injections *Injectable
+	injections *UserInjections
+}
+
+type UserInjections struct {
+	Clans ClansRepository
 }
 
 func (user *UserRepository) GetUserByField(field string, value any) (*models.UserModel, error) {
@@ -64,7 +68,7 @@ func (user *UserRepository) GetUserByUserHash(userHash string, isMe bool) (*mode
 	return result, nil
 }
 
-func NewUserRepository(injections *Injectable) *UserRepository {
+func NewUserRepository(injections *UserInjections) *UserRepository {
 	return &UserRepository{
 		Repository: &base.Repository{
 			TableName: "users",

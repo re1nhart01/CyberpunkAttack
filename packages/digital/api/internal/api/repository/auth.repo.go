@@ -20,12 +20,13 @@ import (
 	"github.com/cyberpunkattack/jwt"
 )
 
-type AuthInjections interface {
-}
-
 type AuthRepository struct {
 	*base.Repository
-	injections *Injectable
+	injections *AuthInjections
+}
+
+type AuthInjections struct {
+	User *UserRepository
 }
 
 type InitialUser struct {
@@ -185,7 +186,7 @@ func (repo *AuthRepository) ValidateToken(refreshToken, grantType string) (*jwt.
 	return claims, nil
 }
 
-func NewAuthRepository(injectable *Injectable) *AuthRepository {
+func NewAuthRepository(injectable *AuthInjections) *AuthRepository {
 	return &AuthRepository{
 		Repository: &base.Repository{
 			TableName: "users",

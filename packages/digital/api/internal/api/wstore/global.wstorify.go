@@ -56,6 +56,7 @@ func ReadGlobalPump(client *wstorify.NewClient, path *wstorify.StorePath[wstorif
 			fmt.Println("ReadGlobalPump error", err)
 			break
 		}
+		fmt.Println(message)
 		path.Broadcast <- message
 
 		msg, err := wstorify.NewEchoSocketMessage(message, client.User.Name, client.IntoChannel)

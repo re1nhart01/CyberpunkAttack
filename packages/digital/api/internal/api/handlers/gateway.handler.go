@@ -9,6 +9,7 @@ import (
 	"github.com/cyberpunkattack/api/constants"
 	inlineErrors "github.com/cyberpunkattack/api/errors"
 	"github.com/cyberpunkattack/api/wstore"
+	models "github.com/cyberpunkattack/database/model"
 	"github.com/cyberpunkattack/helpers"
 	"github.com/cyberpunkattack/pkg/dispatcher"
 	"github.com/cyberpunkattack/pkg/wstorify"
@@ -31,13 +32,18 @@ type IGatewayService interface {
 	UnsubscribeAllEvents() error
 }
 
+type IUserRepoInject interface {
+	GetUserByField(field string, value any) (*models.UserModel, error)
+}
+
 type IGatewayRepo interface {
 }
 
 type GatewayHandler struct {
 	*base.Handler
-	IGatewayRepo
-	IGatewayService
+	gatewayRepo    IGatewayRepo
+	gatewayService IGatewayService
+	userRepo       IUserRepoInject
 }
 
 func (gateway *GatewayHandler) GetName() string {
@@ -49,7 +55,9 @@ func (gateway *GatewayHandler) GetPath() string {
 }
 
 func (gateway *GatewayHandler) ServiceChannelHandler(context *gin.Context) {
+	claims := gateway.UnwrapQueryClaims(context, "token")
 	ws, err := upgrader.Upgrade(context.Writer, context.Request, nil)
+	close := ws.CloseHandler()
 	if err != nil {
 		context.JSON(
 			helpers.GiveBadRequestCoded(
@@ -60,35 +68,47 @@ func (gateway *GatewayHandler) ServiceChannelHandler(context *gin.Context) {
 		return
 	}
 
+	userModel, err := gateway.userRepo.GetUserByField("user_hash", claims.UserHash)
+	if err != nil {
+		close(helpers.GiveBadWsRequest(websocket.CloseUnsupportedData, "userModel error"))
+		return
+	}
+
 	user := wstorify.NewClient{
 		IntoChannel: constants.GLOBAL_CHANNEL,
 		User: &wstorify.Account{
-			Name:         time.Now().String(),
+			Name:         userModel.FullName,
 			FromGroup:    constants.GLOBAL_CHANNEL,
-			Role:         "ADMIN",
+			Role:         userModel.Role,
 			WsConnection: ws,
 			UserCredentials: wstore.UserCredentials{
-				Id:       1,
-				UserHash: "zxczxcz",
-				Username: "zxczxc",
+				Id:       userModel.Id,
+				UserHash: userModel.UserHash,
+				Username: userModel.Username,
 			},
 			TTC: time.Now(),
 		},
 	}
 
-	fmt.Println("zxczxczxc")
-
 	wstore.Store().Global.Register <- &user
 	go wstore.ReadGlobalPump(&user, wstore.Store().Global)
 }
 
-func NewGatewayHandler(basePath string, repo IGatewayRepo, services IGatewayService) *GatewayHandler {
+type GatewayHandlerArgs struct {
+	BasePath string
+	Repo     IGatewayRepo
+	UserRepo IUserRepoInject
+	Services IGatewayService
+}
+
+func NewGatewayHandler(args GatewayHandlerArgs) *GatewayHandler {
 	return &GatewayHandler{
 		&base.Handler{
 			Name: GATEWAY_ROUTE,
-			Path: fmt.Sprintf("/%s/%s", basePath, GATEWAY_ROUTE),
+			Path: fmt.Sprintf("/%s/%s", args.BasePath, GATEWAY_ROUTE),
 		},
-		repo,
-		services,
+		args.Repo,
+		args.Services,
+		args.UserRepo,
 	}
 }

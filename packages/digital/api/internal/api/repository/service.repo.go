@@ -6,14 +6,17 @@ import (
 
 type ServiceRepository struct {
 	*base.Repository
+	injectable *ServiceInjectables
 }
 
+type ServiceInjectables struct {
+}
 
-
-func NewServiceRepository() *ServiceRepository {
+func NewServiceRepository(injectable *ServiceInjectables) *ServiceRepository {
 	return &ServiceRepository{
-	Repository:	&base.Repository{
+		Repository: &base.Repository{
 			TableName: "users",
 		},
+		injectable: injectable,
 	}
 }

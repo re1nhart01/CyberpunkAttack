@@ -73,10 +73,10 @@ func (app *Application) TryTest() {
 }
 
 func (app *Application) BindHandlers() {
-	app.Instance.Use(middleware.ClientBaseSecurity)
 	app.Instance.Use(middleware.BodyParserMiddlewareHandler)
+	routes.RegisterWsGatewayRouter(app.Instance, app.ApiPath)
+	app.Instance.Use(middleware.ClientBaseSecurity)
 	{
-		routes.RegisterWsGatewayRouter(app.Instance, app.ApiPath)
 		routes.RegisterHttpAppRouter(app.Instance, app.ApiPath)
 		routes.RegisterHttpAuthRouter(app.Instance, app.ApiPath)
 	}

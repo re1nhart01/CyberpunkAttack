@@ -1,8 +1,9 @@
 package helpers
 
 import (
-	"github.com/cyberpunkattack/paginator"
 	"net/http"
+
+	"github.com/cyberpunkattack/paginator"
 )
 
 func GiveUnauthorized() (int, map[string]any) {
@@ -20,12 +21,16 @@ func GiveUnprocessed(customMsg string) (int, map[string]any) {
 	}
 }
 
+func GiveBadWsRequest(code int, msg string) (int, string) {
+	return code, msg
+}
+
 func GiveBadRequestCoded(code int, customMsg string, data any) (int, map[string]any) {
 	store := map[string]any{
 		"statusCode": http.StatusBadRequest,
 		"message":    "StatusBadRequest",
 		"hint":       customMsg,
-		"errorCode": code,
+		"errorCode":  code,
 	}
 	if data != nil {
 		store["data"] = data
