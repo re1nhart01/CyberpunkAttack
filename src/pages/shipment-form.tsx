@@ -1,6 +1,7 @@
 import { ButtonComponents } from "../components/buttons/Button/components";
 import { Html } from "../components/html";
 import { ImageViewComponents } from "../components/images/ImageView/styles";
+import DragNDropInput from "../components/inputs/dragndrop-files/Drag&DropInput";
 import { InputStyles } from "../components/inputs/styles";
 import FooterView from "../components/layout/Footer";
 import { FullScreenMenuComponent } from "../components/layout/FullScreenMenu/FullScreenMenu";
@@ -47,7 +48,7 @@ const { FormImage1, FormImage2, CheckImage } = ImageViewComponents;
 const { PrimaryInput } = InputStyles;
 const { ShipmentFormButton } = ButtonComponents;
 
-const workerUrl = "https://small-tooth-64b0.attackcyberpunk.workers.dev/";
+const workerUrl = "https://small-tooth-64b0.attackcyberpunk.workers.dev";
 
 const HomePage: React.FC<PageProps> = () => {
   const { t } = useTranslation();
@@ -66,6 +67,7 @@ const HomePage: React.FC<PageProps> = () => {
       : { getItem: (t: string) => {} }
   )?.getItem("isAnswered");
   const [isAnswered, setIsAnswered] = useState(!!isCompleted);
+  const [image, setImage] = useState<File>(null);
 
   const onScrollIntoView = (
     arg: "subscribe" | "about" | "trailer" | "start"
@@ -99,15 +101,15 @@ const HomePage: React.FC<PageProps> = () => {
   };
 
   const onFormSubmit: FormadjoAsyncSubmitFn<IShipmentFormTemplate> =
-    useCallback(async (values) => {
+    useCallback(async (values: IShipmentFormTemplate) => {
       try {
-        const response = await fetch(workerUrl, {
+        const imageData = await uploadImage();
+        const response = await fetch(`${workerUrl}/notion`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          mode: "no-cors",
-          body: JSON.stringify(values),
+          body: JSON.stringify({
+            ...values,
+            avatar: imageData?.data?.url ?? "No Avatar Included",
+          }),
         });
         setIsAnswered(true);
         localStorage.setItem("isAnswered", "true");
@@ -115,6 +117,21 @@ const HomePage: React.FC<PageProps> = () => {
         console.log(e);
       }
     }, []);
+
+  const uploadImage = useCallback(async () => {
+    const formData = new FormData();
+    formData.append("image", image);
+
+    try {
+      const response = await fetch(`${workerUrl}/imgbb`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+      return result;
+    } catch (error) {}
+  }, [image]);
 
   useEffect(() => {
     service.initServices().then();
@@ -330,6 +347,7 @@ const HomePage: React.FC<PageProps> = () => {
                         $isError={errorsList.zipcode.isError}
                       />
                     </InputContainer>
+                    <DragNDropInput value={image} setValue={setImage} />
                     <ShipmentFormButton onPress={onSubmit}>
                       <Text16Zekton400Black>{t("submit")}</Text16Zekton400Black>
                     </ShipmentFormButton>
