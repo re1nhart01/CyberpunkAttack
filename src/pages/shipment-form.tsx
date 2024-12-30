@@ -1,3 +1,7 @@
+import type { HeadFC, PageProps } from "gatsby";
+import * as React from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ButtonComponents } from "../components/buttons/Button/components";
 import { Html } from "../components/html";
 import { ImageViewComponents } from "../components/images/ImageView/styles";
@@ -12,13 +16,6 @@ import {
   OverrideTypographyComponents,
   TypographyComponents,
 } from "../components/typography/typography.styles";
-import {
-  contactUs,
-  discordLink,
-  instagramLink,
-  kickstarter,
-} from "../constant/constants";
-import { svgs } from "../constant/svgs";
 import { service } from "../services";
 import {
   IShipmentFormTemplate,
@@ -31,10 +28,6 @@ import {
 import { formValuesType } from "../services/validators/MainFormadjo";
 import { HomePageStyles } from "../styles/pageStyles/home.styles";
 import { shipmentFormStyles } from "../styles/pageStyles/shipment-form.styles";
-import type { HeadFC, PageProps } from "gatsby";
-import * as React from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 const { Container, FormContainer, InputContainer, TextContainer } =
   shipmentFormStyles;
@@ -56,7 +49,7 @@ const HomePage: React.FC<PageProps> = () => {
     (typeof window !== "undefined"
       ? window
       : { location: { search: "" } }
-    ).location.search
+    ).location.search,
   );
   const isMobile =
     typeof window !== "undefined" ? window.innerWidth < 1024 : false;
@@ -70,7 +63,7 @@ const HomePage: React.FC<PageProps> = () => {
   const [image, setImage] = useState<File>(null);
 
   const onScrollIntoView = (
-    arg: "subscribe" | "about" | "trailer" | "start"
+    arg: "subscribe" | "about" | "trailer" | "start",
   ) => {
     switch (arg) {
       case "start":
@@ -84,7 +77,7 @@ const HomePage: React.FC<PageProps> = () => {
   };
 
   const handleLoadEmailFromParam = (
-    func: (k: keyof IShipmentFormTemplate, v: formValuesType) => void
+    func: (k: keyof IShipmentFormTemplate, v: formValuesType) => void,
   ) => {
     const redirectValue = params.get("invite_id");
     if (redirectValue) {
@@ -102,13 +95,19 @@ const HomePage: React.FC<PageProps> = () => {
 
   const onFormSubmit: FormadjoAsyncSubmitFn<IShipmentFormTemplate> =
     useCallback(async (values: IShipmentFormTemplate) => {
+      const formData = new FormData();
+      formData.append("image", image);
       try {
-        const imageData = await uploadImage();
-        const response = await fetch(`${workerUrl}/notion`, {
+        const responseImgDb = await fetch(`${workerUrl}/imgbb`, {
+          method: "POST",
+          body: formData,
+        });
+        const result = await responseImgDb.json();
+        await fetch(`${workerUrl}/notion`, {
           method: "POST",
           body: JSON.stringify({
             ...values,
-            avatar: imageData?.data?.url ?? "No Avatar Included",
+            avatar: result?.data?.display_url ?? "No Avatar Included",
           }),
         });
         setIsAnswered(true);
@@ -116,21 +115,10 @@ const HomePage: React.FC<PageProps> = () => {
       } catch (e) {
         console.log(e);
       }
-    }, []);
+    }, [image]);
 
-  const uploadImage = useCallback(async () => {
-    const formData = new FormData();
-    formData.append("image", image);
-
-    try {
-      const response = await fetch(`${workerUrl}/imgbb`, {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-      return result;
-    } catch (error) {}
+  useEffect(() => {
+    console.log(image);
   }, [image]);
 
   useEffect(() => {
@@ -207,8 +195,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.email}
                         onChange={({ target }) =>
-                          updateFormState("email", target.value)
-                        }
+                          updateFormState("email", target.value)}
                         placeholder="Email"
                         $isError={errorsList.email.isError}
                       />
@@ -219,8 +206,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.phoneNumber}
                         onChange={({ target }) =>
-                          updateFormState("phoneNumber", target.value)
-                        }
+                          updateFormState("phoneNumber", target.value)}
                         placeholder="Phone number"
                         $isError={errorsList.phoneNumber.isError}
                       />
@@ -236,8 +222,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.firstName}
                         onChange={({ target }) =>
-                          updateFormState("firstName", target.value)
-                        }
+                          updateFormState("firstName", target.value)}
                         placeholder="First Name"
                         $isError={errorsList.firstName.isError}
                       />
@@ -248,8 +233,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.patronymic}
                         onChange={({ target }) =>
-                          updateFormState("patronymic", target.value)
-                        }
+                          updateFormState("patronymic", target.value)}
                         placeholder="Patronymic"
                         $isError={errorsList.patronymic.isError}
                       />
@@ -260,8 +244,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.lastName}
                         onChange={({ target }) =>
-                          updateFormState("lastName", target.value)
-                        }
+                          updateFormState("lastName", target.value)}
                         placeholder="Last Name"
                         $isError={errorsList.lastName.isError}
                       />
@@ -277,8 +260,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.country}
                         onChange={({ target }) =>
-                          updateFormState("country", target.value)
-                        }
+                          updateFormState("country", target.value)}
                         placeholder="Country"
                         $isError={errorsList.country.isError}
                       />
@@ -289,8 +271,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.state}
                         onChange={({ target }) =>
-                          updateFormState("state", target.value)
-                        }
+                          updateFormState("state", target.value)}
                         placeholder="State/Region"
                         $isError={errorsList.state.isError}
                       />
@@ -299,8 +280,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.city}
                         onChange={({ target }) =>
-                          updateFormState("city", target.value)
-                        }
+                          updateFormState("city", target.value)}
                         placeholder="City"
                         $isError={errorsList.city.isError}
                       />
@@ -311,8 +291,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.street}
                         onChange={({ target }) =>
-                          updateFormState("street", target.value)
-                        }
+                          updateFormState("street", target.value)}
                         placeholder="Street"
                         $isError={errorsList.street.isError}
                       />
@@ -321,8 +300,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.house}
                         onChange={({ target }) =>
-                          updateFormState("house", target.value)
-                        }
+                          updateFormState("house", target.value)}
                         placeholder="House"
                         $isError={errorsList.house.isError}
                       />
@@ -331,8 +309,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.apartment}
                         onChange={({ target }) =>
-                          updateFormState("apartment", target.value)
-                        }
+                          updateFormState("apartment", target.value)}
                         placeholder="Apartment"
                         $isError={errorsList.apartment.isError}
                       />
@@ -341,8 +318,7 @@ const HomePage: React.FC<PageProps> = () => {
                         maxLength={150}
                         value={values.zipcode}
                         onChange={({ target }) =>
-                          updateFormState("zipcode", target.value)
-                        }
+                          updateFormState("zipcode", target.value)}
                         placeholder="Zip Code"
                         $isError={errorsList.zipcode.isError}
                       />

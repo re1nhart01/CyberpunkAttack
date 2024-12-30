@@ -1,6 +1,6 @@
-import { TypographyComponents } from "../../typography/typography.styles";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { TypographyComponents } from "../../typography/typography.styles";
 
 const OuterContainer = styled.div`
   margin-top: 30px;
@@ -146,6 +146,7 @@ const DragNDropInput: React.FC<FileUploaderProps> = ({ value, setValue }) => {
   };
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.files);
     const file = event.target.files?.[0] || null;
     validateAndSetFile(file);
   };
