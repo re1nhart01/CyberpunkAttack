@@ -2,9 +2,7 @@ import { FormadjoField } from "../validators/Formadjo";
 import { FormadjoFormer } from "../validators/FormadjoFormer";
 
 export interface IShipmentFormTemplate {
-  firstName: string;
-  patronymic: string;
-  lastName: string;
+  fullName: string;
   email: string;
   phoneNumber: string;
   country: string;
@@ -17,34 +15,32 @@ export interface IShipmentFormTemplate {
 }
 
 export const shipmentForm = new FormadjoFormer<IShipmentFormTemplate>({
-  firstName: new FormadjoField("firstName", "string")
-    .setIsRequired(true)
-    .setMinLength(2)
-    .setMaxLength(50),
-  patronymic: new FormadjoField("patronymic", "string")
-    .setIsRequired(false)
-    .setMaxLength(50),
-  lastName: new FormadjoField("lastName", "string")
+  fullName: new FormadjoField("fullName", "string")
     .setIsRequired(true)
     .setMinLength(2)
     .setMaxLength(50),
   email: new FormadjoField("email", "string")
     .setIsRequired(true)
+    .setMinLength(6)
     .setRegexpValidation(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
   phoneNumber: new FormadjoField("phoneNumber", "string")
     .setIsRequired(true)
     .setRegexpValidation(/^\+?[0-9]{7,15}$/),
   country: new FormadjoField("country", "string")
     .setIsRequired(true)
+    .setMinLength(3)
     .setMaxLength(50),
   state: new FormadjoField("state", "string")
     .setIsRequired(true)
+    .setMinLength(3)
     .setMaxLength(50),
   city: new FormadjoField("city", "string")
     .setIsRequired(true)
+    .setMinLength(2)
     .setMaxLength(50),
   street: new FormadjoField("street", "string")
     .setIsRequired(true)
+    .setMinLength(2)
     .setMaxLength(100),
   house: new FormadjoField("house", "string")
     .setIsRequired(true)

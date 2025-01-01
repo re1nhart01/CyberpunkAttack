@@ -2,6 +2,10 @@ package handlers
 
 import (
 	"fmt"
+	"github.com/cyberpunkattack/api/dtos"
+	inlineErrors "github.com/cyberpunkattack/api/errors"
+	"github.com/cyberpunkattack/api/repository"
+	"github.com/cyberpunkattack/helpers"
 	"net/http"
 
 	"github.com/cyberpunkattack/api/base"
@@ -11,6 +15,7 @@ import (
 const SESSION_ROUTE = "session"
 
 type ISessionRepo interface {
+	CreateNewSessionIM(args repository.NewSessionIM) (*repository.ActiveSession, error)
 }
 
 type SessionHandler struct {
@@ -26,11 +31,29 @@ func (session *SessionHandler) GetPath() string {
 	return session.Path
 }
 
-func (sesion *SessionHandler) CreateSessionHandler(context *gin.Context) {
+func (session *SessionHandler) CreateSessionHandler(context *gin.Context) {
+	body, ok := session.Unwrap(context, dtos.CreateSessionDto)
+	creds, ok := session.UnwrapUserData(context)
+	if !ok {
+		return
+	}
+
+	createArgs := repository.NewSessionIM{
+		Invites:     helpers.AnyToTypeSlice[string](body["invites"].([]any)),
+		Password:    helpers.S(body["password"]),
+		Name:        helpers.S(body["name"]),
+		CreatorHash: helpers.S(creds["userHash"]),
+	}
+
+	newSession, err := session.CreateNewSessionIM(createArgs)
+	if err != nil {
+		context.JSON(helpers.GiveBadRequestCoded(inlineErrors.ERROR_CODE_10, err.Error(), nil))
+		return
+	}
 
 }
 
-func (user *SessionHandler) GetMyUserProfileHandler(context *gin.Context) {
+func (session *SessionHandler) GetMyUserProfileHandler(context *gin.Context) {
 	context.JSON(http.StatusCreated, map[string]any{
 		"status":  http.StatusAccepted,
 		"message": "Ok!",

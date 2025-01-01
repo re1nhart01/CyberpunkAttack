@@ -6,10 +6,10 @@ export default {
     donate: "Donate",
   },
   shipmentForm: {
-    header: "Thank You for Your Submission! 🚀",
-    subheader: `Your shipment information for the Cyberpunk Attack Kickstarter Project has been successfully received. We’re excited to bring this project to life and will keep you updated on the progress. Stay tuned for more cyberpunk action coming your way soon!
-
-    If you have any questions, feel free to reach out to us here -> `,
+    header: "In progress..",
+    subheader: `Your shipment information for the Cyberpunk Attack Kickstarter Project has been successfully received. After processing the data, we will send you a shipping payment form. It may take 2-5 working days.    
+    
+    If you have any questions, feel free to reach out to us here ->`,
   },
   section1: {
     join: "JOIN THE BATTLE",

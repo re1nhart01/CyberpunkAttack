@@ -57,7 +57,8 @@ func (app *Application) RunBackgroundRoutineTasks() {
 		fmt.Println("err", err)
 	}()
 	go func() {
-		wstore.ListenSessions(wstore.AllocatedWsStore.Group.Sessions)
+		err := wstore.ListenSessions(wstore.AllocatedWsStore.Group.Sessions)
+		fmt.Println("err", err)
 	}()
 
 }

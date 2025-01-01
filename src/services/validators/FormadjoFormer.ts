@@ -1,4 +1,4 @@
-import { FormadjoField } from '@core/validators/Formadjo';
+import { FormadjoField } from "./Formadjo";
 
 export type GenericFormadjoValidator<T> = { [key in keyof T]: FormadjoField }
 

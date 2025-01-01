@@ -1,8 +1,8 @@
+import React from "react";
+import styled from "styled-components";
 import { ICONS } from "../../../constant/icons";
 import { ImageViewComponents } from "../../images/ImageView/styles";
 import ButtonView from "./index";
-import React from "react";
-import styled from "styled-components";
 
 export const ButtonComponents = {
   ShipNovaPoshtaButton: styled(ButtonView).attrs({
@@ -31,17 +31,18 @@ export const ButtonComponents = {
     background-size: 100% 100%;
     padding: 12px 43px 12px 43px;
   `,
-  ShipmentFormButton: styled(ButtonView)`
+  ShipmentFormButton: styled(ButtonView)<{ inert?: boolean; }>`
     background-color: ${({ theme }) => theme.colors.main};
     border-radius: 40px;
     transition: 0.5s;
     cursor: pointer;
+    pointer-events: ${({ inert }) => (inert ? "none" : "all")};
     width: 100%;
     &:hover {
       background-color: ${({ theme }) => theme.colors.white};
     }
 
-    & > button > span {
+    & > button > * {
       margin-left: auto;
       margin-right: auto;
     }

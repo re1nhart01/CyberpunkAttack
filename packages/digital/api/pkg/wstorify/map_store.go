@@ -35,6 +35,21 @@ func (storage MapStorage) Delete(id string) error {
 	return nil
 }
 
+func (storage MapStorage) BroadcastSpecific(listOfUsers []string, message []byte, username, group string) error {
+	echoMsg, err := NewEchoSocketMessage(message, username, group)
+	if err != nil {
+		return err
+	}
+	for _, v := range listOfUsers {
+		_, exists := storage[v]
+		if exists {
+
+		}
+	}
+
+	return nil
+}
+
 func NewMapStore() *MapStorage {
 	return &MapStorage{}
 }

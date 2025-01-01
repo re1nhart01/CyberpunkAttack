@@ -10,6 +10,7 @@ export const shipmentFormStyles = {
     padding-top: ${HEADER_HEIGHT + 30}px;
     padding-left: 32px;
     padding-right: 32px;
+    gap: 32px;
     margin-bottom: 80px;
     flex: 1;
     height: 100%;
@@ -47,9 +48,14 @@ export const shipmentFormStyles = {
       display: flex;
       min-width: 120px;
     }
+
+    & > input:disabled {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
   `,
   TextContainer: styled.div<{ paddingTop: number }>`
     margin-top: ${({ paddingTop }) => paddingTop}px;
     width: 100%;
+    
   `,
 };

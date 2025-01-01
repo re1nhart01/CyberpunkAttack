@@ -186,6 +186,18 @@ func F[T any](value any) T {
 	return value.(T)
 }
 
+func AnyToTypeSlice[T any](anySlice []any) []T {
+	stringSlice := make([]T, len(anySlice))
+	for i, v := range anySlice {
+		str, ok := v.(T)
+		if !ok {
+			return []T{}
+		}
+		stringSlice[i] = str
+	}
+	return stringSlice
+}
+
 func AnyToStringSlice(anySlice []any) []string {
 	stringSlice := make([]string, len(anySlice))
 	for i, v := range anySlice {

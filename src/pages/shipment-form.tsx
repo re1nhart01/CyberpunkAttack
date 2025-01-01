@@ -28,6 +28,7 @@ import {
 import { formValuesType } from "../services/validators/MainFormadjo";
 import { HomePageStyles } from "../styles/pageStyles/home.styles";
 import { shipmentFormStyles } from "../styles/pageStyles/shipment-form.styles";
+import SmallPreloader from "../components/layout/Preloader/SmallPreloader";
 
 const { Container, FormContainer, InputContainer, TextContainer } =
   shipmentFormStyles;
@@ -37,7 +38,7 @@ const { Text26Bangers400, Text48Orbitron700, Text24Zekton400 } =
   TypographyComponents;
 const { Text16Zekton400Black, Text24Zekton400Link } =
   OverrideTypographyComponents;
-const { FormImage1, FormImage2, CheckImage } = ImageViewComponents;
+const { FormImage1, FormImage2, AlertImage } = ImageViewComponents;
 const { PrimaryInput } = InputStyles;
 const { ShipmentFormButton } = ButtonComponents;
 
@@ -60,7 +61,8 @@ const HomePage: React.FC<PageProps> = () => {
       : { getItem: (t: string) => {} }
   )?.getItem("isAnswered");
   const [isAnswered, setIsAnswered] = useState(!!isCompleted);
-  const [image, setImage] = useState<File>(null);
+  const [image, setImage] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const onScrollIntoView = (
     arg: "subscribe" | "about" | "trailer" | "start",
@@ -95,8 +97,11 @@ const HomePage: React.FC<PageProps> = () => {
 
   const onFormSubmit: FormadjoAsyncSubmitFn<IShipmentFormTemplate> =
     useCallback(async (values: IShipmentFormTemplate) => {
+      setLoading(true);
       const formData = new FormData();
-      formData.append("image", image);
+      if (image) {
+        formData.append("image", image);
+      }
       try {
         const responseImgDb = await fetch(`${workerUrl}/imgbb`, {
           method: "POST",
@@ -114,6 +119,8 @@ const HomePage: React.FC<PageProps> = () => {
         localStorage.setItem("isAnswered", "true");
       } catch (e) {
         console.log(e);
+      } finally {
+        setLoading(false);
       }
     }, [image]);
 
@@ -145,7 +152,8 @@ const HomePage: React.FC<PageProps> = () => {
           <FormImage1 />
           {isAnswered ? (
             <FormContainer>
-              <CheckImage />
+              <Spacer height={120} />
+              <AlertImage />
               <InnerWrapper>
                 <Text48Orbitron700>
                   {t("shipmentForm.header")}
@@ -166,9 +174,7 @@ const HomePage: React.FC<PageProps> = () => {
               onLoad={handleLoadEmailFromParam}
               onFinishSubmit={onFormSubmit}
               initialProps={{
-                firstName: "",
-                patronymic: "",
-                lastName: "",
+                fullName: "",
                 email: "",
                 phoneNumber: "",
                 country: "",
@@ -186,17 +192,18 @@ const HomePage: React.FC<PageProps> = () => {
                   <FormContainer>
                     <TextContainer paddingTop={0}>
                       <Text26Bangers400 color="white">
-                        Email & Phone Number
+                        User Information
                       </Text26Bangers400>
                     </TextContainer>
                     <InputContainer>
                       <PrimaryInput
                         type="text"
+                        disabled
                         maxLength={150}
                         value={values.email}
                         onChange={({ target }) =>
                           updateFormState("email", target.value)}
-                        placeholder="Email"
+                        placeholder="Email*"
                         $isError={errorsList.email.isError}
                       />
                     </InputContainer>
@@ -207,46 +214,19 @@ const HomePage: React.FC<PageProps> = () => {
                         value={values.phoneNumber}
                         onChange={({ target }) =>
                           updateFormState("phoneNumber", target.value)}
-                        placeholder="Phone number"
+                        placeholder="Phone number*"
                         $isError={errorsList.phoneNumber.isError}
                       />
                     </InputContainer>
-                    <TextContainer paddingTop={32}>
-                      <Text26Bangers400 color="white">
-                        Full Name
-                      </Text26Bangers400>
-                    </TextContainer>
                     <InputContainer>
                       <PrimaryInput
                         type="text"
                         maxLength={150}
-                        value={values.firstName}
+                        value={values.fullName}
                         onChange={({ target }) =>
-                          updateFormState("firstName", target.value)}
-                        placeholder="First Name"
-                        $isError={errorsList.firstName.isError}
-                      />
-                    </InputContainer>
-                    <InputContainer>
-                      <PrimaryInput
-                        type="text"
-                        maxLength={150}
-                        value={values.patronymic}
-                        onChange={({ target }) =>
-                          updateFormState("patronymic", target.value)}
-                        placeholder="Patronymic"
-                        $isError={errorsList.patronymic.isError}
-                      />
-                    </InputContainer>
-                    <InputContainer>
-                      <PrimaryInput
-                        type="text"
-                        maxLength={150}
-                        value={values.lastName}
-                        onChange={({ target }) =>
-                          updateFormState("lastName", target.value)}
-                        placeholder="Last Name"
-                        $isError={errorsList.lastName.isError}
+                          updateFormState("fullName", target.value)}
+                        placeholder="Full Name*"
+                        $isError={errorsList.fullName.isError}
                       />
                     </InputContainer>
                     <TextContainer paddingTop={32}>
@@ -261,7 +241,7 @@ const HomePage: React.FC<PageProps> = () => {
                         value={values.country}
                         onChange={({ target }) =>
                           updateFormState("country", target.value)}
-                        placeholder="Country"
+                        placeholder="Country*"
                         $isError={errorsList.country.isError}
                       />
                     </InputContainer>
@@ -272,7 +252,7 @@ const HomePage: React.FC<PageProps> = () => {
                         value={values.state}
                         onChange={({ target }) =>
                           updateFormState("state", target.value)}
-                        placeholder="State/Region"
+                        placeholder="State/Region*"
                         $isError={errorsList.state.isError}
                       />
                       <PrimaryInput
@@ -281,7 +261,7 @@ const HomePage: React.FC<PageProps> = () => {
                         value={values.city}
                         onChange={({ target }) =>
                           updateFormState("city", target.value)}
-                        placeholder="City"
+                        placeholder="City*"
                         $isError={errorsList.city.isError}
                       />
                     </InputContainer>
@@ -292,7 +272,7 @@ const HomePage: React.FC<PageProps> = () => {
                         value={values.street}
                         onChange={({ target }) =>
                           updateFormState("street", target.value)}
-                        placeholder="Street"
+                        placeholder="Street*"
                         $isError={errorsList.street.isError}
                       />
                       <PrimaryInput
@@ -319,13 +299,13 @@ const HomePage: React.FC<PageProps> = () => {
                         value={values.zipcode}
                         onChange={({ target }) =>
                           updateFormState("zipcode", target.value)}
-                        placeholder="Zip Code"
+                        placeholder="Zip Code*"
                         $isError={errorsList.zipcode.isError}
                       />
                     </InputContainer>
                     <DragNDropInput value={image} setValue={setImage} />
-                    <ShipmentFormButton onPress={onSubmit}>
-                      <Text16Zekton400Black>{t("submit")}</Text16Zekton400Black>
+                    <ShipmentFormButton inert={loading} onPress={onSubmit}>
+                      {loading ? <SmallPreloader /> : <Text16Zekton400Black>{t("submit")}</Text16Zekton400Black>}
                     </ShipmentFormButton>
                   </FormContainer>
                 );

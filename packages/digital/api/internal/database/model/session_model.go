@@ -23,20 +23,27 @@ type SessionMoveModel struct {
 }
 
 type SessionPG struct {
-	ID          int         `json:"id"`
-	Name        string      `json:"name"`
-	UserIds     []string    `json:"userIds"`
-	Winner      string      `json:"winner"`
-	CreatorHash string      `json:"creator_hash"`
-	WinnerRole  ROLES_UNION `json:"winnerRole"`
-	CreateAt    time.Time   `json:"createAt"`
-	EndedAt     time.Time   `json:"endedAt"`
+	ID          int          `json:"id"`
+	Name        string       `json:"name"`
+	SessionID   string       `json:"session_id"`
+	UserIds     []string     `json:"userIds"`
+	Winner      string       `json:"winner"`
+	CreatorHash string       `json:"creator_hash"`
+	WinnerRole  ROLES_UNION  `json:"winnerRole"`
+	Flags       SessionFlags `json:"flags"`
+	CreateAt    time.Time    `json:"createAt"`
+	EndedAt     time.Time    `json:"endedAt"`
+}
+
+type SessionFlags struct {
+	Started bool `json:"started"`
 }
 
 type SessionIM struct {
 	ID          int                         `json:"id"`
 	Name        string                      `json:"name"`
 	CreatorHash string                      `json:"creator_hash"`
+	SessionID   string                      `json:"session_id"`
 	Password    string                      `json:"password"`
 	UserIds     []string                    `json:"userIds"`
 	UserMap     map[string]UserSessionModel `json:"userMap"`
@@ -47,6 +54,7 @@ type SessionIM struct {
 	IsEnded     bool                        `json:"isEnded"`
 	CreateAt    time.Time                   `json:"createAt"`
 	EndedAt     time.Time                   `json:"endedAt"`
+	Flags       SessionFlags                `json:"flags"`
 }
 
 type UserEffectsModel struct {

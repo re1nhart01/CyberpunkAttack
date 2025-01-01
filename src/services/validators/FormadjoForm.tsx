@@ -1,6 +1,6 @@
-import { Formadjo, errorPart, formValuesType } from "./MainFormadjo";
-import { FormadjoFormer } from "@core/validators/FormadjoFormer";
 import React, { useCallback, useEffect, useMemo, useReducer } from "react";
+import { FormadjoFormer } from "./FormadjoFormer";
+import { Formadjo, errorPart, formValuesType } from "./MainFormadjo";
 
 export type FormadjoSubmitFn<T extends object> = (
   values: T,
@@ -86,9 +86,9 @@ const FormadjoForm = <T extends object>({
           ...acc,
           [curr as keyof T]: { isError: false, errorMessage: "" },
         }),
-        {}
+        {},
       ),
-    [initialProps]
+    [initialProps],
   );
 
   function getCustomErrorByName(key: string, defaultValue: string = "") {
@@ -105,13 +105,13 @@ const FormadjoForm = <T extends object>({
       errorNumberFields: { ...initialErrorList },
       formValues: { ...(initialProps || {}) },
     }),
-    [initialProps, initialErrorList]
+    [initialProps, initialErrorList],
   );
 
   const [state, dispatch] = useReducer(
     formadjoReducer,
     initialReducerProps,
-    void 0
+    void 0,
   );
 
   const setErrorField = useCallback(
@@ -122,7 +122,7 @@ const FormadjoForm = <T extends object>({
       }
       dispatch({ type: "UPDATE_ERROR_VALUE", payload: { [k]: v } });
     },
-    [getCustomErrorByName]
+    [getCustomErrorByName],
   );
 
   const onSubmit = useCallback(() => {
@@ -155,19 +155,19 @@ const FormadjoForm = <T extends object>({
       }
       dispatch({ type: "UPDATE_FORM_VALUE", payload: { [k]: v } });
     },
-    [state, dispatch]
+    [state, dispatch],
   );
 
   const updateManyFormState = useCallback(
     (properties: { [key in keyof T]: formValuesType }) => {
       dispatch({ type: "UPDATE_FORM_VALUE", payload: { ...properties } });
     },
-    [state, dispatch]
+    [state, dispatch],
   );
 
   const handleIsDisabled = useMemo(() => {
     const hasErrors = Object.values(state.errorNumberFields).some(
-      (el) => el.isError
+      (el) => el.isError,
     );
     const isEmpty = Object.values(state.formValues).some((el) => {
       if (Array.isArray(el)) {
@@ -179,22 +179,23 @@ const FormadjoForm = <T extends object>({
   }, [state.errorNumberFields, state.formValues]);
 
   useEffect(() => {
-    onLoad(updateFormState);
+    onLoad?.(updateFormState);
   }, [onLoad]);
 
   return (
     <React.Fragment>
+      {null}
       {children
         ? children({
-            onSubmit,
-            errorsList: state.errorNumberFields as {
+          onSubmit,
+          errorsList: state.errorNumberFields as {
               [key in keyof T]: errorPart;
             },
-            values: state.formValues as { [key in keyof T]: T[key] },
-            updateFormState,
-            updateManyFormState,
-            isDisabled: handleIsDisabled,
-          })
+          values: state.formValues as { [key in keyof T]: T[key] },
+          updateFormState,
+          updateManyFormState,
+          isDisabled: handleIsDisabled,
+        })
         : null}
     </React.Fragment>
   );
