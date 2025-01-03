@@ -1,6 +1,7 @@
 package wstorify
 
 import (
+	"errors"
 	"fmt"
 	"slices"
 )
@@ -60,6 +61,66 @@ func (storage MapListStorage) Delete(category, id string) error {
 		return fmt.Errorf("user with ID '%s' does not exist in category '%s'", id, category)
 	}
 	return fmt.Errorf("category '%s' does not exist", category)
+}
+
+func (storage MapListStorage) BroadcastSpecific(
+	category string,
+	listOfUsers []string,
+	eventName,
+	sender,
+	channel string,
+	data map[string]any,
+	onNonExistUser func(event *EssentialEvent) error) error {
+	event := NewEssentialEvent(eventName, sender, channel, data)
+	eventBytes := IntoBytes(event)
+	if storage[category] == nil {
+		return errors.New("category is not exists")
+	}
+
+	userList := storage[category]
+	userMap := make(map[string]*Account, len(userList))
+	for _, account := range userList {
+		userMap[account.Name] = account
+	}
+
+	for _, username := range listOfUsers {
+		if user, found := userMap[username]; found {
+			if err := user.WsConnection.WriteMessage(1, eventBytes); err != nil {
+				// TODO: handle and log error
+				return err
+			}
+		} else {
+			if err := onNonExistUser(event); err != nil {
+				// TODO: handle and log error
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func (storage MapListStorage) BroadcastAll(
+	category,
+	eventName,
+	sender,
+	channel string,
+	data map[string]any) error {
+	event := NewEssentialEvent(eventName, sender, channel, data)
+	eventBytes := IntoBytes(event)
+	if storage[category] == nil {
+		return errors.New("category is not exists")
+	}
+	userList := storage[category]
+	for _, user := range userList {
+		err := user.WsConnection.WriteMessage(1, eventBytes)
+		if err != nil {
+			//TODO: handle and log error
+			return err
+		}
+	}
+
+	return nil
 }
 
 func NewMapListStorage() *MapListStorage {

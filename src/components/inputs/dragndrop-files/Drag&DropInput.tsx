@@ -154,18 +154,22 @@ const DragNDropInput: React.FC<FileUploaderProps> = ({ value, setValue }) => {
   return (
     <OuterContainer>
       <UploadContainer
-        className={dragging ? "dragover" : ""}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        onClick={() => document.getElementById("fileInput")?.click()}
+          className={dragging ? "dragover" : ""}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          onClick={() => document.getElementById("fileInput")?.click()}
       >
         <Text16Zekton400>
-          Drop your photo here or click to upload
+          Portrait photo
         </Text16Zekton400>
-        <br />
+        <br/>
+        <Text11Zekton400 color="white">
+          Drop your photo here or click to upload
+        </Text11Zekton400>
+        <br/>
         <Text11Zekton400>
-          (only if you pack include custom paint)
+          (only if your pack include custom paint)
         </Text11Zekton400>
       </UploadContainer>
 

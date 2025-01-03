@@ -15,13 +15,6 @@ type UserCredentials struct {
 	Username string `json:"username"`
 }
 
-type SocketEvent struct {
-	Event   string         `json:"event"`
-	From    string         `json:"from"`
-	Channel string         `json:"channel"`
-	Data    map[string]any `json:"data"`
-}
-
 type WStorifyStore struct {
 	Global   *wstorify.StorePath[wstorify.MapStorage]
 	Sessions *wstorify.StorePath[wstorify.MapListStorage]
@@ -29,12 +22,14 @@ type WStorifyStore struct {
 
 var AllocatedWsStore = wstorify.New(&WStorifyStore{
 	Global: wstorify.NewStorePath(
+		GLOBAL_WS_CHANNEL,
 		wstorify.NewMapStore(),
 		dispatcher.New(),
 		service.InjectableServices{
 			Gateway: service.NewGatewayService(),
 		}),
 	Sessions: wstorify.NewStorePath(
+		SESSION_WS_CHANNEL,
 		wstorify.NewMapListStorage(),
 		dispatcher.New(),
 		service.InjectableServices{},

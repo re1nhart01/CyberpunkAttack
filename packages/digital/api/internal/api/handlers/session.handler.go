@@ -5,8 +5,11 @@ import (
 	"github.com/cyberpunkattack/api/dtos"
 	inlineErrors "github.com/cyberpunkattack/api/errors"
 	"github.com/cyberpunkattack/api/repository"
+	"github.com/cyberpunkattack/api/wstore"
 	"github.com/cyberpunkattack/helpers"
+	"github.com/cyberpunkattack/pkg/wstorify"
 	"net/http"
+	"time"
 
 	"github.com/cyberpunkattack/api/base"
 	"github.com/gin-gonic/gin"
@@ -31,6 +34,14 @@ func (session *SessionHandler) GetPath() string {
 	return session.Path
 }
 
+func (session *SessionHandler) GetMatchUserHistory(context *gin.Context) {
+	context.JSON(helpers.GiveTODO())
+}
+
+func (session *SessionHandler) GetActiveMatchesHandler(context *gin.Context) {
+	context.JSON(helpers.GiveTODO())
+}
+
 func (session *SessionHandler) CreateSessionHandler(context *gin.Context) {
 	body, ok := session.Unwrap(context, dtos.CreateSessionDto)
 	creds, ok := session.UnwrapUserData(context)
@@ -49,6 +60,25 @@ func (session *SessionHandler) CreateSessionHandler(context *gin.Context) {
 	if err != nil {
 		context.JSON(helpers.GiveBadRequestCoded(inlineErrors.ERROR_CODE_10, err.Error(), nil))
 		return
+	}
+
+	sessionMap := map[string]any{
+		"session":   newSession,
+		"createdAt": time.Now().String(),
+	}
+
+	if err := wstore.Store().Global.Store.BroadcastSpecific(
+		createArgs.Invites,
+		wstore.INVITE_USER_TO_GAME,
+		createArgs.CreatorHash,
+		wstore.GLOBAL_WS_CHANNEL,
+		sessionMap,
+		func(event *wstorify.EssentialEvent) error {
+			return nil
+		}); err != nil {
+		context.JSON(helpers.GiveBadRequestCoded(inlineErrors.ERROR_CODE_11, err.Error(), nil))
+	} else {
+		context.JSON(helpers.GiveOkResponseWithData(sessionMap))
 	}
 
 }

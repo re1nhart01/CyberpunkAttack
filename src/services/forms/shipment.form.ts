@@ -50,5 +50,5 @@ export const shipmentForm = new FormadjoFormer<IShipmentFormTemplate>({
     .setMaxLength(10),
   zipcode: new FormadjoField("zipcode", "string")
     .setIsRequired(true)
-    .setRegexpValidation(/^[0-9]{5,10}$/),
+    .setRegexpValidation(/^[a-zA-Z0-9\s-]{3,10}$/),
 });

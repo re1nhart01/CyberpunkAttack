@@ -81,13 +81,17 @@ const HomePage: React.FC<PageProps> = () => {
   const handleLoadEmailFromParam = (
     func: (k: keyof IShipmentFormTemplate, v: formValuesType) => void,
   ) => {
-    const redirectValue = params.get("invite_id");
-    if (redirectValue) {
-      const email = decodeURIComponent(escape(atob(redirectValue)));
-      email &&
+    try {
+      const redirectValue = params.get("invite_id");
+      if (redirectValue) {
+        const email = decodeURIComponent(escape(atob(redirectValue)));
+        email &&
         setTimeout(() => {
           func("email", email);
         }, 0);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 

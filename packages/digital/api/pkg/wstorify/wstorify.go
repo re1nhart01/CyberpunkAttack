@@ -31,13 +31,14 @@ type (
 	}
 
 	StorePath[T any] struct {
-		Store      *T
-		Broadcast  chan []byte
-		Register   chan *NewClient
-		Unregister chan map[string]string
-		Mutex      *sync.Mutex
-		Dispatch   any
-		Injections any
+		Store       *T
+		ChannelName string
+		Broadcast   chan []byte
+		Register    chan *NewClient
+		Unregister  chan map[string]string
+		Mutex       *sync.Mutex
+		Dispatch    any
+		Injections  any
 	}
 
 	Config struct{}
@@ -58,6 +59,19 @@ type (
 		Group      string         `json:"group"`
 		Data       map[string]any `json:"payload"`
 	}
+
+	EssentialEvent struct {
+		Event   string         `json:"event"`
+		From    string         `json:"from"`
+		Channel string         `json:"channel"`
+		Data    map[string]any `json:"data"`
+	}
+
+	InferMethods[T comparable] interface {
+		Listen(path *StorePath[T]) error
+		ReadPump(client *NewClient, path *StorePath[T])
+		handleBroadcast(message []byte, dp *IDispatch)
+	}
 )
 
 func isMap(v interface{}) bool {
@@ -72,15 +86,33 @@ func New[T any](store Store[T], config *Config) *Factory[T] {
 	}
 }
 
-func NewStorePath[T any](store *T, dispatcher any, injections any) *StorePath[T] {
+func NewStorePath[T any](name string, store *T, dispatcher any, injections any) *StorePath[T] {
 	return &StorePath[T]{
-		Store:      store,
-		Dispatch:   dispatcher,
-		Broadcast:  make(chan []byte),
-		Register:   make(chan *NewClient),
-		Unregister: make(chan map[string]string),
-		Mutex:      &sync.Mutex{},
-		Injections: injections,
+		ChannelName: name,
+		Store:       store,
+		Dispatch:    dispatcher,
+		Broadcast:   make(chan []byte),
+		Register:    make(chan *NewClient),
+		Unregister:  make(chan map[string]string),
+		Mutex:       &sync.Mutex{},
+		Injections:  injections,
+	}
+}
+
+func IntoBytes[T comparable](data T) []byte {
+	bytes, err := json.Marshal(&data)
+	if err != nil {
+		return make([]byte, 0)
+	}
+	return bytes
+}
+
+func NewEssentialEvent(eventName string, userHash string, channel string, data map[string]any) *EssentialEvent {
+	return &EssentialEvent{
+		Event:   eventName,
+		From:    userHash,
+		Channel: channel,
+		Data:    data,
 	}
 }
 

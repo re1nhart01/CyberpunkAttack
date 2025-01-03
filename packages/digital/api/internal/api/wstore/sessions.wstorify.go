@@ -31,6 +31,6 @@ func ReadSessionPump() {
 
 }
 
-func WriteSessionPump() {
+func handleSessionBroadcast() {
 
 }

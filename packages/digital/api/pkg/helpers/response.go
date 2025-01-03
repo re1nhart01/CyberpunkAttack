@@ -6,6 +6,13 @@ import (
 	"github.com/cyberpunkattack/paginator"
 )
 
+func GiveTODO() (int, map[string]any) {
+	return http.StatusLocked, map[string]any{
+		"statusCode": http.StatusLocked,
+		"message":    "In Active Development",
+	}
+}
+
 func GiveUnauthorized() (int, map[string]any) {
 	return http.StatusUnauthorized, map[string]any{
 		"statusCode": http.StatusUnauthorized,

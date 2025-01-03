@@ -39,7 +39,7 @@ func ListenGlobal(path *wstorify.StorePath[wstorify.MapStorage]) error {
 			}, path.Mutex)
 			break
 		case message := <-path.Broadcast:
-			handleBroadcast(message, dp)
+			handleGlobalBroadcast(message, dp)
 			break
 		}
 	}
@@ -64,8 +64,8 @@ func ReadGlobalPump(client *wstorify.NewClient, path *wstorify.StorePath[wstorif
 	}
 }
 
-func handleBroadcast(message []byte, dp *dispatcher.Dispatcher) {
-	event := SocketEvent{}
+func handleGlobalBroadcast(message []byte, dp *dispatcher.Dispatcher) {
+	event := wstorify.EssentialEvent{}
 	fmt.Println("zxczx")
 	err := json.Unmarshal(message, &event)
 	if err != nil {
