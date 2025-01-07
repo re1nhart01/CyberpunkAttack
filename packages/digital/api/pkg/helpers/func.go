@@ -171,6 +171,20 @@ func ParseByteToMap(data []byte) map[string]any {
 	return result
 }
 
+func I(value any) int {
+	if value == nil {
+		return -1
+	}
+	return value.(int)
+}
+
+func B(value any) bool {
+	if value == nil {
+		return false
+	}
+	return value.(bool)
+}
+
 func S(value any) string {
 	if value == nil {
 		return ""
@@ -223,4 +237,12 @@ func Capitalize(s string) string {
 		return s
 	}
 	return strings.ToUpper(string(s[0])) + strings.ToLower(s[1:])
+}
+
+func Ternary[T comparable](v bool, v1 T, v2 T) T {
+	if v {
+		return v1
+	} else {
+		return v2
+	}
 }

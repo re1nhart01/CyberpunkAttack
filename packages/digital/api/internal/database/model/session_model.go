@@ -9,12 +9,21 @@ type ImplantDeckType map[string]any
 const (
 	CYBERPUNK_ROLE      ROLES_UNION = "cyberpunk"
 	CORPORATE_ROLE      ROLES_UNION = "corporate"
-	CORPORATE_BOSS_ROLE ROLES_UNION = "corporate_boss"
 	CYBERSTRAY_ROLE     ROLES_UNION = "cyberstray"
+	CYBERPUNK_BOSS_ROLE ROLES_UNION = "cyberpunk_boss"
+	CORPORATE_BOSS_ROLE ROLES_UNION = "corporate_boss"
 )
 
 const (
-	GAME_TYPE_RANKED = "ranked"
+	PENDING_STATUS = "pending"
+	ACTIVE_STATUS  = "active"
+	ENDED_STATUS   = "ended"
+	FALSE_STATUS   = "false"
+	ERROR_STATUS   = "error"
+)
+
+const (
+	//GAME_TYPE_RANKED = "ranked"
 	GAME_TYPE_RANDOM = "random"
 	GAME_TYPE_CUSTOM = "custom"
 )
@@ -23,16 +32,18 @@ type SessionMoveModel struct {
 }
 
 type SessionPG struct {
-	ID          int          `json:"id"`
-	Name        string       `json:"name"`
-	SessionID   string       `json:"session_id"`
-	UserIds     []string     `json:"userIds"`
-	Winner      string       `json:"winner"`
-	CreatorHash string       `json:"creator_hash"`
-	WinnerRole  ROLES_UNION  `json:"winnerRole"`
-	Flags       SessionFlags `json:"flags"`
-	CreateAt    time.Time    `json:"createAt"`
-	EndedAt     time.Time    `json:"endedAt"`
+	ID              int          `json:"id"`
+	Name            string       `json:"name"`
+	SessionID       string       `json:"session_id"`
+	UserIds         []string     `json:"userIds"`
+	Winner          string       `json:"winner"`
+	CreatorHash     string       `json:"creator_hash"`
+	WinnerRole      ROLES_UNION  `json:"winnerRole"`
+	WithError       string       `json:"with_error"`
+	EndedGracefully bool         `json:"ended_gracefully"`
+	Flags           SessionFlags `json:"flags"`
+	CreateAt        time.Time    `json:"createAt"`
+	EndedAt         time.Time    `json:"endedAt"`
 }
 
 type SessionFlags struct {
@@ -51,6 +62,7 @@ type SessionIM struct {
 	MovesList   []SessionMoveModel          `json:"sessionMoveList"`
 	ImplantDeck []ImplantDeckType           `json:"implantDeck"`
 	Type        string                      `json:"type"`
+	Status      string                      `json:"status"`
 	IsEnded     bool                        `json:"isEnded"`
 	CreateAt    time.Time                   `json:"createAt"`
 	EndedAt     time.Time                   `json:"endedAt"`

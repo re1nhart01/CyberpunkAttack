@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	ctx "context"
 	"fmt"
 	"github.com/cyberpunkattack/api/dtos"
 	inlineErrors "github.com/cyberpunkattack/api/errors"
@@ -18,7 +19,7 @@ import (
 const SESSION_ROUTE = "session"
 
 type ISessionRepo interface {
-	CreateNewSessionIM(args repository.NewSessionIM) (*repository.ActiveSession, error)
+	CreateNewCustomSessionIM(ctx ctx.Context, args repository.NewSessionIM) (*repository.ActiveSession, error)
 }
 
 type SessionHandler struct {
@@ -56,7 +57,7 @@ func (session *SessionHandler) CreateSessionHandler(context *gin.Context) {
 		CreatorHash: helpers.S(creds["userHash"]),
 	}
 
-	newSession, err := session.CreateNewSessionIM(createArgs)
+	newSession, err := session.CreateNewCustomSessionIM(ctx.Background(), createArgs)
 	if err != nil {
 		context.JSON(helpers.GiveBadRequestCoded(inlineErrors.ERROR_CODE_10, err.Error(), nil))
 		return
