@@ -49,9 +49,10 @@ func NewApp(withLogger bool) *Application {
 func (app *Application) RunBackgroundRoutineTasks() {
 	var wg sync.WaitGroup
 	ctx := context.Background()
-	wg.Add(4)
+	wg.Add(5)
 	go database.CreatePostgresTables(ctx, &wg, &models.Models{})
 	go database.CreatePostgresFunctions(ctx, &wg)
+	go database.CreateMongoCollections(ctx, &wg)
 	go func() {
 		err := wstore.ListenGlobal(wstore.AllocatedWsStore.Group.Global)
 		fmt.Println("err", err)

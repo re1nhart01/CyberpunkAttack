@@ -3,14 +3,16 @@ package handlers
 import (
 	ctx "context"
 	"fmt"
+	"net/http"
+	"time"
+
 	"github.com/cyberpunkattack/api/dtos"
 	inlineErrors "github.com/cyberpunkattack/api/errors"
 	"github.com/cyberpunkattack/api/repository"
 	"github.com/cyberpunkattack/api/wstore"
+	models "github.com/cyberpunkattack/database/model"
 	"github.com/cyberpunkattack/helpers"
 	"github.com/cyberpunkattack/pkg/wstorify"
-	"net/http"
-	"time"
 
 	"github.com/cyberpunkattack/api/base"
 	"github.com/gin-gonic/gin"
@@ -55,6 +57,7 @@ func (session *SessionHandler) CreateSessionHandler(context *gin.Context) {
 		Password:    helpers.S(body["password"]),
 		Name:        helpers.S(body["name"]),
 		CreatorHash: helpers.S(creds["userHash"]),
+		Type:        models.GAME_TYPE_CUSTOM,
 	}
 
 	newSession, err := session.CreateNewCustomSessionIM(ctx.Background(), createArgs)
@@ -81,7 +84,6 @@ func (session *SessionHandler) CreateSessionHandler(context *gin.Context) {
 	} else {
 		context.JSON(helpers.GiveOkResponseWithData(sessionMap))
 	}
-
 }
 
 func (session *SessionHandler) GetMyUserProfileHandler(context *gin.Context) {
