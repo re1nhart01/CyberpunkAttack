@@ -2,14 +2,15 @@ package repository
 
 import (
 	"context"
+	"strings"
+	"time"
+
 	"github.com/cyberpunkattack/api/base"
 	"github.com/cyberpunkattack/crypto"
 	models "github.com/cyberpunkattack/database/model"
 	"github.com/cyberpunkattack/database/mongo"
 	"github.com/cyberpunkattack/environment"
 	"github.com/cyberpunkattack/helpers"
-	"strings"
-	"time"
 )
 
 type SessionRepository struct {
@@ -41,6 +42,12 @@ func (session *SessionRepository) GetSessionByField(ctx context.Context, k strin
 	}
 
 	return result, nil
+}
+
+func (session *SessionRepository) AddUserToSession(ctx context.Context) (error) {
+
+
+	return nil
 }
 
 func (session *SessionRepository) CreateNewCustomSessionIM(ctx context.Context, args NewSessionIM) (*ActiveSession, error) {

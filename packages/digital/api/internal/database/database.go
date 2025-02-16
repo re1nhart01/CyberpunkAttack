@@ -4,6 +4,7 @@ import (
 	"context"
 	"sync"
 
+	"github.com/cyberpunkattack/database/mongo"
 	"github.com/cyberpunkattack/database/postgres"
 )
 
@@ -41,6 +42,14 @@ func CreatePostgresTables(ctx context.Context, wg *sync.WaitGroup, primaryModel 
 	instance.CallManualSQL(primaryModel.NewPreviousDataModel())
 	instance.CallManualSQL(primaryModel.NewFriendModel())
 	instance.CallManualSQL(primaryModel.NewClansMemberTable())
+	defer wg.Done()
+	defer ctx.Done()
+}
+
+func CreateMongoCollections(ctx context.Context, wg *sync.WaitGroup) {
+	instance := mongo.DB()
+	instance.CreateCollection(ctx, "sessions", 1024*1024, false)
+	instance.CreateCollection(ctx, "game_queue", 1024*1024, false)
 	defer wg.Done()
 	defer ctx.Done()
 }
