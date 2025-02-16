@@ -22,6 +22,8 @@ replace github.com/cyberpunkattack/paginator => ./pkg/paginator
 
 replace github.com/cyberpunkattack/fs => ./pkg/fs
 
+replace github.com/cyberpunkattack/type => ./internal/types
+
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
 	github.com/PuerkitoBio/purell v1.2.1 // indirect

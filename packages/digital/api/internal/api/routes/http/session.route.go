@@ -9,7 +9,8 @@ type ISessionHandler interface {
 	base.IHandler
 	GetMatchUserHistory(context *gin.Context)
 	GetActiveMatchesHandler(context *gin.Context)
-	CreateSessionHandler(context *gin.Context)
+	CreateCustomSessionHandler(context *gin.Context)
+	ConnectToRandomSession(context *gin.Context)
 }
 
 func SessionRoute(engine *gin.Engine, handler ISessionHandler) {
@@ -17,6 +18,7 @@ func SessionRoute(engine *gin.Engine, handler ISessionHandler) {
 	{
 		group.GET("/", handler.GetActiveMatchesHandler)
 		group.GET("/:id/history", handler.GetMatchUserHistory)
-		group.POST("/new", handler.CreateSessionHandler)
+		group.POST("/new", handler.CreateCustomSessionHandler)
+		group.POST("/random", handler.ConnectToRandomSession)
 	}
 }

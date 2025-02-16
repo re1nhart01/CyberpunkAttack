@@ -50,22 +50,32 @@ type SessionFlags struct {
 	Started bool `json:"started"`
 }
 
+type SessionCommitment struct {
+	ActionDeck  []ActionDeckType            `json:"action_deck"`
+	MovesList   []SessionMoveModel          `json:"session_move_list"`
+	ImplantDeck []ImplantDeckType           `json:"implant_deck"`
+	Flags       SessionFlags                `json:"flags"`
+	UserMap     map[string]UserSessionModel `json:"user_map"`
+	Password    string                      `json:"password"`
+}
+
 type SessionIM struct {
 	ID          int                         `json:"id"`
 	Name        string                      `json:"name"`
 	CreatorHash string                      `json:"creator_hash"`
 	SessionID   string                      `json:"session_id"`
 	Password    string                      `json:"password"`
-	UserIds     []string                    `json:"userIds"`
-	UserMap     map[string]UserSessionModel `json:"userMap"`
-	ActionDeck  []ActionDeckType            `json:"actionDeck"`
-	MovesList   []SessionMoveModel          `json:"sessionMoveList"`
-	ImplantDeck []ImplantDeckType           `json:"implantDeck"`
+	UserIds     []string                    `json:"user_ids"`
+	UserMap     map[string]UserSessionModel `json:"user_map"`
+	ActionDeck  []ActionDeckType            `json:"action_deck"`
+	MovesList   []SessionMoveModel          `json:"session_move_list"`
+	ImplantDeck []ImplantDeckType           `json:"implant_deck"`
 	Type        string                      `json:"type"`
 	Status      string                      `json:"status"`
-	IsEnded     bool                        `json:"isEnded"`
-	CreateAt    time.Time                   `json:"createAt"`
-	EndedAt     time.Time                   `json:"endedAt"`
+	IsEnded     bool                        `json:"is_ended"`
+	CreatedAt   time.Time                   `json:"created_at"`
+	EndedAt     time.Time                   `json:"ended_at"`
+	MovesCount  int16                       `json:"moves_count"`
 	Flags       SessionFlags                `json:"flags"`
 }
 

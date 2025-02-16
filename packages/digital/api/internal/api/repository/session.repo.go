@@ -52,9 +52,9 @@ func (session *SessionRepository) CreateNewCustomSessionIM(ctx context.Context, 
 			time.Now().String(),
 			hashedPassword,
 			args.Type,
-		}, "1")) + time.Now().String()
+		}, ":AT:")) + time.Now().String()
 
-	mongosession := &models.SessionIM{
+	createdSession := &models.SessionIM{
 		Name:        args.Name,
 		CreatorHash: args.CreatorHash,
 		SessionID:   sessionId,
@@ -66,14 +66,14 @@ func (session *SessionRepository) CreateNewCustomSessionIM(ctx context.Context, 
 		ImplantDeck: []models.ImplantDeckType{},
 		Type:        models.GAME_TYPE_CUSTOM,
 		IsEnded:     false,
-		CreateAt:    time.Now(),
+		CreatedAt:   time.Now(),
 		EndedAt:     time.Time{},
 		Flags: models.SessionFlags{
 			Started: false,
 		},
 	}
 
-	if _, err := sessionColl.InsertOne(ctx, &mongosession); err != nil {
+	if _, err := sessionColl.InsertOne(ctx, &createdSession); err != nil {
 		return nil, err
 	}
 

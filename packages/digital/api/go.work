@@ -12,4 +12,5 @@ use (
 	./pkg/helpers
 	./pkg/jwt
 	./pkg/paginator
+	./internal/types
 )

@@ -2,11 +2,11 @@ package models
 
 type CompoundUserProfile struct {
 	UserData    *PublicUserModel        `json:"user_data"`
-	CurrentClan *CompouldClanWithMember `json:"current_clan"`
+	CurrentClan *CompoundClanWithMember `json:"current_clan"`
 	Friends     []FriendModel           `json:"friends"`
 }
 
-type CompouldClanWithMember struct {
+type CompoundClanWithMember struct {
 	*BaseModel
 	Name        string `json:"name"`
 	SmallName   string `json:"small_name"`

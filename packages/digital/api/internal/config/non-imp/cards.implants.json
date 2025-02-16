@@ -1,0 +1,51 @@
+{
+  "implants": {
+    "skeleton_system": [
+      {
+        "id": 42,
+        "type": "implants",
+        "implant_type": "skeleton_system",
+        "name": "Titanium Skull",
+        "spec": "implants_skeleton_titanium-skull",
+        "illustration": "titanium-skull_ill",
+        "icon_type": "skeleton_type",
+        "manufacturer": "B.O.N.E Dynamics",
+        "description": "Negative mass action cards no longer affect you",
+        "class": "S",
+        "target": "single",
+        "payload": [
+          {
+            "action": "no_mass_actions",
+            "howMuch": 0,
+            "until": "infinity",
+            "useOnly": "self"
+          }
+        ]
+      },
+      {
+        "id": 43,
+        "type": "implants",
+        "implant_type": "skeleton_system",
+        "name": "Exo Skeleton",
+        "spec": "implants_skeleton_exo-skeleton",
+        "illustration": "exo-skeleton_ill",
+        "icon_type": "skeleton_type",
+        "manufacturer": "B.O.N.E Dynamics",
+        "description": "Increases the maximum hp by ( +4 )",
+        "class": "S",
+        "target": "single",
+        "payload": [
+          {
+            "action": "increase_max_hp",
+            "howMuch": 4,
+            "until": "infinity"
+          }
+        ]
+      }
+    ]
+  },
+  "blood_system": [],
+  "body_system": [],
+  "fight_system": [],
+  "neural_system": []
+}

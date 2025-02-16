@@ -23,8 +23,8 @@ type ClansRepository struct {
 	*base.Repository
 }
 
-func (clans *ClansRepository) GetClanByUserHash(userHash string) (*models.CompouldClanWithMember, bool, error) {
-	result := &models.CompouldClanWithMember{}
+func (clans *ClansRepository) GetClanByUserHash(userHash string) (*models.CompoundClanWithMember, bool, error) {
+	result := &models.CompoundClanWithMember{}
 
 	if payload := postgres.DB().Get().Table("? as cm", database.CLANS_MEMBER_TABLE).Select(`
 		cm.clan_id, cm.member_hash, cm.is_owner,
