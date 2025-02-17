@@ -65,7 +65,7 @@ func (cron *CronGlobalHandler) CreateJob(
 			case <-ctx.Done():
 				fmt.Printf("\nCRON JOB %s is cancelled\n", job.Credential)
 				delete(cron.listing, job.Credential)
-				return // Exit the goroutine
+				return
 			case <-timeAfter:
 				delete(cron.listing, job.Credential)
 				fmt.Printf("\nCRON JOB %s is ended successfully", job.Credential)

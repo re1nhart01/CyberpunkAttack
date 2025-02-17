@@ -13,4 +13,5 @@ use (
 	./pkg/jwt
 	./pkg/paginator
 	./internal/types
+	internal/gameplay
 )

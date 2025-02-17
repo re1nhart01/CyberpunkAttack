@@ -70,6 +70,7 @@ type SessionIM struct {
 	ActionDeck  []ActionDeckType            `json:"action_deck"`
 	MovesList   []SessionMoveModel          `json:"session_move_list"`
 	ImplantDeck []ImplantDeckType           `json:"implant_deck"`
+	SideEffects []SideEffect                `json:"side_effects"`
 	Type        string                      `json:"type"`
 	Status      string                      `json:"status"`
 	IsEnded     bool                        `json:"is_ended"`
@@ -77,6 +78,9 @@ type SessionIM struct {
 	EndedAt     time.Time                   `json:"ended_at"`
 	MovesCount  int16                       `json:"moves_count"`
 	Flags       SessionFlags                `json:"flags"`
+}
+
+type SideEffect struct {
 }
 
 type UserEffectsModel struct {
