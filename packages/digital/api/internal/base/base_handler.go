@@ -86,9 +86,8 @@ func (h *Handler) UnwrapUserData(context *gin.Context) (map[string]any, bool) {
 
 func (h *Handler) UnwrapQueryClaims(context *gin.Context, key string) *jwt.UserClaim {
 	accessToken := context.Query(key)
-	fmt.Println(accessToken)
 	claims, err := jwt.VerifyToken(strings.TrimSpace(accessToken))
-	fmt.Println(claims)
+
 	if err != nil {
 		context.JSON(
 			helpers.GiveBadRequestCoded(

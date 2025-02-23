@@ -66,8 +66,8 @@ func ReadGlobalPump(client *wstorify.NewClient, path *wstorify.StorePath[wstorif
 
 func handleGlobalBroadcast(message []byte, dp *dispatcher.Dispatcher) {
 	event := wstorify.EssentialEvent{}
-	fmt.Println("zxczx")
 	err := json.Unmarshal(message, &event)
+
 	if err != nil {
 		//TODO: log it and revalidate
 	}

@@ -2,22 +2,24 @@ package gameplay
 
 // commit, revert, broadcast, publicify actions for game
 
-func CommitGameAction() error {
+func CommitGameAction(args *HandlersArgs) error {
 	return nil
 }
 
-func RevertGameAction() error {
+func AbortGameAction(args *HandlersArgs) error {
+	defer args.ctx.Done()
+
 	return nil
 }
 
-func BroadcastGameAction() error {
+func BroadcastGameAction(args *HandlersArgs) error {
 	return nil
 }
 
-func PublicifyDataGameAction() error {
+func PublicDataGameAction(args *HandlersArgs) error {
 	return nil
 }
 
-func GetGameAction() error {
+func GetGameAction(args *HandlersArgs) error {
 	return nil
 }

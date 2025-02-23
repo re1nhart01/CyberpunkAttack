@@ -1,6 +1,8 @@
 package embed
 
-import _ "embed"
+import (
+	_ "embed"
+)
 
 //go:embed internal/config/.env.development.json
 var EmbedEnvConfig []byte
@@ -13,3 +15,9 @@ var EmbedImplantsDeck []byte
 
 //go:embed internal/config/cards.cyberviruses.json
 var EmbedCybervirusesDeck []byte
+
+//go:embed internal/config/actions.map.json
+var EmbedActionsMap []byte
+
+//go:embed internal/config/implants.map.json
+var EmbedImplantsMap []byte

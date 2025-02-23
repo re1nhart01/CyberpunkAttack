@@ -45,18 +45,52 @@ type ParsedActionsCardType struct {
 //},
 
 const (
-	ActionType       = "actions"
-	ActionTypeHacks  = "hacks"
-	ActionTypeBoom   = "boom"
-	ActionTypeHeals  = "heals"
-	ActionTypeEvades = "evades"
-	ActionTypeGun    = "gun"
-	ActionTypeOther  = "other"
+	ActionType        = "actions"
+	ActionTypeHacks   = "hacks"
+	ActionTypeBoom    = "boom"
+	ActionTypeHeals   = "heals"
+	ActionTypeEvades  = "evades"
+	ActionTypeGun     = "gun"
+	ActionTypeRunners = "runners"
+	ActionTypeOther   = "other"
 )
 
 // all specs
 const (
-	ActionScriptSpec = "action_hack_script"
+	ActionScriptSpec         = "action_hack_script"
+	ActionHackScript         = "action_hack_script"
+	ActionHackDdos           = "action_hack_ddos"
+	ActionHackDeactivation   = "action_hack_deactivation"
+	ActionBoomPlanA          = "action_boom_plan-a"
+	ActionBoomPlanB          = "action_boom_plan-b"
+	ActionBoomPlanC4         = "action_boom_plan-c4"
+	ActionHealsCybervit      = "action_heals_cybervit"
+	ActionsHealsCbd4         = "actions_heals_cbd-4"
+	ActionsHealsUran         = "actions_heals_ura-n"
+	ActionsHealsDtk          = "actions_heals_dtk"
+	ActionsRunnerDondon      = "actions_runner_dondon"
+	ActionsRunnerDonna       = "actions_runner_donna"
+	ActionsRunnerDonny       = "actions_runner_donny"
+	ActionsRunnerFingers     = "actions_runner_fingers"
+	ActionsRunnerGunblade    = "actions_runner_gunblade"
+	ActionsRunnerLevy        = "actions_runner_levy"
+	ActionsRunnerMexler      = "actions_runner_mexler"
+	ActionsRunnerSaturo      = "actions_runner_saturo"
+	ActionsRunnerVexler      = "actions_runner_vexler"
+	ActionsRunnerBulletstorm = "actions_runner_bulletstorm"
+	ActionsEvadeEvade1       = "actions_evade_evade1"
+	ActionsEvadeSuperEvade   = "actions_evade_super-evade"
+	ActionGunMegas           = "action_gun_megas"
+	ActionGunStarHit         = "action_gun_star-hit"
+	ActionGunStinger         = "action_gun_stinger"
+	ActionGunAntiheal        = "action_gun_antiheal"
+	ActionGunAwp             = "action_gun_awp"
+	ActionGunCharger         = "action_gun_charger"
+	ActionGunPsyX            = "action_gun_psy-x"
+	ActionGunXBlast          = "action_gun_x-blast"
+	ActionGunXlr             = "action_gun_xlr"
+	ActionGunM4              = "action_gun_m4"
+	ActionGunCeed9m          = "action_gun_ceed9m"
 )
 
 type ActionCardCommonType struct {
@@ -69,6 +103,7 @@ type ActionCardCommonType struct {
 	Illustration string                  `json:"illustration"` // illustration id
 	Target       string                  `json:"target"`       // simple | mass
 	Payload      []ActionCardPayloadType `json:"payload"`
+	Addon        string                  `json:"addon"`
 }
 
 type ActionCardPayloadType struct {

@@ -29,7 +29,12 @@ func RegisterHttpAuthRouter(engine *gin.Engine, basePath string) {
 }
 
 func RegisterHttpSessionRouter(engine *gin.Engine, basePath string) {
-	handler := handlers.NewSessionHandler(basePath, repository.NewSessionRepository())
+	args := handlers.SessionHandlerArgs{
+		BasePath: basePath,
+		Repo:     repository.NewSessionRepository(),
+	}
+
+	handler := handlers.NewSessionHandler(args)
 	http.SessionRoute(engine, handler)
 }
 
@@ -43,4 +48,15 @@ func RegisterWsGatewayRouter(engine *gin.Engine, basePath string) {
 
 	handler := handlers.NewGatewayHandler(args)
 	ws.GatewayWsRoute(engine, handler)
+}
+
+func RegisterWsSessionRouter(engine *gin.Engine, basePath string) {
+	args := handlers.SessionHandlerArgs{
+		BasePath: basePath,
+		Repo:     repository.NewSessionRepository(),
+		UserRepo: repository.NewUserRepository(&repository.UserInjections{Clans: *repository.NewClansRepository()}),
+	}
+
+	handler := handlers.NewSessionHandler(args)
+	ws.SessionWsRoute(engine, handler)
 }

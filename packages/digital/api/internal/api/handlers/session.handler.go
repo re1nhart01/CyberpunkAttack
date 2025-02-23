@@ -3,6 +3,8 @@ package handlers
 import (
 	ctx "context"
 	"fmt"
+	"github.com/cyberpunkattack/api/constants"
+	"github.com/gorilla/websocket"
 	"net/http"
 	"time"
 
@@ -24,9 +26,14 @@ type ISessionRepo interface {
 	CreateNewCustomSessionIM(ctx ctx.Context, args repository.NewSessionIM) (*repository.ActiveSession, error)
 }
 
+type ISessionUserRepoInject interface {
+	GetUserByField(field string, value any) (*models.UserModel, error)
+}
+
 type SessionHandler struct {
 	*base.Handler
 	ISessionRepo
+	userRepo ISessionUserRepoInject
 }
 
 func (session *SessionHandler) GetName() string {
@@ -97,12 +104,65 @@ func (session *SessionHandler) GetMyUserProfileHandler(context *gin.Context) {
 	})
 }
 
-func NewSessionHandler(basePath string, repo ISessionRepo) *SessionHandler {
+func (session *SessionHandler) GameplayHandler(context *gin.Context) {
+	claims := session.UnwrapQueryClaims(context, "token")
+	sessionId := context.Query("session_id")
+	ws, err := upgrader.Upgrade(context.Writer, context.Request, nil)
+
+	close := ws.CloseHandler()
+
+	if err != nil {
+		context.JSON(
+			helpers.GiveBadRequestCoded(
+				inlineErrors.ERROR_CODE_13,
+				"unable to connect to websocket session on service",
+				nil,
+			))
+		return
+	}
+
+	userModel, err := session.userRepo.GetUserByField("user_hash", claims.UserHash)
+	if err != nil {
+		close(helpers.GiveBadWsRequest(websocket.CloseUnsupportedData, "userModel error"))
+		return
+	}
+
+	user := wstorify.NewClient{
+		IntoChannel: constants.SESSION_CHANNEL,
+		User: &wstorify.Account{
+			Name:         userModel.FullName,
+			FromGroup:    constants.SESSION_CHANNEL,
+			Role:         userModel.Role,
+			WsConnection: ws,
+			UserCredentials: wstore.UserCredentials{
+				Id:       userModel.Id,
+				UserHash: userModel.UserHash,
+				Username: userModel.Username,
+			},
+			TTC: time.Now(),
+		},
+		Payload: map[string]any{
+			"session_id": sessionId,
+		},
+	}
+
+	wstore.Store().Sessions.Register <- &user
+	go wstore.ReadSessionPump(&user, wstore.Store().Sessions)
+}
+
+type SessionHandlerArgs struct {
+	BasePath string
+	Repo     ISessionRepo
+	UserRepo ISessionUserRepoInject
+}
+
+func NewSessionHandler(args SessionHandlerArgs) *SessionHandler {
 	return &SessionHandler{
 		&base.Handler{
 			Name: SESSION_ROUTE,
-			Path: fmt.Sprintf("/%s/session", basePath),
+			Path: fmt.Sprintf("/%s/session", args.BasePath),
 		},
-		repo,
+		args.Repo,
+		args.UserRepo,
 	}
 }

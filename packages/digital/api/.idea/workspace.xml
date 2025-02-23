@@ -1,4 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{}</component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b35c6bd1-d2a1-4ea2-a7cc-b797b3847898" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/docs/documents/Всі картки.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/documents/Колода дій.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/documents/Колода імплантів.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/documents/Ролі і доп матеріали.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/api/routes/ws/session.route.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/config/actions.map.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/config/implants.map.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/gameplay/actions.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/gameplay/events.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/types/implants.type.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prealloc/prealloc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/embed.go" beforeDir="false" afterPath="$PROJECT_DIR$/embed.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/api/application.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/api/application.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/api/errors/errors.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/api/errors/errors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/api/handlers/session.handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/api/handlers/session.handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/api/routes/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/api/routes/register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/api/wstore/global.wstorify.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/api/wstore/global.wstorify.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/api/wstore/sessions.wstorify.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/api/wstore/sessions.wstorify.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/base/base_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/base/base_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/gameplay/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/gameplay/implants.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/gameplay/control.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/gameplay/control.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/gameplay/root.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/gameplay/root.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/gameplay/selector.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/gameplay/selector.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/types/actions.type.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/types/actions.type.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///snap/go/current" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2tRpAwl5Fz2cywxoQVZRXm6rtTz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Node.js.aboba.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/evgeniy/Documents/GitHub/CyberpunkAttack/packages/digital/api/docs/documents",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/documents" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal/gameplay/handlers" />
+      <recent name="$PROJECT_DIR$/prealloc" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SwiftWorkspaceSettings">
+    <option name="detectedToolchain" value="true" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b35c6bd1-d2a1-4ea2-a7cc-b797b3847898" name="Changes" comment="" />
+      <created>1740324601762</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740324601762</updated>
+      <workItem from="1740324602784" duration="13506000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
 </project>
