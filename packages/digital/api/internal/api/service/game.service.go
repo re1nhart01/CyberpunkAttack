@@ -3,6 +3,8 @@ package service
 import (
 	"context"
 	"errors"
+	"types"
+
 	"github.com/cyberpunkattack/api/base"
 	models "github.com/cyberpunkattack/database/model"
 	"github.com/cyberpunkattack/database/mongo"
@@ -13,6 +15,17 @@ type dict map[string]any
 
 type GameService struct {
 	*base.Service
+	GameServiceInjections
+}
+
+type CardsInjection interface {
+	GenerateRandomActionDeck() models.ActionDeckType
+	GenerateRoles(playerCount int) []*types.RoleCardCommonType
+	GenerateRandomImplantDeck() []*types.ImplantCardCommonType
+}
+
+type GameServiceInjections struct {
+	Cards CardsInjection
 }
 
 func (game *GameService) CommitSessionUpdate(
@@ -45,8 +58,13 @@ func (game *GameService) StartGame(ctx context.Context, sessionId string, creato
 		return errors.New("session's creator is not same")
 	}
 
-	actionDeck := models.ActionDeckType{}
-	implantsDeck := models.ImplantDeckType{}
+	session.ActionDeck = game.Cards.GenerateRandomActionDeck()
+	session.ImplantDeck = game.Cards.GenerateRandomImplantDeck()
+	rolesDeck := game.Cards.GenerateRoles(len(session.UserIds))
+
+
+
+	if err := sessionColl.UpdateByID(ctx, dict{"sessionId": sessionId}, )
 
 	return nil
 }
@@ -55,8 +73,9 @@ func (game *GameService) UnsubscribeAllEvents(ctx context.Context) error {
 	return nil
 }
 
-func NewGameService() *GameService {
+func NewGameService(injection GameServiceInjections) *GameService {
 	return &GameService{
 		&base.Service{},
+		injection,
 	}
 }

@@ -8,6 +8,7 @@ import (
 type ROLES_UNION string
 type ActionDeckType []*types.ActionCardCommonType
 type ImplantDeckType []*types.ImplantCardCommonType
+type RolesDeckType []*types.RoleCardCommonType
 
 const (
 	CYBERPUNK_ROLE      ROLES_UNION = "cyberpunk"
@@ -71,6 +72,7 @@ type SessionIM struct {
 	UserIds     []string                    `json:"user_ids"`
 	UserMap     map[string]UserSessionModel `json:"user_map"`
 	ActionDeck  []ActionDeckType            `json:"action_deck"`
+	RoleDeck    []RolesDeckType             `json:"role_deck"`
 	MovesList   []SessionMoveModel          `json:"session_move_list"`
 	ImplantDeck []ImplantDeckType           `json:"implant_deck"`
 	SideEffects []SideEffect                `json:"side_effects"`
