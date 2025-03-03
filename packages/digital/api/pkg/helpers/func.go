@@ -1,12 +1,16 @@
 package helpers
 
 import (
+	"bytes"
 	"crypto/rand"
+	"encoding/gob"
 	"encoding/json"
 	"fmt"
 	"io"
+	random "math/rand"
 	"regexp"
 	"strings"
+	"time"
 )
 
 type TagsInterests interface {
@@ -245,4 +249,43 @@ func Ternary[T comparable](v bool, v1 T, v2 T) T {
 	} else {
 		return v2
 	}
+}
+
+func Duplicate[T any](item T, count int) []T {
+	if count <= 1 {
+		return []T{item}
+	}
+
+	var buf bytes.Buffer
+
+	if err := gob.NewEncoder(&buf).Encode(item); err != nil {
+		fmt.Println(err)
+		return nil
+	}
+
+	result := make([]T, 0)
+	for range count {
+		var copy T
+		decoder := gob.NewDecoder(bytes.NewReader(buf.Bytes()))
+		if err := decoder.Decode(&copy); err != nil {
+			return nil
+		}
+		result = append(result, copy)
+	}
+
+	return result
+}
+
+func Shuffle[T comparable](arr []T) []T {
+	shuffled := make([]T, len(arr))
+	copy(shuffled, arr)
+
+	randomizer := random.New(random.NewSource(time.Now().UnixMilli()))
+
+	for i := len(shuffled) - 1; i > 0; i-- {
+		j := randomizer.Intn(i + 1)
+		shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
+	}
+
+	return shuffled
 }

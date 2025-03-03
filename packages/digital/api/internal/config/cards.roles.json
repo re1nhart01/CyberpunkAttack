@@ -1,0 +1,166 @@
+{
+    "list": [
+        {
+            "id": 1,
+            "type": "roles",
+            "roles_faction": "corporates",
+            "name": "Corporate Boss",
+            "spec": "roles_corporates_corporate-boss",
+            "description": "Eliminate all of the Corporation's enemies.",
+            "illustration": "corporate_boss_illu",
+            "winCondition": null,
+            "payload": [
+                {
+                    "effect_name": "additional_implants",
+                    "howMuch": 3,
+                    "skip_viruses": true,
+                    "conditionToGet": "game_start"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "type": "roles",
+            "roles_faction": "corporates",
+            "name": "Corporate",
+            "spec": "roles_corporates_corporate",
+            "description": "Eliminate all of the Corporation's enemies.",
+            "illustration": "corporate_illu",
+            "winCondition": null,
+            "payload": []
+        },
+        {
+            "id": 3,
+            "type": "roles",
+            "roles_faction": "cyberstray",
+            "name": "Cyberstray",
+            "spec": "roles_cyberstray_cyberstray",
+            "description": "Stay the last player in game",
+            "illustration": "cyberstray_illu",
+            "winCondition": null,
+            "payload": [
+                {
+                    "effect_name": "additional_implants",
+                    "howMuch": 3,
+                    "skip_viruses": true,
+                    "conditionToGet": "cyberstray_reveal"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "type": "roles",
+            "roles_faction": "cyberpunks",
+            "name": "Laid Flicker",
+            "spec": "roles_cyberpunks_laid-flicker",
+            "description": "Eliminate the Corporate Boss.",
+            "illustration": "laid-flicker_illu",
+            "winCondition": null,
+            "payload": [
+                {
+                    "effect_name": "additional_card_on_draw",
+                    "howMuch": 1,
+                    "conditionToGet": "always"
+                },
+                {
+                    "effect_name": "additional_max_health",
+                    "howMuch": 2,
+                    "conditionToGet": "always"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "type": "roles",
+            "roles_faction": "cyberpunks",
+            "name": "{{ cyberpunk_name }}",
+            "spec": "roles_cyberpunks_cyberpunk",
+            "description": "Eliminate the Corporate Boss.",
+            "illustration": "{{ cyberpunk_illu }}",
+            "winCondition": null,
+            "payload": []
+        }
+    ],
+    "map": {
+        "roles_corporates_corporate-boss": {
+            "id": 1,
+            "type": "roles",
+            "roles_faction": "corporates",
+            "name": "Corporate Boss",
+            "spec": "roles_corporates_corporate-boss",
+            "description": "Eliminate all of the Corporation's enemies.",
+            "illustration": "corporate_boss_illu",
+            "winCondition": null,
+            "payload": [
+                {
+                    "effect_name": "additional_implants",
+                    "howMuch": 3,
+                    "skip_viruses": true,
+                    "conditionToGet": "game_start"
+                }
+            ]
+        },
+        "roles_corporates_corporate": {
+            "id": 2,
+            "type": "roles",
+            "roles_faction": "corporates",
+            "name": "Corporate",
+            "spec": "roles_corporates_corporate",
+            "description": "Eliminate all of the Corporation's enemies.",
+            "illustration": "corporate_illu",
+            "winCondition": null,
+            "payload": []
+        },
+        "roles_cyberstray_cyberstray": {
+            "id": 3,
+            "type": "roles",
+            "roles_faction": "cyberstray",
+            "name": "Cyberstray",
+            "spec": "roles_cyberstray_cyberstray",
+            "description": "Stay the last player in game",
+            "illustration": "cyberstray_illu",
+            "winCondition": null,
+            "payload": [
+                {
+                    "effect_name": "additional_implants",
+                    "howMuch": 3,
+                    "skip_viruses": true,
+                    "conditionToGet": "cyberstray_reveal"
+                }
+            ]
+        },
+        "roles_cyberpunks_laid-flicker": {
+            "id": 4,
+            "type": "roles",
+            "roles_faction": "cyberpunks",
+            "name": "Laid Flicker",
+            "spec": "roles_cyberpunks_laid-flicker",
+            "description": "Eliminate the Corporate Boss.",
+            "illustration": "laid-flicker_illu",
+            "winCondition": null,
+            "payload": [
+                {
+                    "effect_name": "additional_card_on_draw",
+                    "howMuch": 1,
+                    "conditionToGet": "always"
+                },
+                {
+                    "effect_name": "additional_max_health",
+                    "howMuch": 2,
+                    "conditionToGet": "always"
+                }
+            ]
+        },
+        "roles_cyberpunks_cyberpunk": {
+            "id": 5,
+            "type": "roles",
+            "roles_faction": "cyberpunks",
+            "name": "{{ cyberpunk_name }}",
+            "spec": "roles_cyberpunks_cyberpunk",
+            "description": "Eliminate the Corporate Boss.",
+            "illustration": "{{ cyberpunk_illu }}",
+            "winCondition": null,
+            "payload": []
+        }
+    }
+}

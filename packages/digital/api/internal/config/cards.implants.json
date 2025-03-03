@@ -2,7 +2,7 @@
   "implants": {
     "skeleton_system": [
       {
-        "id": 42,
+        "id": 1,
         "type": "implants",
         "implant_type": "skeleton_system",
         "name": "Titanium Skull",
@@ -23,7 +23,7 @@
         ]
       },
       {
-        "id": 43,
+        "id": 2,
         "type": "implants",
         "implant_type": "skeleton_system",
         "name": "Exo Skeleton",

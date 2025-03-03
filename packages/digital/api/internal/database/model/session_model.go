@@ -1,10 +1,13 @@
 package models
 
-import "time"
+import (
+	"time"
+	"types"
+)
 
 type ROLES_UNION string
-type ActionDeckType map[string]any
-type ImplantDeckType map[string]any
+type ActionDeckType []*types.ActionCardCommonType
+type ImplantDeckType []*types.ImplantCardCommonType
 
 const (
 	CYBERPUNK_ROLE      ROLES_UNION = "cyberpunk"
