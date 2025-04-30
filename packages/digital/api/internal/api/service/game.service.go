@@ -62,9 +62,9 @@ func (game *GameService) StartGame(ctx context.Context, sessionId string, creato
 	session.ImplantDeck = game.Cards.GenerateRandomImplantDeck()
 	rolesDeck := game.Cards.GenerateRoles(len(session.UserIds))
 
+	if _, err := sessionColl.UpdateByID(ctx, dict{"sessionId": sessionId}); err != nil {
 
-
-	if err := sessionColl.UpdateByID(ctx, dict{"sessionId": sessionId}, )
+	}
 
 	return nil
 }

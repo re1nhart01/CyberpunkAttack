@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
-import { ICONS } from '../../../constant/icons';
-import { HEADER_HEIGHT, contactUs, discordLink, donateLink, instagramLink } from '../../../constant/constants';
-import ButtonView from '../../buttons/Button';
-import { TypographyComponents } from '../../typography/typography.styles';
-import { svgs } from '../../../constant/svgs';
-import { ButtonComponents } from '../../buttons/Button/components';
+import React from "react";
+import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+import { ICONS } from "../../../constant/icons";
+import { HEADER_HEIGHT, contactUs, discordLink, donateLink, instagramLink } from "../../../constant/constants";
+import ButtonView from "../../buttons/Button";
+import { TypographyComponents } from "../../typography/typography.styles";
+import { svgs } from "../../../constant/svgs";
+import { ButtonComponents } from "../../buttons/Button/components";
 
 const { Text18Zekton700, Text14Zekton700 } = TypographyComponents;
 
@@ -27,7 +27,7 @@ const { FullScreenMenu, BurgerButtonItem, ButtonRowContainer, HorizontalRowConta
     background-repeat: repeat;
     background-size: auto;
     background-position: top left;
-    transform: ${({ $isOpen }) => ($isOpen ? 'translateY(0)' : 'translateY(-100%)')};
+    transform: ${({ $isOpen }) => ($isOpen ? "translateY(0)" : "translateY(-100%)")};
     transition: transform 0.5s ease;
     z-index: 5;`,
   ButtonRowContainer: styled.div`
@@ -67,7 +67,7 @@ const { FullScreenMenu, BurgerButtonItem, ButtonRowContainer, HorizontalRowConta
 const { SubmitFormButton } = ButtonComponents;
 
 type IProps = {
-  onScrollIntoView: (v: 'subscribe' | 'about' | 'trailer' | 'start') => void;
+  onScrollIntoView: (v: "subscribe" | "about" | "trailer" | "start") => void;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
 }
@@ -75,7 +75,7 @@ type IProps = {
 export const FullScreenMenuComponent = ({ isOpen, onScrollIntoView, setIsOpen }: IProps) => {
   const { t } = useTranslation();
 
-  const overrideScroll = (v: 'subscribe' | 'about' | 'trailer' | 'start') => {
+  const overrideScroll = (v: "subscribe" | "about" | "trailer" | "start") => {
     onScrollIntoView(v);
     setIsOpen(false);
   };
@@ -88,27 +88,36 @@ export const FullScreenMenuComponent = ({ isOpen, onScrollIntoView, setIsOpen }:
     window.location.href = donateLink;
   };
 
+  const onGoToDelivery = () => {
+    window.open("/shipment-form", "_blank", "rel=noopener noreferrer");
+  };
+
   return (
     <FullScreenMenu $isOpen={isOpen}>
       <ButtonRowContainer>
-        <BurgerButtonItem onPress={() => overrideScroll('subscribe')}>
+        <BurgerButtonItem onPress={() => overrideScroll("subscribe")}>
           <Text18Zekton700 color="white">
-            {t('header.subscribe')}
+            {t("header.subscribe")}
           </Text18Zekton700>
         </BurgerButtonItem>
-        <BurgerButtonItem onPress={() => overrideScroll('about')}>
+        <BurgerButtonItem onPress={() => overrideScroll("about")}>
           <Text18Zekton700 color="white">
-            {t('header.about')}
+            {t("header.about")}
           </Text18Zekton700>
         </BurgerButtonItem>
-        <BurgerButtonItem onPress={() => overrideScroll('trailer')}>
+        <BurgerButtonItem onPress={() => overrideScroll("trailer")}>
           <Text18Zekton700 color="white">
-            {t('header.trailer')}
+            {t("header.trailer")}
+          </Text18Zekton700>
+        </BurgerButtonItem>
+        <BurgerButtonItem onPress={onGoToDelivery}>
+          <Text18Zekton700 color="white">
+            {t("header.delivery")}
           </Text18Zekton700>
         </BurgerButtonItem>
         <SubmitFormButton onPress={onDonatePress}>
           <Text18Zekton700 color="black">
-            {t('header.donate')}
+            {t("header.donate")}
           </Text18Zekton700>
         </SubmitFormButton>
         <HorizontalRowContainer>
@@ -125,7 +134,7 @@ export const FullScreenMenuComponent = ({ isOpen, onScrollIntoView, setIsOpen }:
       </ButtonRowContainer>
       <Text14Zekton700 color="rgbaw05">
         All rights reserved ©
-        {' '}
+        {" "}
         {new Date().getUTCFullYear()}
       </Text14Zekton700>
     </FullScreenMenu>

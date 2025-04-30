@@ -27,3 +27,6 @@ var CreateSessionDto = &dto.FieldsMapping{
 		Max:      100,
 	},
 }
+
+
+var StartG

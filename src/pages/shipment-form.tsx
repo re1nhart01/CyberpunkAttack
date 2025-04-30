@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { ButtonComponents } from "../components/buttons/Button/components";
 import { Html } from "../components/html";
 import { ImageViewComponents } from "../components/images/ImageView/styles";
-import DragNDropInput from "../components/inputs/dragndrop-files/Drag&DropInput";
 import { InputStyles } from "../components/inputs/styles";
 import FooterView from "../components/layout/Footer";
 import { FullScreenMenuComponent } from "../components/layout/FullScreenMenu/FullScreenMenu";
@@ -33,7 +32,7 @@ import SmallPreloader from "../components/layout/Preloader/SmallPreloader";
 const { Container, FormContainer, InputContainer, TextContainer } =
   shipmentFormStyles;
 
-const { PageContainer, Spacer, InnerWrapper } = HomePageStyles;
+const { PageContainer, Spacer, InnerWrapper, PageContainerForm } = HomePageStyles;
 const { Text26Bangers400, Text48Orbitron700, Text24Zekton400 } =
   TypographyComponents;
 const { Text16Zekton400Black, Text24Zekton400Link } =
@@ -43,6 +42,14 @@ const { PrimaryInput } = InputStyles;
 const { ShipmentFormButton } = ButtonComponents;
 
 const workerUrl = "https://small-tooth-64b0.attackcyberpunk.workers.dev";
+
+const safetyLocalStorage = typeof localStorage !== "undefined"
+  ? localStorage
+  : {
+    getItem: (t: string) => {},
+    setItem: (t: string, v: string) => {},
+    removeItem: (v: string) => {},
+  };
 
 const HomePage: React.FC<PageProps> = () => {
   const { t } = useTranslation();
@@ -55,11 +62,7 @@ const HomePage: React.FC<PageProps> = () => {
   const isMobile =
     typeof window !== "undefined" ? window.innerWidth < 1024 : false;
   const [isOpen, setIsOpen] = useState(false);
-  const isCompleted = (
-    typeof localStorage !== "undefined"
-      ? localStorage
-      : { getItem: (t: string) => {} }
-  )?.getItem("isAnswered");
+  const isCompleted = safetyLocalStorage?.getItem("isAnswered");
   const [isAnswered, setIsAnswered] = useState(!!isCompleted);
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -97,6 +100,11 @@ const HomePage: React.FC<PageProps> = () => {
 
   const goTo = (url: string) => {
     window.open(url, "_blank");
+  };
+
+  const onClean = () => {
+    safetyLocalStorage.removeItem("isAnswered");
+    setIsAnswered(false);
   };
 
   const onFormSubmit: FormadjoAsyncSubmitFn<IShipmentFormTemplate> =
@@ -151,7 +159,7 @@ const HomePage: React.FC<PageProps> = () => {
         />
       )}
       <Preloader />
-      <PageContainer>
+      <PageContainerForm>
         <Container>
           <FormImage1 />
           {isAnswered ? (
@@ -165,11 +173,19 @@ const HomePage: React.FC<PageProps> = () => {
               </InnerWrapper>
               <InnerWrapper>
                 <Text24Zekton400 color="white">
-                  {t("shipmentForm.subheader")}
+                  We've received your delivery details. Our team will contact you soon to confirm the shipping.
+                  If you have any questions, feel free to reach out at
+                  {" "}
                   <Text24Zekton400Link href="mailto:attackcyberpunk@gmail.com">
                     attackcyberpunk@gmail.com
                   </Text24Zekton400Link>
+                  .
                 </Text24Zekton400>
+
+                <Spacer height={30} />
+                <ShipmentFormButton onPress={onClean}>
+                  <Text16Zekton400Black>Send Again</Text16Zekton400Black>
+                </ShipmentFormButton>
               </InnerWrapper>
             </FormContainer>
           ) : (
@@ -202,7 +218,7 @@ const HomePage: React.FC<PageProps> = () => {
                     <InputContainer>
                       <PrimaryInput
                         type="text"
-                        disabled
+                        disabled={!!params.get("invite_id")}
                         maxLength={150}
                         value={values.email}
                         onChange={({ target }) =>
@@ -307,7 +323,7 @@ const HomePage: React.FC<PageProps> = () => {
                         $isError={errorsList.zipcode.isError}
                       />
                     </InputContainer>
-                    <DragNDropInput value={image} setValue={setImage} />
+                    {/* <DragNDropInput value={image} setValue={setImage} /> */}
                     <ShipmentFormButton inert={loading} onPress={onSubmit}>
                       {loading ? <SmallPreloader /> : <Text16Zekton400Black>{t("submit")}</Text16Zekton400Black>}
                     </ShipmentFormButton>
@@ -320,7 +336,7 @@ const HomePage: React.FC<PageProps> = () => {
         </Container>
         <Spacer height={100} />
         <FooterView />
-      </PageContainer>
+      </PageContainerForm>
     </MainLayout>
   );
 };

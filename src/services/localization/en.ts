@@ -4,6 +4,7 @@ export default {
     about: "About game",
     trailer: "Trailer",
     donate: "Donate",
+    delivery: "For Customers",
   },
   shipmentForm: {
     header: "In progress..",
@@ -54,4 +55,5 @@ export default {
   footerText:
     'We use cookies to enhance your browsing experience and analyse our traffic. By clicking "Accept All", you consent to our use of cookies.',
   privacyPolicy: "Privacy Policy",
+
 };

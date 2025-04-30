@@ -8,6 +8,13 @@ export const HomePageStyles = {
     height: 100%;
     max-width: 100%;
   `,
+  PageContainerForm: styled.div`
+  background: url(${ICONS.mainBackground}) repeat;
+  background-size: 60% 15%;
+  height: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+`,
   PageSection: styled.section`
     width: 100%;
     display: flex;
@@ -58,14 +65,29 @@ export const HomePageStyles = {
         margin-top: 12px;
         margin-bottom: 24px;
       }
+
+
+        #kickstarter-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+      .kick-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
       
-      #kickstarter-block > div:nth-child(1) {
+      .kick-content > div:nth-child(1) {
         font-size: 32px !important;
+        text-align: center !important;
       }
 
-      #kickstarter-block > div:nth-child(2) {
+
+      .kick-content > :nth-child(2) {
         font-size: 18px !important;
-        text-align: center;
+        margin-top: 12px;
       }
       
     }

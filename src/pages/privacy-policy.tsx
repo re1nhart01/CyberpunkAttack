@@ -1,3 +1,7 @@
+import type { HeadFC, PageProps } from "gatsby";
+import * as React from "react";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ButtonComponents } from "../components/buttons/Button/components";
 import { SocialButton } from "../components/buttons/SocialButton";
 import { Html } from "../components/html";
@@ -15,10 +19,6 @@ import { contactUs, discordLink, instagramLink } from "../constant/constants";
 import { svgs } from "../constant/svgs";
 import { service } from "../services";
 import { HomePageStyles } from "../styles/pageStyles/home.styles";
-import type { HeadFC, PageProps } from "gatsby";
-import * as React from "react";
-import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 const {
   FBlockWrapper,
@@ -59,7 +59,7 @@ const HomePage: React.FC<PageProps> = () => {
   const isMobile =
     typeof window !== "undefined" ? window.innerWidth < 1024 : false;
   const onScrollIntoView = (
-    arg: "subscribe" | "about" | "trailer" | "start"
+    arg: "subscribe" | "about" | "trailer" | "start",
   ) => {
     switch (arg) {
       case "start":
@@ -78,14 +78,14 @@ const HomePage: React.FC<PageProps> = () => {
 
   return (
     <MainLayout
-      Header={
+      Header={(
         <HeaderView
           setIsOpen={setIsOpen}
           isOpen={open}
           hideButtons
           onScrollIntoView={onScrollIntoView}
         />
-      }
+      )}
     >
       {isMobile && (
         <FullScreenMenuComponent
@@ -134,13 +134,17 @@ const HomePage: React.FC<PageProps> = () => {
               <ul>
                 <li>
                   <p>
-                    <strong>Account</strong> means a unique account created for
+                    <strong>Account</strong>
+                    {" "}
+                    means a unique account created for
                     You to access our Service or parts of our Service.
                   </p>
                 </li>
                 <li>
                   <p>
-                    <strong>Affiliate</strong> means an entity that controls, is
+                    <strong>Affiliate</strong>
+                    {" "}
+                    means an entity that controls, is
                     controlled by or is under common control with a party, where
                     &quot;control&quot; means ownership of 50% or more of the
                     shares, equity interest or other securities entitled to vote
@@ -149,7 +153,9 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>Company</strong> (referred to as either &quot;the
+                    <strong>Company</strong>
+                    {" "}
+                    (referred to as either &quot;the
                     Company&quot;, &quot;We&quot;, &quot;Us&quot; or
                     &quot;Our&quot; in this Agreement) refers to Ladilon LLP,
                     128 City Road, London, United Kingdom, EC1V 2NX.
@@ -157,7 +163,9 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>Cookies</strong> are small files that are placed on
+                    <strong>Cookies</strong>
+                    {" "}
+                    are small files that are placed on
                     Your computer, mobile device or any other device by a
                     website, containing the details of Your browsing history on
                     that website among its many uses.
@@ -165,29 +173,39 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>Country</strong> refers to: United Kingdom
+                    <strong>Country</strong>
+                    {" "}
+                    refers to: United Kingdom
                   </p>
                 </li>
                 <li>
                   <p>
-                    <strong>Device</strong> means any device that can access the
+                    <strong>Device</strong>
+                    {" "}
+                    means any device that can access the
                     Service such as a computer, a cellphone or a digital tablet.
                   </p>
                 </li>
                 <li>
                   <p>
-                    <strong>Personal Data</strong> is any information that
+                    <strong>Personal Data</strong>
+                    {" "}
+                    is any information that
                     relates to an identified or identifiable individual.
                   </p>
                 </li>
                 <li>
                   <p>
-                    <strong>Service</strong> refers to the Website.
+                    <strong>Service</strong>
+                    {" "}
+                    refers to the Website.
                   </p>
                 </li>
                 <li>
                   <p>
-                    <strong>Service Provider</strong> means any natural or legal
+                    <strong>Service Provider</strong>
+                    {" "}
+                    means any natural or legal
                     person who processes the data on behalf of the Company. It
                     refers to third-party companies or individuals employed by
                     the Company to facilitate the Service, to provide the
@@ -198,7 +216,9 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>Usage Data</strong> refers to data collected
+                    <strong>Usage Data</strong>
+                    {" "}
+                    refers to data collected
                     automatically, either generated by the use of the Service or
                     from the Service infrastructure itself (for example, the
                     duration of a page visit).
@@ -206,8 +226,11 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>Website</strong> refers to Cyberpunk Attack,
-                    accessible from{" "}
+                    <strong>Website</strong>
+                    {" "}
+                    refers to Cyberpunk Attack,
+                    accessible from
+                    {" "}
                     <a
                       href="cyberpunkattack.com"
                       rel="external nofollow noopener"
@@ -219,7 +242,9 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>You</strong> means the individual accessing or using
+                    <strong>You</strong>
+                    {" "}
+                    means the individual accessing or using
                     the Service, or the company, or other legal entity on behalf
                     of which such individual is accessing or using the Service,
                     as applicable.
@@ -280,7 +305,9 @@ const HomePage: React.FC<PageProps> = () => {
               </p>
               <ul>
                 <li>
-                  <strong>Cookies or Browser Cookies.</strong> A cookie is a
+                  <strong>Cookies or Browser Cookies.</strong>
+                  {" "}
+                  A cookie is a
                   small file placed on Your Device. You can instruct Your
                   browser to refuse all Cookies or to indicate when a Cookie is
                   being sent. However, if You do not accept Cookies, You may not
@@ -289,7 +316,9 @@ const HomePage: React.FC<PageProps> = () => {
                   our Service may use Cookies.
                 </li>
                 <li>
-                  <strong>Web Beacons.</strong> Certain sections of our Service
+                  <strong>Web Beacons.</strong>
+                  {" "}
+                  Certain sections of our Service
                   and our emails may contain small electronic files known as web
                   beacons (also referred to as clear gifs, pixel tags, and
                   single-pixel gifs) that permit the Company, for example, to
@@ -311,7 +340,8 @@ const HomePage: React.FC<PageProps> = () => {
                   rel="noreferrer"
                 >
                   TermsFeed website
-                </a>{" "}
+                </a>
+                {" "}
                 article.
               </p>
               <p>
@@ -374,13 +404,16 @@ const HomePage: React.FC<PageProps> = () => {
               <ul>
                 <li>
                   <p>
-                    <strong>To provide and maintain our Service</strong>,
+                    <strong>To provide and maintain our Service</strong>
+                    ,
                     including to monitor the usage of our Service.
                   </p>
                 </li>
                 <li>
                   <p>
-                    <strong>To manage Your Account:</strong> to manage Your
+                    <strong>To manage Your Account:</strong>
+                    {" "}
+                    to manage Your
                     registration as a user of the Service. The Personal Data You
                     provide can give You access to different functionalities of
                     the Service that are available to You as a registered user.
@@ -388,7 +421,9 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>For the performance of a contract:</strong> the
+                    <strong>For the performance of a contract:</strong>
+                    {" "}
+                    the
                     development, compliance and undertaking of the purchase
                     contract for the products, items or services You have
                     purchased or of any other contract with Us through the
@@ -397,7 +432,9 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>To contact You:</strong> To contact You by email,
+                    <strong>To contact You:</strong>
+                    {" "}
+                    To contact You by email,
                     telephone calls, SMS, or other equivalent forms of
                     electronic communication, such as a mobile application's
                     push notifications regarding updates or informative
@@ -408,7 +445,9 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>To provide You</strong> with news, special offers
+                    <strong>To provide You</strong>
+                    {" "}
+                    with news, special offers
                     and general information about other goods, services and
                     events which we offer that are similar to those that you
                     have already purchased or enquired about unless You have
@@ -417,13 +456,17 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>To manage Your requests:</strong> To attend and
+                    <strong>To manage Your requests:</strong>
+                    {" "}
+                    To attend and
                     manage Your requests to Us.
                   </p>
                 </li>
                 <li>
                   <p>
-                    <strong>For business transfers:</strong> We may use Your
+                    <strong>For business transfers:</strong>
+                    {" "}
+                    We may use Your
                     information to evaluate or conduct a merger, divestiture,
                     restructuring, reorganization, dissolution, or other sale or
                     transfer of some or all of Our assets, whether as a going
@@ -434,7 +477,8 @@ const HomePage: React.FC<PageProps> = () => {
                 </li>
                 <li>
                   <p>
-                    <strong>For other purposes</strong>: We may use Your
+                    <strong>For other purposes</strong>
+                    : We may use Your
                     information for other purposes, such as data analysis,
                     identifying usage trends, determining the effectiveness of
                     our promotional campaigns and to evaluate and improve our
@@ -448,19 +492,25 @@ const HomePage: React.FC<PageProps> = () => {
               </p>
               <ul>
                 <li>
-                  <strong>With Service Providers:</strong> We may share Your
+                  <strong>With Service Providers:</strong>
+                  {" "}
+                  We may share Your
                   personal information with Service Providers to monitor and
                   analyze the use of our Service, to contact You.
                 </li>
                 <li>
-                  <strong>For business transfers:</strong> We may share or
+                  <strong>For business transfers:</strong>
+                  {" "}
+                  We may share or
                   transfer Your personal information in connection with, or
                   during negotiations of, any merger, sale of Company assets,
                   financing, or acquisition of all or a portion of Our business
                   to another company.
                 </li>
                 <li>
-                  <strong>With Affiliates:</strong> We may share Your
+                  <strong>With Affiliates:</strong>
+                  {" "}
+                  We may share Your
                   information with Our affiliates, in which case we will require
                   those affiliates to honor this Privacy Policy. Affiliates
                   include Our parent company and any other subsidiaries, joint
@@ -468,18 +518,23 @@ const HomePage: React.FC<PageProps> = () => {
                   are under common control with Us.
                 </li>
                 <li>
-                  <strong>With business partners:</strong> We may share Your
+                  <strong>With business partners:</strong>
+                  {" "}
+                  We may share Your
                   information with Our business partners to offer You certain
                   products, services or promotions.
                 </li>
                 <li>
-                  <strong>With other users:</strong> when You share personal
+                  <strong>With other users:</strong>
+                  {" "}
+                  when You share personal
                   information or otherwise interact in the public areas with
                   other users, such information may be viewed by all users and
                   may be publicly distributed outside.
                 </li>
                 <li>
-                  <strong>With Your consent</strong>: We may disclose Your
+                  <strong>With Your consent</strong>
+                  : We may disclose Your
                   personal information for any other purpose with Your consent.
                 </li>
               </ul>
@@ -639,7 +694,8 @@ const HomePage: React.FC<PageProps> = () => {
               </p>
               <ul>
                 <li>
-                  By email:{" "}
+                  By email:
+                  {" "}
                   <a
                     href={contactUs}
                     className="__cf_email__"

@@ -1,3 +1,7 @@
+import type { HeadFC, PageProps } from "gatsby";
+import * as React from "react";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ButtonComponents } from "../components/buttons/Button/components";
 import { SocialButton } from "../components/buttons/SocialButton";
 import { UserForm } from "../components/forms/UserForm/UserForm";
@@ -22,10 +26,6 @@ import {
 import { svgs } from "../constant/svgs";
 import { service } from "../services";
 import { HomePageStyles } from "../styles/pageStyles/home.styles";
-import type { HeadFC, PageProps } from "gatsby";
-import * as React from "react";
-import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 const {
   FBlockWrapper,
@@ -64,7 +64,7 @@ const HomePage: React.FC<PageProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onScrollIntoView = (
-    arg: "subscribe" | "about" | "trailer" | "start"
+    arg: "subscribe" | "about" | "trailer" | "start",
   ) => {
     switch (arg) {
       case "start":
@@ -124,12 +124,14 @@ const HomePage: React.FC<PageProps> = () => {
           <HeaderIllustration isMobile={isMobile} />
           <KickstarterContainer>
             <div id="kickstarter-block">
-              <Text24Zekton400To32 color="white">
-                {t("cyberpunk")}
-              </Text24Zekton400To32>
-              <Text16Zekton400NoColor color="main">
-                {t("available")}
-              </Text16Zekton400NoColor>
+              <div className="kick-content">
+                <Text24Zekton400To32 color="white">
+                  {t("cyberpunk")}
+                </Text24Zekton400To32>
+                <Text16Zekton400NoColor color="main">
+                  {t("available")}
+                </Text16Zekton400NoColor>
+              </div>
             </div>
             <div style={{ boxSizing: "border-box" }}>
               <SocialButton goTo={() => goTo(kickstarter)}>
@@ -143,7 +145,8 @@ const HomePage: React.FC<PageProps> = () => {
         <PageSection ref={aboutGameRef}>
           <PageSectionInner>
             <Text56Bangers400 color="rgbaw09">
-              {t("diveInto")}{" "}
+              {t("diveInto")}
+              {" "}
               <Text56Bangers400 color="main">
                 {t("cyberFuture")}
               </Text56Bangers400>
@@ -153,7 +156,8 @@ const HomePage: React.FC<PageProps> = () => {
             <Text18Zekton400 color="rgbaw09">{t("firstText")}</Text18Zekton400>
             <Spacer height={34} />
             <Text18Zekton400 color="main">
-              {t("gameMechanics")}{" "}
+              {t("gameMechanics")}
+              {" "}
               <Text18Zekton400 color="rgbaw09">
                 {t("gameMechanicsText")}
               </Text18Zekton400>
@@ -162,7 +166,8 @@ const HomePage: React.FC<PageProps> = () => {
             <VersusIllustration loading="lazy" />
             <Spacer height={34} />
             <Text56Bangers400 color="rgbaw09">
-              {t("about")}{" "}
+              {t("about")}
+              {" "}
               <Text56Bangers400 color="main">{t("lore")}</Text56Bangers400>
             </Text56Bangers400>
             <Spacer height={34} />
@@ -175,7 +180,8 @@ const HomePage: React.FC<PageProps> = () => {
             <CyberbodyImage loading="lazy" />
             <Spacer height={34} />
             <Text26Space400>
-              {t("join")}{" "}
+              {t("join")}
+              {" "}
               <Text26Space400 color="white">{t("toTheBattle")}</Text26Space400>
             </Text26Space400>
             <Spacer height={16} />

@@ -56,6 +56,10 @@ func (session *SessionHandler) ConnectToRandomSession(context *gin.Context) {
 	context.JSON(helpers.GiveTODO())
 }
 
+func (session *SessionHandler) StartGameHandler(context *gin.Context) {
+	
+}
+
 func (session *SessionHandler) CreateCustomSessionHandler(context *gin.Context) {
 	body, ok := session.Unwrap(context, dtos.CreateSessionDto)
 	creds, ok := session.UnwrapUserData(context)
