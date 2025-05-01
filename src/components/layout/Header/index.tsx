@@ -16,7 +16,7 @@ type headerViewProps = {
   hideButtons?: boolean;
 };
 
-const { Wrapper, LogoWrapper, ButtonsWrapper, HeaderButton, Separator } = HeaderStyles;
+const { Wrapper, LogoWrapper, ButtonsWrapper, HeaderButton, Separator, HeaderButtonRound } = HeaderStyles;
 
 const { Text16Zekton700 } = TypographyComponents;
 const { LaidlonLogo, CALogo, InstaLogo } = ImageViewComponents;
@@ -58,10 +58,6 @@ const HeaderView: FC<headerViewProps> = ({ onScrollIntoView, hideButtons, setIsO
               <Text16Zekton700>{t("header.trailer")}</Text16Zekton700>
             </HeaderButton>
             <Separator />
-            <HeaderButton onPress={() => onGoToDelivery()}>
-              <Text16Zekton700>{t("header.delivery")}</Text16Zekton700>
-            </HeaderButton>
-            <Separator />
           </>
           )}
           <HeaderButton onPress={onDonatePress}>
@@ -71,6 +67,10 @@ const HeaderView: FC<headerViewProps> = ({ onScrollIntoView, hideButtons, setIsO
           <HeaderButton onPress={onInstagramPress}>
             <InstaLogo />
           </HeaderButton>
+          <Separator />
+          <HeaderButtonRound onPress={() => onGoToDelivery()}>
+            <Text16Zekton700 color="black">{t("header.delivery")}</Text16Zekton700>
+          </HeaderButtonRound>
         </ButtonsWrapper>
       )}
     </Wrapper>

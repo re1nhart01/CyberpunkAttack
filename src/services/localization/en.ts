@@ -4,7 +4,7 @@ export default {
     about: "About game",
     trailer: "Trailer",
     donate: "Donate",
-    delivery: "For Customers",
+    delivery: "Get now",
   },
   shipmentForm: {
     header: "In progress..",

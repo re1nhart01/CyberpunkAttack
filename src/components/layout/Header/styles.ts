@@ -51,6 +51,33 @@ export const HeaderStyles = {
       cursor: pointer;
     }
   `,
+  HeaderButtonRound: styled(Button)`
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: #01FFFF;
+    display: flex;
+    flex-direction: row;
+    jusity-content: center;
+    align-items: center;
+    color: #000000;
+    height: 32px;
+    border-radius: 70px;
+    padding-top: 2px;
+    padding-right: 24px;
+    padding-left: 24px;
+    margin-left: 24px;
+    transition: 0.5s;
+    gap: 10px;
+    z-index: 999;
+    &, & > * {
+      cursor: pointer;
+    }
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.black};
+    }
+      
+  `,
   Separator: styled.div`
     height: 12px;
     background-color: ${({ theme }) => theme.colors.main};
