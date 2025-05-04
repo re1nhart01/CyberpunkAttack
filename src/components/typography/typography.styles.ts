@@ -183,14 +183,14 @@ export const TypographyComponents = {
     selector: "span",
     fzType: "px",
   })``,
-  Text16Zekton700: styled(Typography).attrs<typographyProps>({
-    color: "white",
+  Text16Zekton700: styled(Typography).attrs<typographyProps>(({ color }) => ({
+    color: color ?? "white",
     fw: "fw700",
     fsz: "fz16",
     ff: "zek",
     selector: "span",
     fzType: "px",
-  })``,
+  }))``,
   Text11Zekton400: styled(Typography).attrs<typographyProps>({
     fw: "fw400",
     fsz: "fz11",

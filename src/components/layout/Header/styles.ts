@@ -59,7 +59,7 @@ export const HeaderStyles = {
     flex-direction: row;
     jusity-content: center;
     align-items: center;
-    color: #000000;
+    color: #000000 !important;
     height: 32px;
     border-radius: 70px;
     padding-top: 2px;
@@ -73,10 +73,19 @@ export const HeaderStyles = {
       cursor: pointer;
     }
 
-    &:hover {
+    & > * {
+    color: #000000;
+    transition: color 0.5s;
+  }
+
+
+     &:hover {
       background-color: ${({ theme }) => theme.colors.black};
+      & > button > span {
+        color: #ffffff;
+      }
+
     }
-      
   `,
   Separator: styled.div`
     height: 12px;
